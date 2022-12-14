@@ -6,7 +6,7 @@
  -->
 
 <template>
-    <div id="full-screen" v-if="loading == true">
+    <div id="full-screen" v-if="isLoading">
       <img class="center-component fadeIn" :src="src" :width="width"/>
     </div>
 </template>
@@ -27,17 +27,11 @@ export default {
             type: String,
             default: '80px'
         },
-    },
-    data(){
-        return {
-            loading: true,
+        isLoading: {
+            type: Boolean,
+            default: true
         }
-    }, 
-    mounted(){
-        setTimeout(() => {
-            this.loading = false
-        }, this.time)
-    }
+    },
 }
 </script>
 

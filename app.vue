@@ -1,18 +1,29 @@
 <template>
   <div>
-    <SplashScreen :src="'/favicon.ico'" :time="1000" width="100px" />
+    <SplashScreen :src="'/favicon.ico'" width="100px" :isLoading="isLoading" />
     <NuxtLoadingIndicator />
-    <AppHeader />
-    <NuxtPage />
-    <AppFooter />
+    <AppHeader v-if="!isLoading" />
+    <NuxtPage v-if="!isLoading" />
+    <AppFooter v-if="!isLoading" />
   </div>
 </template>
 
 <script>
 export default {
 
+  data(){
+    return {
+      isLoading: true,
+    }
+  },
+
   mounted(){
+
     this.registerServiceWorker();
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 4000);
   },
 
   methods: {
@@ -64,3 +75,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+ * Global styles
+ */
+ 
+body {
+    @apply dark:bg-gray-dark bg-gray-100 min-h-screen min-w-full;
+}
+
+h1, h2, h3, h4, h5, h6, span {
+    @apply dark:text-gray-100 text-gray-900 font-sf
+}
+
+p, li {
+    @apply dark:text-gray-200 text-gray-800
+}
+
+/* Transition Effect (All elements) */
+* {
+    transition: all 0.25s ease-out;
+}
+
+/* 
+ * Body sizes
+ */
+
+ body {
+    @apply max-w-5xl mx-auto;
+}
+
+/* Page transition effects */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+@font-face {
+    font-family: "San Francisco";
+    src: url("./fonts/san-francisco-display/SFUIDisplay-Light.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "San Francisco Bold";
+    src: url("./fonts/san-francisco-display/SFUIDisplay-Bold.ttf") format('truetype');
+}

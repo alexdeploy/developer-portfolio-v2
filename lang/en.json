@@ -1,0 +1,8 @@
+{
+    "title": "Nuxt 3 App",
+    "subtitle": "Template",
+    "hello": "Hello",
+    "social": {
+        "twitter": "Twitter in english"
+    }
+}

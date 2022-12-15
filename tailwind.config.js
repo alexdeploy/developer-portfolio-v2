@@ -3,7 +3,10 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'gray-dark': '#121212'
+                'gray-dark': '#121212',
+                'glitch-green': '#00ff00',
+                'glitch-rose': '#f0f',
+                'glitch-blue': '#0ff',
             }
         },
         fontFamily: {

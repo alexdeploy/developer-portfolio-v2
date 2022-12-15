@@ -7,10 +7,8 @@
         <span class="flex text-xl md:text-3xl justify-center">
           Hi 👋 I'm
         </span>
-        <h1 class="flex text-5xl md:text-7xl font-sfbold justify-center m-3">
-          {{ $t('developer') }}
-        </h1>
-        <h2 class="flex justify-center text-xl md:text-2xl tracking-wide">
+        <GlitchText />
+        <h2 class="flex justify-center text-xl md:text-2xl tracking-wide dark:text-gray-500">
           {{ $t('job') }}
         </h2>
 
@@ -18,21 +16,21 @@
           <libraryButtonNuxt value="Continue" to='/about' class="m-2"/>
         </div>
 
-        <div id="social" class="flex items-center justify-center dark:text-gray-200 text-gray-700">
-                <NuxtLink>
-                    <Icon name="uil:github-alt" class="w-5 h-5 m-2" />
+        <div id="social" class="flex items-center justify-center dark:text-gray-400 text-gray-700">
+                <NuxtLink to="https://github.com/alexruedadev">
+                    <Icon name="iconoir:github" class="w-6 h-6 m-2" />
+                </NuxtLink>
+                <NuxtLink to="https://twitter.com/alexdeploy">
+                    <Icon name="iconoir:twitter" class="w-6 h-6 m-2" />
                 </NuxtLink>
                 <NuxtLink>
-                    <Icon name="uil:twitter" class="w-6 h-6 m-2" />
+                    <Icon name="iconoir:discord" class="w-6 h-6 m-2" />
                 </NuxtLink>
                 <NuxtLink>
-                    <Icon name="mingcute:discord-fill" class="w-6 h-6 m-2" />
+                    <Icon name="iconoir:tiktok" class="w-6 h-6 m-2" />
                 </NuxtLink>
                 <NuxtLink>
-                    <Icon name="mingcute:tiktok-fill" class="w-6 h-6 m-2" />
-                </NuxtLink>
-                <NuxtLink>
-                    <Icon name="mingcute:linkedin-fill" class="w-6 h-6 m-2" />
+                    <Icon name="iconoir:linkedin" class="w-6 h-6 m-2" />
                 </NuxtLink>
             </div>
       </div>
@@ -42,15 +40,6 @@
 </template>
 
 <style>
-h1 {
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 6vmax;
-  background-color: #5390d9;
-  background-image: linear-gradient(45deg, #00dc82,#16a79e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-}
+
 </style>
 

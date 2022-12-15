@@ -23,7 +23,7 @@ export default {
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 4000);
+    }, 2000);
   },
 
   methods: {

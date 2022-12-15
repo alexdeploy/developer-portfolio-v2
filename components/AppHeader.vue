@@ -1,14 +1,18 @@
 <template>
-    <header class="fixed w-full top-0 z-10 backdrop-blur-md">
+    <header class="fixed w-full top-0 z-10 ">
       <nav class="max-w-7xl mx-auto navigation justify-between">
-        <NuxtLink to="/">
-          <img src="/logo.png" alt="" class="w-10 h-10">
-        </NuxtLink>
+
+        
         
         <ul class="hidden lg:flex space-x-5 items-center">
           <li><NuxtLink to="/about">About</NuxtLink></li>
           <li><NuxtLink to="/blog">Blog</NuxtLink></li>
         </ul>
+
+        <NuxtLink to="/">
+          <LogoGlitch />
+        </NuxtLink>
+
         <Switch class="hidden lg:flex"/>
         <!-- Burger icon -->
         <NuxtLink @click="toggleMobileMenu()" class="flex lg:hidden">
@@ -41,5 +45,7 @@
     @apply flex;
     @apply p-5;
     @apply space-x-5;
+    @apply bg-black
+   /*  @apply backdrop-blur-md */
   }
 </style>

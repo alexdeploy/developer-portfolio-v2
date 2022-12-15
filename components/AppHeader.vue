@@ -10,7 +10,7 @@
         </ul>
 
         <NuxtLink to="/">
-          <LogoGlitch />
+          <img src="logo.png" class="w-10 h-10" alt="">
         </NuxtLink>
 
         <Switch class="hidden lg:flex"/>

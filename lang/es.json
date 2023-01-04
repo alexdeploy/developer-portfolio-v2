@@ -1,8 +1,26 @@
 {
     "developer": "Álex Rueda",
     "job": "Desarrollador Full Stack",
-    "hello": "Hola",
+    "about": {
+        "title": "About me",
+        "description": "Mi nombre es Álex Rueda y soy desarrollador full stack. Me gusta aprender cosas nuevas y compartir mis conocimientos con la comunidad, por eso comparto mis trabajos, herramientas, y trucos que voy desarrollando por redes sociales. Si quieres saber más sobre mí, lee la versión extendida de mi biografía.",
+        "status": "Actualmente estoy estudiando desarrollo de aplicaciones web y trabajando como autónomo.",
+        "filosophy": {
+            "job": "Trabajo en equipo, buena comunicación... ",
+            "software": "Código limpio y mantenible, buenas prácticas, y un diseño que se adapte a cualquier dispositivo.",
+            "life": "Aprender cosas nuevas, compartir conocimientos, y ayudar a los demás."
+        },
+        "objetives": "",
+        "skills": {
+            "hard": [],
+            "soft": [] 
+        }
+    },
     "social": {
-        "twitter": "Twitter en español"
+        "twitter": "alexdeploy",
+        "github": "alexruedadev",
+        "linkedin": "alexrueda",
+        "instagram": "alexrueda.ig",
+        "tiktok": "alexdeploy"
     }
 }

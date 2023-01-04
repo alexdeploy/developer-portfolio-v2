@@ -5,9 +5,12 @@
 
       <div>
         <span class="flex text-xl md:text-3xl justify-center">
-          Hi 👋 I'm
+          Hi 👋 I'm 
         </span>
-        <GlitchText />
+        <h1 class="flex text-3xl md:text-4xl justify-center font-sfbold">
+          {{ $t('developer') }}
+        </h1>
+        <!--  -->
         <h2 class="flex justify-center text-xl md:text-2xl tracking-wide dark:text-gray-500">
           {{ $t('job') }}
         </h2>

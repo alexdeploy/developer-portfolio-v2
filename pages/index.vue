@@ -1,41 +1,30 @@
 <template>
-  <div class="flex">
+  <div class="flex max-w-7xl mx-auto">
 
-    <section class="flex max-w-7xl mx-auto p-5 justify-center h-screen items-center">
+    <SocialLinks />
 
-      <div>
-        <span class="flex text-xl md:text-3xl justify-center">
+    <section class="flex h-screen w-full items-center">
+
+      <div class="flex justify-center flex-shrink-0">
+        <img src="images/avatar.gif" alt="" class="w-52 m-10">
+      </div>
+
+      <div class="w-full justify-start">
+        <span class="flex text-xl md:text-3xl">
           Hi 👋 I'm 
         </span>
-        <h1 class="flex text-3xl md:text-4xl justify-center font-sfbold">
+        <h1 class="flex text-3xl md:text-4xl font-sfbold">
           {{ $t('developer') }}
         </h1>
         <!--  -->
-        <h2 class="flex justify-center text-xl md:text-2xl tracking-wide dark:text-gray-500">
+        <h2 class="flextext-xl md:text-2xl tracking-wide dark:text-gray-500">
           {{ $t('job') }}
         </h2>
 
-        <div class="flex justify-center">
+        <div class="flex">
           <libraryButtonNuxt value="Continue" to='/about' class="m-2"/>
         </div>
 
-        <div id="social" class="flex items-center justify-center dark:text-gray-400 text-gray-700">
-                <NuxtLink to="https://github.com/alexruedadev">
-                    <Icon name="iconoir:github" class="w-6 h-6 m-2" />
-                </NuxtLink>
-                <NuxtLink to="https://twitter.com/alexdeploy">
-                    <Icon name="iconoir:twitter" class="w-6 h-6 m-2" />
-                </NuxtLink>
-                <NuxtLink>
-                    <Icon name="iconoir:discord" class="w-6 h-6 m-2" />
-                </NuxtLink>
-                <NuxtLink>
-                    <Icon name="iconoir:tiktok" class="w-6 h-6 m-2" />
-                </NuxtLink>
-                <NuxtLink>
-                    <Icon name="iconoir:linkedin" class="w-6 h-6 m-2" />
-                </NuxtLink>
-            </div>
       </div>
 
     </section>

@@ -4,6 +4,7 @@
     <NuxtLoadingIndicator />
     <AppHeader v-if="!isLoading" />
     <NuxtPage v-if="!isLoading" />
+    <!-- <SocialLinks v-if="!isLoading" /> -->
     <AppFooter v-if="!isLoading" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SplashScreen :src="'/favicon.ico'" width="100px" :isLoading="isLoading" />
+    <SplashScreen :src="'/logo.gif'" width="150px" :isLoading="isLoading" />
     <NuxtLoadingIndicator />
     <AppHeader v-if="!isLoading" />
     <NuxtPage v-if="!isLoading" />

@@ -7,10 +7,10 @@
  */
  
 body {
-    @apply dark:bg-black bg-gray-100 min-h-screen min-w-full;
+    @apply dark:bg-neon-blue-m bg-gray-100 min-h-screen min-w-full;
 }
 
-h1, h2, h3, h4, h5, h6, span {
+h1, h2, h3, h4, h5, h6 {
     @apply dark:text-gray-100 text-gray-900 font-sf
 }
 

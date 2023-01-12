@@ -2768,6 +2768,11 @@ git-url-parse@^13.1.0:
   dependencies:
     git-up "^7.0.0"
 
+github-buttons@^2.22.0:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/github-buttons/-/github-buttons-2.22.2.tgz#09eb78d56a7d5038730f24147532473fa02b069f"
+  integrity sha512-5oBDfkizyehPc0pfa07uttIvl9QlrdwruMv18ccD/T2/tlZPMDVFxv8MOxH0Rt/gxi/756/btaKwTAlfRB69Ew==
+
 github-slugger@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-2.0.0.tgz#52cf2f9279a21eb6c59dd385b410f0c0adda8f1a"
@@ -6367,6 +6372,13 @@ vue-devtools-stub@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz#a65b9485edecd4273cedcb8102c739b83add2c81"
   integrity sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==
+
+vue-github-button@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/vue-github-button/-/vue-github-button-3.1.0.tgz#a95751c43db68cb3ba790af1f63df7e3a2be6dae"
+  integrity sha512-S69NFalucetUW4AjMkLlHY/fgTWu6LEGEtehMewXRNLnjODhDvJj4lwt0u0BSPXLTDB+PLk1tWlwx3pw+ItLgQ==
+  dependencies:
+    github-buttons "^2.22.0"
 
 vue-i18n-routing@^0.10.1:
   version "0.10.2"

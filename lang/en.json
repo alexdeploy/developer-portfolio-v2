@@ -1,9 +1,10 @@
 {
     "developer": "Álex Rueda",
     "job": "Desarrollador Full Stack",
+    "slogan": "I use turn coffee into software.",
     "about": {
         "title": "About me",
-        "description": "Mi nombre es Álex Rueda y soy desarrollador full stack. Me gusta aprender cosas nuevas y compartir mis conocimientos con la comunidad, por eso comparto mis trabajos, herramientas, y trucos que voy desarrollando por redes sociales. Si quieres saber más sobre mí, lee la versión extendida de mi biografía.",
+        "description": "Mi name is Álex Rueda and i'm full stack developer. In my spare time I like to develop apps and awesome web features.  Si quieres saber más sobre mí, lee la versión extendida de mi biografía.",
         "status": "Actualmente estoy estudiando desarrollo de aplicaciones web y trabajando como autónomo.",
         "filosophy": {
             "job": "Trabajo en equipo, buena comunicación... ",

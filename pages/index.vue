@@ -1,39 +1,86 @@
 <template>
-  <div class="flex max-w-7xl mx-auto">
-
-    <!-- <SocialLinks /> -->
-    
-    <section class="flex flex-col h-screen w-full justify-center items-center">
-
-      <div class="flex justify-center flex-shrink-0">
-        <img src="images/avatar.gif" alt="" class="w-64 m-10">
-        <div class="w-4 h-4 rounded-sm bg-gray-100/50 fixed left-14"></div>
-
-      </div>
-
-      <div class="w-full text-center">
-        <span class="text-xl md:text-3xl">
-          Hi 👋 I'm 
-        </span>
-        <h1 class="text-3xl md:text-4xl font-sfbold">
-          {{ $t('developer') }}
-        </h1>
-        <!--  -->
-        <h2 class="text-xl md:text-2xl tracking-wide dark:text-gray-500">
-          {{ $t('job') }}
-        </h2>
-
-        <div class="flex justify-center">
-          <libraryButtonNuxt value="Continue" to='/about' class="m-2"/>
-        </div>
-
-      </div>
-
-    </section>
-  </div>
+  <main class="flex flex-col max-w-7xl mx-auto">
+    <HomeHero />
+    <HomeAbout />
+    <HomeProjects />
+  </main>
 </template>
 
-<style>
+<script>
 
+export default {
+
+  mounted(){
+
+    /**
+     * * Get sections start position
+     * Get the start position of each section and substract 100px to the top to show the navbar before.
+     */
+    const heroStart = document.querySelector('#hero').offsetTop - 100
+    const aboutStart = document.querySelector('#about').offsetTop - 100
+    const projectsStart = document.querySelector('#projects').offsetTop - 100
+    
+    /**
+     * * Get sections height
+     * Get the height of each section to show the navbar when the scroll is between this section.
+     */
+    const heroHeight = document.querySelector('#hero').offsetHeight
+    const aboutHeight = document.querySelector('#about').offsetHeight
+    const projectsHeight = document.querySelector('#projects').offsetHeight
+
+    /**
+     * * ON SCROLL Eventº
+     */
+    window.onscroll = () => {
+
+      const scrollPosition = window.scrollY
+      
+      const aboutHeader = document.querySelector('#about-header')
+      const projectsHeader = document.querySelector('#projects-header')
+
+      // Show and hide navbar when scroll is between hero section
+      if(scrollPosition >= heroStart && scrollPosition <= heroStart + heroHeight){
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-80px";
+      }
+
+      // Show and hide navbar when scroll is between about section
+      if(scrollPosition >= aboutStart && scrollPosition <= aboutStart + aboutHeight){
+        aboutHeader.style.top = "0px"; // Show about header
+      } else {
+        aboutHeader.style.top = "-80px"; // Hide about header
+      }
+
+      // Show and hide navbar when scroll is between projects section
+      if(scrollPosition >= projectsStart && scrollPosition <= projectsStart + projectsHeight){
+        projectsHeader.style.top = "0px"; // Show projects header
+      } else {
+        projectsHeader.style.top = "-80px"; // Hide projects header
+      }
+
+    }
+
+  }
+}
+
+</script>
+
+<style>
+#about-header {
+  background: rgba(5,19,30,0.7);
+  backdrop-filter: blur(10px);
+}
+
+#projects-header {
+  background: rgba(5,19,30,0.7);
+  backdrop-filter: blur(10px);
+}
+
+.section-header {
+  @apply flex fixed w-full -top-60 z-30 px-5 pt-2 pb-4 space-x-3 shadow-md;
+  background: rgba(5,19,30,0.7);
+  backdrop-filter: blur(10px);
+}
 </style>
 

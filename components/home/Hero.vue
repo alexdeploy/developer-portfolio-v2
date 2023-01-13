@@ -1,39 +1,45 @@
 <template>
-      <section id="hero" class="flex flex-col w-full items-center p-5 h-screen justify-center">
+  <section id="hero">
+    
+    <span class="hero-span">
+      Hi 👋 
+    </span>
 
-<!--       <div class="flex justify-center flex-shrink-0 pt-10">
-        <img src="images/avatar.gif" alt="" class="w-64 m-10">
-      </div> -->
+    <h1 class="hero-name">
+      I'm {{ $t('developer') }}
+    </h1>
 
-      <div class="w-full">
-        <span class="text-2xl md:text-3xl text-gray-300">
-          Hi 👋 
-        </span>
-        <h1 class="text-4xl md:text-4xl font-sfbold py-2">
-          I'm {{ $t('developer') }}
-        </h1>
-        <!--  -->
-        <h2 class="text-2xl md:text-2xl font-sfbold dark:text-gray-100/50 tracking-wider">
-          {{ $t('slogan') }}
-        </h2>
+    <h2 class="hero-slogan">
+      {{ $t('slogan') }}
+    </h2>
 
-        <div class="flex">
-          <libraryButtonNuxt value="Contact me" to='/about'/>
-        </div>
+    <VueButtonNuxt :value="$t('buttons.contact')" to='/'/>
 
-      </div>
-
-      
-
-    </section>
+  </section>
 </template>
 
 <script>
-export default {
 
+export default {
+  name: 'Hero',
 }
+
 </script>
 
 <style>
+#hero {
+  @apply flex flex-col w-full h-screen p-5 justify-center;
+}
 
+.hero-span {
+ @apply text-2xl md:text-3xl lg:text-4xl text-gray-300;
+}
+
+.hero-name {
+  @apply text-4xl md:text-5xl lg:text-6xl font-sfbold py-2;
+}
+
+.hero-slogan {
+  @apply text-2xl md:text-3xl lg:text-5xl font-sfbold dark:text-gray-500 tracking-wider;
+}
 </style>

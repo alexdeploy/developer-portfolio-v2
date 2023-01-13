@@ -1,37 +1,53 @@
 <template>
-      <!-- about me header -->
-      <div id="about-header" class="section-header">
+  <section id="about">
+
+    <!-- header -->
+    <div id="about-header" class="section-header">
+
       <img src="images/avatar.gif" alt="" class="w-12">
-      <p class="self-end font-sfbold">About me</p>
+
+      <h3 class="font-sfbold self-end">
+        {{ $t('about.title') }}
+      </h3>
+
     </div>
 
-    <section id="about" class="p-5">
-      <div class="pb-10">
-        <h1 class="text-2xl md:text-4xl font-sfbold">
-            Some things About me.
-        </h1>
-        <div class="flex">
-          <p class="tracking-wider dark:text-glitch-blue">
-            Featured Projects
-          </p>
-          <div>
-            
-          </div>
-        </div>
-      </div>
+    <!-- content -->
+    <div id="content" class="p-5">
 
-      <p>
-        {{ $t('about.description') }}
-      </p>
-    </section>
+      <h2 class="text-2xl md:text-4xl font-sfbold">
+        {{ $t('about.longTitle') }}
+      </h2>
+
+      <span class="tracking-wider dark:text-glitch-blue">
+        {{ $t('about.subtitle') }}
+      </span>
+
+      <p v-html="$t('about.description')" class="pt-10"></p>
+
+    </div>
+
+  </section>
 </template>
 
 <script>
-export default {
 
+export default {
+  name: 'About',
 }
+
 </script>
 
 <style>
+#about {
+  @apply min-h-screen max-w-2xl;
+}
 
+#content b {
+  @apply text-glitch-blue;
+}
+
+#content br {
+  @apply my-5
+}
 </style>

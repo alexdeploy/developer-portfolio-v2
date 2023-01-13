@@ -67,20 +67,12 @@ export default {
 </script>
 
 <style>
-#about-header {
-  background: rgba(5,19,30,0.7);
-  backdrop-filter: blur(10px);
-}
-
-#projects-header {
-  background: rgba(5,19,30,0.7);
-  backdrop-filter: blur(10px);
-}
 
 .section-header {
   @apply flex fixed w-full -top-60 z-30 px-5 pt-2 pb-4 space-x-3 shadow-md;
   background: rgba(5,19,30,0.7);
   backdrop-filter: blur(10px);
 }
+
 </style>
 

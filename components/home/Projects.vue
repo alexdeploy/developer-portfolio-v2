@@ -1,6 +1,6 @@
 <template>
   <!-- projects header -->
-  <div id="projects-header" class="flex fixed w-full -top-60 z-30 px-5 pt-2 pb-4 space-x-3">
+  <div id="projects-header" class="section-header">
       <img src="images/avatar.gif" alt="" class="w-12">
       <p class="self-end font-sfbold">Projects</p>
     </div>

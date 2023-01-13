@@ -23,5 +23,9 @@
         "linkedin": "alexrueda",
         "instagram": "alexrueda.ig",
         "tiktok": "alexdeploy"
+    },
+    "buttons": {
+        "hire": "Hire me",
+        "contact": "Contact me"
     }
 }

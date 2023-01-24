@@ -1,5 +1,6 @@
 <template>
   <main class="flex flex-col max-w-7xl mx-auto">
+    <!-- <div id="filter-blur" class="h-screen w-full fixed top-0 bg-black/20 z-10"></div> -->
     <HomeHero />
     <HomeAbout />
     <HomeProjects />
@@ -69,7 +70,7 @@ export default {
 <style>
 
 .section-header {
-  @apply flex fixed w-full -top-60 z-30 px-5 pt-2 pb-4 space-x-3 shadow-md;
+  @apply flex fixed w-full -top-60 z-30 px-5 py-4 space-x-3 shadow-md left-0;
   background: rgba(5,19,30,0.7);
   backdrop-filter: blur(10px);
 }

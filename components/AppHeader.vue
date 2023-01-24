@@ -3,7 +3,7 @@
       <nav class="max-w-7xl mx-auto navigation justify-between w-full">
 
         <NuxtLink to="/" class="self-center">
-          <img src="logo.svg" class="w-6 h-6 md:w-12 md:h-12" alt="">
+          <img src="logo.svg" class="w-6 h-6 md:w-8 md:h-8" alt="">
         </NuxtLink>
         
         <ul class="hidden lg:flex space-x-5 items-center">
@@ -15,7 +15,7 @@
         <!-- Burger icon -->
         <NuxtLink @click="toggleMobileMenu()" class="flex lg:hidden">
           <!-- <Icon name="mingcute:menu-line" class="text-gray-200 w-6 h-6 m-2" /> -->
-          <img src="images/menu.svg" alt="" class="w-6 h-6 opacity-80">
+          <img src="icons/burger.svg" alt="" class="w-6 h-6 opacity-80">
         </NuxtLink>
       
       </nav>
@@ -60,13 +60,11 @@
     @apply flex;
     @apply p-5;
     @apply space-x-5;
-/*  @apply bg-neon-blue-l; */
-    background: rgba(5,19,30,0.7);
-    backdrop-filter: blur(10px);
-
   }
 
 #navbar {
+  background: rgba(5,19,30,0.7);
+  backdrop-filter: blur(10px);
   transition: top 0.4s;
 }
 

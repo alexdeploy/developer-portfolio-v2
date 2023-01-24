@@ -45,7 +45,8 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(0, 0, 0);
+    background: rgba(5,19,30,0.7);
+    backdrop-filter: blur(10px);
     z-index: 9999;
 }
 

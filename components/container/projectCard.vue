@@ -8,22 +8,23 @@
                 <div class="flex">
 
                 <!-- icon -->
-                <div class="-mt-3 shadow-sm shadow-black rounded-lg">
+                <div class="-mt-3 shadow-sm shadow-black rounded-lg h-fit">
                     <img :src="icon" alt="" class="w-20 h-20 rounded-lg">
                 </div>
         
                 <!-- title -->
-                <div class="text-center p-4">
+                <div class="flex flex-col text-left p-4">
                     <h1 class="text-xl font-sfbold">{{ title }}</h1>
+                    <span class="text-left text-gray-100/50">{{ subtitle }}</span>
                 </div>
         </div>
         <!-- pixel corner -->
-        <div class="grid grid-cols-2 self-start">
+<!--         <div class="grid grid-cols-2 self-start">
             <div class="w-4 h-4 rounded-sm bg-neon-blue-m"></div>
             <div class="w-4 h-4 rounded-sm "></div>
             <div class="w-4 h-4 rounded-sm "></div>
             <div class="w-4 h-4 rounded-sm bg-neon-blue-m"></div>
-        </div>
+        </div> -->
     
     
 
@@ -76,6 +77,11 @@ export default {
             type: String,
             default: '',
             required: true
+        },
+        subtitle: {
+            type: String,
+            default: '',
+            required: false
         },
         description: {
             type: String,

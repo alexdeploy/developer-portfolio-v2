@@ -1,16 +1,17 @@
 <template>
-  <section id="about">
+  <section id="about" class="z-10">
 
     <!-- header -->
-    <div id="about-header" class="section-header">
+        <div id="about-header" class="section-header">
+    
+          <img src="icons/avatar-black.png" alt="" class="w-7">
+    
+          <h3 class="font-sfbold self-center">
+            {{ $t('about.title') }}
+          </h3>
+    
+        </div>
 
-      <img src="images/avatar.gif" alt="" class="w-12">
-
-      <h3 class="font-sfbold self-end">
-        {{ $t('about.title') }}
-      </h3>
-
-    </div>
 
     <!-- content -->
     <div id="content" class="p-5">
@@ -23,6 +24,10 @@
         {{ $t('about.subtitle') }}
       </span>
 
+      <!-- <div class="w-40 h-32 bg-gray-300 rounded-xl shadow-md shadow-neon-blue-l my-5">
+
+      </div> -->
+
       <p v-html="$t('about.description')" class="pt-10"></p>
 
     </div>
@@ -34,6 +39,12 @@
 
 export default {
   name: 'About',
+
+  mounted(){
+
+    
+
+  }
 }
 
 </script>
@@ -50,4 +61,5 @@ export default {
 #content br {
   @apply my-5
 }
+
 </style>

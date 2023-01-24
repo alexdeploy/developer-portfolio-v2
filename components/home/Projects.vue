@@ -1,11 +1,11 @@
 <template>
   <!-- projects header -->
   <div id="projects-header" class="section-header">
-      <img src="images/avatar.gif" alt="" class="w-12">
-      <p class="self-end font-sfbold">Projects</p>
-    </div>
+    <img src="icons/folder.svg" alt="" class="w-7 h-7">
+    <p class="self-end font-sfbold">Projects</p>
+  </div>
 
-    <section id="projects" class="p-5">
+    <section id="projects" class="p-5 z-10">
       
       <!-- title -->
       <div class="pb-16">
@@ -24,16 +24,18 @@
       
       <!-- project cards -->
       <div class="space-y-10">
-        <containerProjectCard 
+        <containerProjectCard2 
         icon="projects/nuxt-pwa.png"
         title="Nuxt PWA Template"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+        subtitle="Open source PWA template"
+        description="This is a template for Nuxt.js 3.0 projects with PWA advanced support and configuration."
         repo="https://github.com/alexruedadev/nuxt-pwa-template"
         />
 
-        <containerProjectCard
+        <containerProjectCard2
         icon="projects/jukebox.png"
         title="Jukebox"
+        subtitle="Discord Music Bot"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
         repo="https://github.com/alexruedadev/jukebox-discord"
         />

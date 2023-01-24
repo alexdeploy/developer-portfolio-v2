@@ -18,6 +18,10 @@ p, li {
     @apply dark:text-gray-200 text-gray-800
 }
 
+#card p {
+    @apply dark:text-gray-300 text-gray-800
+}
+
 /* Transition Effect (All elements) */
 * {
     transition: all 0.25s ease-out;

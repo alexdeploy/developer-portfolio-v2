@@ -1,82 +1,71 @@
 <template>
-  <div>
-    <SplashScreen :src="'/logo.gif'" width="120px" :isLoading="isLoading" />
-    <NuxtLoadingIndicator />
-    <AppHeader v-if="!isLoading" />
-    <NuxtPage v-if="!isLoading" />
-    <!-- <SocialLinks v-if="!isLoading" /> -->
-    <AppFooter v-if="!isLoading" />
+  <div class="box flex flex-col justify-between">
+  
+    <div id="body-content" class="flex flex-col md:grid md:grid-cols-6">
+
+      <MainMenu />
+
+      <MobileMenu class="md:hidden" />
+
+      <div class="w-full h-full md:col-span-5 flex flex-col justify-between">
+        <!-- page navigation --> <AppHeader/>
+        <!-- page --> <NuxtPage/>
+        <!-- footer -->
+      </div>
+      
+    </div>
+
+    <AppFooter/>
+
   </div>
 </template>
 
-<script>
-export default {
-
-  data(){
-    return {
-      isLoading: true,
-    }
-  },
-
-  mounted(){
-
-    this.registerServiceWorker();
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
-  },
-
-  methods: {
-
-    /**
-     * * Register the service worker
-     * * Load the service worker file and set the scope.
-     * ? The scope is the path where the service worker will be active.
-     * ? The scope is relative to the domain.
-     * ! The scope is not the same as the path to the service worker file.
-     * TODO: Investigate if there is any usefull function to load in this function.
-     * TODO: Export this function to a separate file ?
-     */
-    async registerServiceWorker() {
-
-      // Define file and scope from root directory
-      const scope = ".";
-      const workerPath = "worker.js";
-
-      // Check if service worker is supported and register it
-      if ("serviceWorker" in navigator) {
-        try {
-
-          /**
-           * * Register the service worker
-           * .register() @returns a promise with a ServiceWorkerRegistration object
-           */  
-
-          const registration = await navigator.serviceWorker.register(workerPath, {
-            scope: scope,
-          }).then((registration) => {
-            console.log("Service worker registration successful with scope: ", registration.scope);
-            return registration;
-          });
-
-          if (registration.installing) {
-            console.log("Service worker installing");
-          } else if (registration.waiting) {
-            console.log("Service worker installed");
-          } else if (registration.active) {
-            console.log("Service worker active");
-          }
-        } catch (error) {
-          console.error(`Registration failed with ${error}`);
-        }
-      }
-    },
-
-  }
-}
-</script>
-
 <style>
 
+.box {
+  @apply bg-blue-background;
+  border-radius: 7px;
+  border: 1px solid #1E2D3D;
+  height: stretch;
+  width: stretch;
+}
+
+#logo-place {
+  border-bottom: 1px solid #1E2D3D;
+  border-right: 1px solid #1E2D3D;
+}
+
+#main-menu {
+ /*  border-right: 1px solid #1E2D3D; */
+/*  display: flex;
+ flex-direction: column; */
+}
+
+#body-content {
+  height: stretch;
+  width: stretch;
+}
+
+#social {
+  border-right: 1px solid #1E2D3D;
+  @apply justify-end
+}
 </style>
+
+<script>
+export default {
+/*   watch:{
+    $route (to, from){
+
+      if (to.path == '/about-me') {
+        // get about subsection and show it
+        document.getElementById('sub-about').classList.toggle('hidden');
+      } else {
+        document.getElementById('sub-about').classList.toggle('hidden');
+      }
+        this.show = false;
+        console.log('route changed ' + JSON.stringify(from));
+    }
+}  */
+}
+</script>

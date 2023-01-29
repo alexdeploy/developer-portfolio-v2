@@ -1,74 +1,77 @@
 <template>
-    <header id="navbar" class="fixed w-full top-0 z-30 flex flex-col shadow-md">
-      <nav class="max-w-7xl mx-auto navigation justify-between w-full">
+    <header id="navbar" class="w-full hidden md:flex flex-col">
+      <nav class="w-full h-12 flex justify-between text-sm">
 
-        <NuxtLink to="/" class="self-center">
-          <img src="logo.svg" class="w-6 h-6 md:w-8 md:h-8" alt="">
-        </NuxtLink>
-        
-        <ul class="hidden lg:flex space-x-5 items-center">
-          <li><NuxtLink to="/about">About</NuxtLink></li>
-          <li><NuxtLink to="/blog">Blog</NuxtLink></li>
-        </ul> 
+          <div class="flex">
+            <NuxtLink id="nav-link" to="/" class="text-menu-text font-fira_retina px-6 h-full flex items-center">
+              _hello
+            </NuxtLink>
+  
+            <NuxtLink id="nav-link" to="/about-me" class="text-menu-text font-fira_retina px-6 h-full flex items-center">
+              _about-me
+            </NuxtLink>
+  
+            <NuxtLink id="nav-link" to="/projects" class="text-menu-text font-fira_retina px-6 h-full flex items-center">
+              _projects
+            </NuxtLink>
+          </div>
 
-        <!-- <Switch class="hidden lg:flex"/> -->
-        <!-- Burger icon -->
-        <NuxtLink @click="toggleMobileMenu()" class="flex lg:hidden">
-          <!-- <Icon name="mingcute:menu-line" class="text-gray-200 w-6 h-6 m-2" /> -->
-          <img src="icons/burger.svg" alt="" class="w-6 h-6 opacity-80">
-        </NuxtLink>
+          <NuxtLink id="nav-link-right" to="/" class="text-menu-text font-fira_retina px-6 h-full flex items-center justify-end">
+            _contant-me
+          </NuxtLink>
       
       </nav>
 
-      <MobileMenu class="mobile-menu hidden" />
-
     </header>
-    <div id="filter" class="h-screen w-full fixed top-0 bg-black/20 z-20 hidden"></div>
 
 </template>
 
-<script>
-
-  export default {
-
-    methods: {
-      toggleMobileMenu(){
-        // Toggle mobile menu
-        document.querySelector('.mobile-menu').classList.toggle('hidden')
-        document.querySelector('.navigation').classList.toggle('shadow-md')
-        document.querySelector('#filter').classList.toggle('hidden')
-
-      }
-    },
-    mounted(){
-
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if(!e.target.closest('.mobile-menu') && !e.target.closest('.navigation') && e.target.closest('#filter')){
-          document.querySelector('.mobile-menu').classList.add('hidden')
-          document.querySelector('#filter').classList.add('hidden')
-        }
-      })
-
-    }
-  }
-
-</script>
-  
 <style>
-.navigation {
-    @apply flex;
-    @apply p-5;
-    @apply space-x-5;
-  }
 
+/* Set bottom border 1px to navbar */
 #navbar {
-  background: rgba(5,19,30,0.7);
-  backdrop-filter: blur(10px);
-  transition: top 0.4s;
+  border-bottom: 1px solid #1E2D3D;
 }
 
-/* #filter {
-  transition: all 0.4s;
-} */
+#nav-link {
+  border-right: 1px solid #1E2D3D;
+}
+
+#nav-link-right {
+  border-left: 1px solid #1E2D3D;
+}
+
+#nav-link-right:hover {
+  background-color: #1E2D3D;
+
+}
+
+#nav-link:hover {
+  background-color: #1E2D3D;
+}
+
+#nav-link.active {
+  border-bottom: 2px solid #FEA55F;
+}
 </style>
+
+<script>
+
+// Set active class to current page
+export default {
+  mounted() {
+    // Change active class on link when click event is triggered
+    document.querySelectorAll('#nav-link').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        // Remove active class from all links
+        document.querySelectorAll('#nav-link').forEach((link) => {
+          link.classList.remove('active');
+        });
+        // Add active class to clicked link
+        e.target.classList.add('active');
+      });
+    });
+  }
+}
+
+</script>

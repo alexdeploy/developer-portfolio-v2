@@ -1,13 +1,28 @@
 <template>
-  <div class="w-full h-64 bg-slate-500 px-5 dark:text-gray-100 font-sf text-lg tracking-wider">
-    
-    <div id="links" class="flex flex-col">
-      <NuxtLink id="menu-link" class="py-3" to="/about">About</NuxtLink>
-      <NuxtLink id="menu-link" class="py-3" to="/projects">Projects</NuxtLink>
-      <NuxtLink id="menu-link" class="py-3" to="/blog">My notes</NuxtLink>
+  <div class="mobile-menu w-full">
+
+    <!-- header -->
+    <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
+      <NuxtLink to="/" class="text-menu-text font-fira_retina flex h-full items-center mx-5">
+        alex-rueda
+      </NuxtLink>
+      <Icon @click="toggleMobileMenu()" name="icon-park-outline:hamburger-button" class="w-7 h-7 mx-5 my-auto text-hello-gray" />
     </div>
 
-    <Switch class="flex py-3 justify-end" />
+    <!-- mobile menu -->
+      <div id="menu" class="bg-mobile-menu-blue z-30 w-full hidden">
+        <NuxtLink id="nav-link-mobile" to="/" class="text-menu-text font-fira_retina px-6 py-4 flex items-center active">
+          _hello
+        </NuxtLink>
+  
+        <NuxtLink id="nav-link-mobile" to="/about-me" class="text-menu-text font-fira_retina px-6 py-4 flex items-center">
+          _about-me
+        </NuxtLink>
+  
+        <NuxtLink id="nav-link-mobile" to="/" class="text-menu-text font-fira_retina px-6 py-4 flex items-center">
+          _projects
+        </NuxtLink>
+    </div>
 
   </div>
 </template>
@@ -16,20 +31,29 @@
 export default {
   mounted(){
     
+  },
+  methods: {
+    toggleMobileMenu(){
+
+      const menu = document.getElementById('menu');
+      const hello = document.getElementById('hello');
+
+      hello.classList.toggle('hidden');
+      menu.classList.toggle('hidden')
+
+    }
   }
 }
 </script>
 
 <style>
-.mobile-menu {
-  background: rgba(5,19,30,0.7);
-  backdrop-filter: blur(10px);
-  transition: top 0.4s;
+
+#mobile-header {
+  border-bottom: 1px solid #1E2D3D;
 }
 
-#menu-link {
-  border-bottom: 1px solid;
-  @apply border-white/10;
+#nav-link-mobile {
+  border-bottom: 1px solid #1E2D3D;
 }
 
 </style>

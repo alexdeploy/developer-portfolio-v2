@@ -2,37 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
- * Global styles
- */
- 
+html {
+    @apply bg-dark-background;
+    height: stretch;
+    width: stretch;
+    /* margin: 40px; */
+    /* @apply md:m-40 m-10 */
+    @apply m-5 md:m-10
+}
+
 body {
-    @apply dark:bg-neon-blue-m bg-gray-100 min-h-screen min-w-full;
+    height: 100%;
+    width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    @apply dark:text-gray-100 text-gray-900 font-sf
-}
-
-p, li {
-    @apply dark:text-gray-200 text-gray-800
-}
-
-#card p {
-    @apply dark:text-gray-300 text-gray-800
+#__nuxt {
+    height: 100%;
+    width: 100%;
 }
 
 /* Transition Effect (All elements) */
 * {
     transition: all 0.25s ease-out;
-}
-
-/* 
- * Body sizes
- */
-
- body {
-    @apply max-w-5xl mx-auto;
 }
 
 /* Page transition effects */
@@ -47,11 +38,36 @@ p, li {
 }
 
 @font-face {
-    font-family: "San Francisco";
-    src: url("./fonts/san-francisco-display/SFUIDisplay-Light.ttf") format('truetype');
+    font-family: "Fira Code Light";
+    src: url("./fonts/fira-code/FiraCode-Light.ttf") format('truetype');
 }
 
 @font-face {
-    font-family: "San Francisco Bold";
-    src: url("./fonts/san-francisco-display/SFUIDisplay-Bold.ttf") format('truetype');
+  font-family: "Fira Code Regular";
+  src: url("./fonts/fira-code/FiraCode-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Fira Code Retina";
+  src: url("./fonts/fira-code/FiraCode-Retina.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Fira Code Medium";
+  src: url("./fonts/fira-code/FiraCode-Medium.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Fira Code SemiBold";
+  src: url("./fonts/fira-code/FiraCode-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Fira Code Bold";
+  src: url("./fonts/fira-code/FiraCode-Bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Fira Code Variable";
+  src: url("./fonts/fira-code/FiraCode-Variable.ttf") format('truetype');
 }

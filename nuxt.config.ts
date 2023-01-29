@@ -42,7 +42,6 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/i18n',
     '@nuxt/content',
-    '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
   ],
 
@@ -89,14 +88,6 @@ export default defineNuxtConfig({
         name: 'English',
       },
   ]},
-
-  /**
-   * * Color mode Config
-   * Official module: https://nuxt.com/modules/color-mode
-   */
-  colorMode: {
-    classSuffix: '',
-  },
 
   /**
    * * Runtime Config (Environment Variables)

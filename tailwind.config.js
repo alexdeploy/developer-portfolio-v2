@@ -20,7 +20,8 @@ module.exports = {
                 'codeline-link': '#E99287',
                 'codeline-tag': '#4D5BCE',
                 'codeline-name': '#43D9AD',
-                'mobile-menu-blue': '#011627'
+                'mobile-menu-blue': '#011627',
+                'placeholder-gray': '#465E77',
 
             }
         },

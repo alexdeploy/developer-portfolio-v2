@@ -1,26 +1,30 @@
 <template>
-  <div class="mobile-menu w-full">
+  <div class="mobile-menu w-full z-10">
 
     <!-- header -->
     <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
-      <NuxtLink to="/" class="text-menu-text font-fira_retina flex h-full items-center mx-5">
+      <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5">
         alex-rueda
       </NuxtLink>
       <Icon @click="toggleMobileMenu()" name="icon-park-outline:hamburger-button" class="w-7 h-7 mx-5 my-auto text-hello-gray" />
     </div>
 
     <!-- mobile menu -->
-      <div id="menu" class="bg-mobile-menu-blue z-30 w-full hidden">
-        <NuxtLink id="nav-link-mobile" to="/" class="text-menu-text font-fira_retina px-6 py-4 flex items-center active">
+      <div id="menu" class="bg-mobile-menu-blue z-10 hidden">
+        <NuxtLink id="nav-link-mobile" to="/" :class="{ active: isActive('/') }" @click="toggleMobileMenu()">
           _hello
         </NuxtLink>
   
-        <NuxtLink id="nav-link-mobile" to="/about-me" class="text-menu-text font-fira_retina px-6 py-4 flex items-center">
+        <NuxtLink id="nav-link-mobile" to="/about-me" :class="{ active: isActive('/about-me') }" @click="toggleMobileMenu()">
           _about-me
         </NuxtLink>
   
-        <NuxtLink id="nav-link-mobile" to="/" class="text-menu-text font-fira_retina px-6 py-4 flex items-center">
+        <NuxtLink id="nav-link-mobile" to="/" :class="{ active: isActive('/projects') }" @click="toggleMobileMenu()">
           _projects
+        </NuxtLink>
+
+        <NuxtLink id="nav-link-mobile" to="/contact-me" :class="{ active: isActive('/contact-me') }" @click="toggleMobileMenu()">
+          _contact-me
         </NuxtLink>
     </div>
 
@@ -36,11 +40,16 @@ export default {
     toggleMobileMenu(){
 
       const menu = document.getElementById('menu');
-      const hello = document.getElementById('hello');
-
-      hello.classList.toggle('hidden');
       menu.classList.toggle('hidden')
-
+      const section = document.getElementsByTagName('section')[0];
+      section.classList.toggle('hidden')
+      
+    }
+  },
+  computed: {
+    // Set active class to current page link
+    isActive() {
+      return route => this.$route.path === route;
     }
   }
 }
@@ -54,6 +63,15 @@ export default {
 
 #nav-link-mobile {
   border-bottom: 1px solid #1E2D3D;
+  @apply text-menu-text font-fira_retina px-6 py-4 flex items-center;
+}
+
+#nav-link-mobile.active {
+  color: white
+}
+
+#menu {
+/*   width: fit-content; */
 }
 
 </style>

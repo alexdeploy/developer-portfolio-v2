@@ -6,9 +6,7 @@ html {
     @apply bg-dark-background;
     height: stretch;
     width: stretch;
-    /* margin: 40px; */
-    /* @apply md:m-40 m-10 */
-    @apply m-5 md:m-10
+    margin: 30px
 }
 
 body {
@@ -21,10 +19,48 @@ body {
     width: 100%;
 }
 
-/* Transition Effect (All elements) */
-* {
-    transition: all 0.25s ease-out;
+.box {
+  @apply bg-blue-background;
+  border-radius: 7px;
+  border: 1px solid #1E2D3D;
+  height: stretch;
+  width: stretch;
 }
+
+@media (max-width: 1024px) {
+
+  html {
+    margin: 15px;
+    min-height: stretch;
+    height: stretch;
+    width: stretch;
+  }
+
+  body {
+
+  }
+
+  #__nuxt {
+    height: 100%;
+    width: 100%;
+
+    width: auto;
+  }
+
+  .box {
+    width: 100%;
+    min-height: 100%;
+
+    height: auto;
+    overflow-y: scroll;
+  }
+}
+
+/* Transition Effect (All elements) */
+
+/* * {
+    transition: all 0.25s ease-out;
+} */
 
 /* Page transition effects */
 .page-enter-active,
@@ -35,6 +71,24 @@ body {
 .page-leave-to {
   opacity: 0;
   filter: blur(1rem);
+}
+
+/* Borders */
+
+.border-top {
+  border-top: 1px solid #1E2D3D;
+}
+
+.border-right {
+  border-right: 1px solid #1E2D3D;
+}
+
+.border-bot {
+  border-bottom: 1px solid #1E2D3D;
+}
+
+.border-left {
+  border-left: 1px solid #1E2D3D;
 }
 
 @font-face {

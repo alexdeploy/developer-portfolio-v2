@@ -1,0 +1,97 @@
+{
+    "developer": "Álex Rueda",
+    "job": "Desarrollador Full Stack",
+    "slogan": "I use turn coffee into software.",
+    "about": {
+        "sections": {
+            "personal-info": {
+                "title": "personal-info",
+                "icon": "icons/info-personal.svg",
+                "info": { 
+                    "bio": {
+                        "title": "bio",
+                        "info": "About me I have 5 years of experience in web development lorem ipsum dolor sit amet,  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat  nulla pariatur. Excepteur sint occaecat  officia deserunt mollit anim id est laborum."
+                    },
+                    "interests": {
+                        "title": "interests",
+                        "info": "I love to learn new things, and i..."
+                    },
+                    "education": {
+                        "title": "education",
+                        "info": "I have a degree in Computer Science..."
+                    }
+                }
+            },
+            "professional-info": {
+                "title": "professional-info",
+                "icon": "icons/info-professional.svg",
+                "info": {
+                    "experience": {
+                        "title": "experience",
+                        "info": "I have 5 years of experience in web..."
+                    },
+                    "skills": {
+                        "title": "skills",
+                        "info": "My principal skills..."
+                    },
+                    "languages": {
+                        "title": "languages",
+                        "info": "My main languages are..."
+                    }
+                }
+            },
+            "hobbies-info": {
+                "title": "hobbies-info",
+                "icon": "icons/info-hobbies.svg",
+                "info": {
+                    "free-time": {
+                        "title": "free-time",
+                        "info": "In my free time I like to..."
+                    },
+                    "sports": {
+                        "title": "sports",
+                        "info": "My principal interets are..."
+                    },
+                    "favorite-games": {
+                        "title": "favorite-games",
+                        "info": "My favourite games are..."
+                    }
+                }
+            }
+        }
+    },
+    "contact": {
+        "direct": {
+            "title": "contact",
+            "sources": {
+                "email": "me@alexrueda.dev",
+                "phone": "+34 618 299 553"
+            }
+        },
+        "find_me_also_in": {
+            "title": "find-me-also-in",
+            "sources": {
+                "linkedin": {
+                    "title": "Linkedin profile",
+                    "url": "https://www.linkedin.com/in/",
+                    "user": "alexsrueda"
+                },
+                "github": {
+                    "title": "Github profile",
+                    "url": "https://github.com/",
+                    "user": "alexruedadev"
+                },
+                "twitter": {
+                    "title": "Twitter account",
+                    "url": "https://twitter.com/",
+                    "user": "alexdeploy"
+                },
+                "twitch": {
+                    "title": "Twitch channel",
+                    "url": "https://twitch.com/",
+                    "user": "alexdeploy"
+                }
+            }
+        }
+    }
+}

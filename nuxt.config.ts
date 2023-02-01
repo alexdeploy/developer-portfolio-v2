@@ -1,5 +1,5 @@
 const siteTitle = 'Álex Rueda | Full Stack Developer'
-
+const config = require('./alexrueda.json')
 /*
  * Nuxt 3 Config File
  Usage: https://nuxt.com/docs/api/configuration/nuxt-config
@@ -31,7 +31,6 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: 'pwa/icons/apple-touch-icon.png' },
       ],
     },
-    pageTransition: { name: 'page', mode: 'out-in' }
   },
 
   /**
@@ -98,7 +97,9 @@ export default defineNuxtConfig({
     apiSecret: '123',
     // Keys within public are also exposed client-side
     public: {
-      apiBase: '/api'
+      apiBase: '/api',
+      info: config
+   /*    info: config */
     }
   }
 })

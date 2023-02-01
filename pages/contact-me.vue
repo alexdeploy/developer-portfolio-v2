@@ -11,7 +11,7 @@
 
             <div class="flex items-center border-right h-full">
                 <p class="font-fira_regular text-menu-text text-sm px-3">contacts</p>
-                <img src="icons/close.svg" alt="" class="m-3">
+                <img src="public/icons/close.svg" alt="" class="m-3">
             </div>
 
         </div>

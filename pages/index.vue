@@ -43,7 +43,7 @@
       <!-- game -->
       <div id="game" class="col-span-4 hidden lg:flex flex-col justify-center col-start-7">
         
-        <img src="images/game.png" alt="" class="xl:w-10/12">
+        <img src="public/images/game.png" alt="" class="xl:w-10/12">
       </div>
     </div>
 

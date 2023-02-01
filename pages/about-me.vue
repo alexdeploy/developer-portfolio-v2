@@ -19,14 +19,14 @@
 
             <!-- section title (desktop) -->
             <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
-              <img src="icons/arrow-down.svg" alt="" class="mx-3">
+              <img src="public/icons/arrow-down.svg" alt="" class="mx-3">
               <p v-html="config.info.about.sections[currentSection].title" class="font-fira_regular text-white text-sm"></p>
             </div>
 
             <!-- folders -->
             <div>
               <div v-for="(folder, key, index) in config.info.about.sections[currentSection].info" :key="key" class="flex items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer">
-                <img src="icons/diple.svg" alt="" class="mx-3 w-2">
+                <img src="public/icons/diple.svg" alt="" class="mx-3 w-2">
                 <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
                 <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}" @click="focusCurrentFolder(folder)"></p>
               </div>
@@ -41,14 +41,14 @@
               
               <!-- section title (mobile) -->
               <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden items-center min-w-full mb-1" @click="focusCurrentSection(section)">
-                <img src="icons/arrow-down.svg" alt="" class="mx-3">
+                <img src="public/icons/arrow-down.svg" alt="" class="mx-3">
                 <p v-html="section.title" class="font-fira_regular text-white text-sm"></p>
               </div>
     
               <!-- folders -->
               <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'">
                 <div v-for="(folder, key, index) in config.info.about.sections[section.title].info" :key="key" class="flex items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
-                  <img src="icons/diple.svg" alt="" class="mx-3 w-2">
+                  <img src="public/icons/diple.svg" alt="" class="mx-3 w-2">
                   <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
                   <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
                 </div>
@@ -69,7 +69,7 @@
             <div class="tab-height w-full hidden lg:flex border-right border-bot items-center">
               <div class="flex items-center border-right h-full">
                 <p v-html="config.info.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
-                <img src="icons/close.svg" alt="" class="m-3">
+                <img src="public/icons/close.svg" alt="" class="m-3">
               </div>
             </div>
 

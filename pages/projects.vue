@@ -1,5 +1,7 @@
 <template>
-  <h1>projects page</h1>
+  <section>
+    <h1>projects page</h1>
+  </section>
 </template>
 
 <script>

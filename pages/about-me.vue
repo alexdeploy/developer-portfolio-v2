@@ -19,14 +19,14 @@
 
             <!-- section title (desktop) -->
             <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
-              <img src="public/icons/arrow-down.svg" alt="" class="mx-3">
+              <img src="/icons/arrow-down.svg" alt="" class="mx-3">
               <p v-html="config.info.about.sections[currentSection].title" class="font-fira_regular text-white text-sm"></p>
             </div>
 
             <!-- folders -->
             <div>
               <div v-for="(folder, key, index) in config.info.about.sections[currentSection].info" :key="key" class="flex items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer">
-                <img src="public/icons/diple.svg" alt="" class="mx-3 w-2">
+                <img src="/icons/diple.svg" alt="" class="mx-3 w-2">
                 <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
                 <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}" @click="focusCurrentFolder(folder)"></p>
               </div>
@@ -41,14 +41,14 @@
               
               <!-- section title (mobile) -->
               <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden items-center min-w-full mb-1" @click="focusCurrentSection(section)">
-                <img src="public/icons/arrow-down.svg" alt="" class="mx-3">
+                <img src="/icons/arrow-down.svg" alt="" class="mx-3">
                 <p v-html="section.title" class="font-fira_regular text-white text-sm"></p>
               </div>
     
               <!-- folders -->
               <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'">
                 <div v-for="(folder, key, index) in config.info.about.sections[section.title].info" :key="key" class="flex items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
-                  <img src="public/icons/diple.svg" alt="" class="mx-3 w-2">
+                  <img src="/icons/diple.svg" alt="" class="mx-3 w-2">
                   <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
                   <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
                 </div>
@@ -69,7 +69,7 @@
             <div class="tab-height w-full hidden lg:flex border-right border-bot items-center">
               <div class="flex items-center border-right h-full">
                 <p v-html="config.info.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
-                <img src="public/icons/close.svg" alt="" class="m-3">
+                <img src="/icons/close.svg" alt="" class="m-3">
               </div>
             </div>
 
@@ -99,35 +99,23 @@
           
           </div>
   
-          <div id="right" class="h-full w-full flex flex-col">
+          <div id="right" class="w-full flex flex-col aspect-square">
             
             <!-- windows tab -->
-            <div class="tab-height w-full flex border-right border-bot items-center">
-
+            <div class="tab-height w-full flex-none border-right border-bot items-center">
 
             </div>
-            
 
-            <div class="h-full w-full border-right flex">
+            <!-- title -->
+            <h3 class="text-menu-text font-fira_retina text-sm m-5">// Code snippet showcase:</h3>
 
-              <!-- snippets -->
-              <div class="w-full h-full">
-
-
-
-              </div>
-
-              <!-- scroll bar -->
-              <div id="scroll-bar" class="h-full border-left hidden lg:flex justify-center py-1">
-                <div id="scroll">
-
-                </div>
-              </div>
+            <!-- snippets -->
+            <div id="snippets" class="w-full flex flex-col aspect-square">
+              <GistSnippet v-for="(gist, key) in config.public.info.gists" :key="key" :id="gist" />
             </div>
           
           </div>
         </div>
-
 
       </section>
 </template>
@@ -160,26 +148,32 @@
   color:aqua
 }
 
-/* .section-icon {
-  fill: aqua;
-  color: orange;
+#right {
+  height: 100%;
+  overflow-y: hidden;
 }
-.section-icon:hover {
-  color: black;
-} */
+
+#snippets {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 </style>
 
 <script>
+
 export default {
   data() {
     return {
       currentSection: 'personal-info',
-      folder: 'bio'
+      folder: 'bio',
     }
   },
+  /**
+   * In setup we can define the data we want to use in the component before the component is created.
+   */
   setup() {
     const config = useRuntimeConfig()
-
     return {
       config
     }
@@ -197,15 +191,12 @@ export default {
 
       // toggle hidden class
       document.getElementById('folders-' + section.title).classList.toggle('hidden')
-
-
     },
     focusCurrentFolder(folder) {
       this.folder = folder.title
       // handle if folder belongs to the current section. It happens when you click on a folder from a different section in mobile view.
       this.currentSection = this.config.info.about.sections[this.currentSection].info[folder.title] ? this.currentSection : Object.keys(this.config.info.about.sections).find(section => this.config.info.about.sections[section].info[folder.title])
-    
-    }
+    },
   }
 
 }

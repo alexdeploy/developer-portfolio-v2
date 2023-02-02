@@ -2,8 +2,8 @@
   <section id="hello" class="flex h-full">
 
     <!-- gradients -->
-    <div class="css-blurry-gradient z-10 w-48 h-96 translate-x-40 translate-y-96"></div>
-    <div class="css-blurry-gradient2 z-10 w-48 h-96 -translate-x-10 translate-y-3"></div>
+    <div class="css-blurry-gradient z-10 w-48 h-96 translate-x-40 translate-y-20"></div>
+    <div class="css-blurry-gradient2 z-10 w-48 h-96 -translate-x-0 -translate-y-10"></div>
     
     <PageMenu id="page-menu" />
 
@@ -12,10 +12,10 @@
       <!-- hello -->
       <div id="info" class="col-span-12 lg:col-span-5 flex flex-col justify-around md:justify-center">
   
-        <div class="py-10 md:py-0">
+        <div class="pb-10 md:py-0">
           <p class="font-fira_retina text-hello-name">Hi all, I am</p>
           <h1 class="font-fira_regular text-6xl text-hello-name pt-4 pb-2">Álex Rueda</h1>
-          <p class="font-fira_regular text-xl md:text-3xl text-purple-text">> Full-Stack Developer</p>
+          <p class="font-fira_regular text-xl sm:text-3xl text-purple-text">> Full-Stack Developer</p>
         </div>
 
         <div class="py-10 md:pt-20">
@@ -43,7 +43,7 @@
       <!-- game -->
       <div id="game" class="col-span-4 hidden lg:flex flex-col justify-center col-start-7">
         
-        <img src="public/images/game.png" alt="" class="xl:w-10/12">
+        <img src="/images/game.png" alt="" class="xl:w-10/12">
       </div>
     </div>
 
@@ -58,9 +58,10 @@
   /* transform: translate(275%, 80%); */
 /*   width: 400px;
   height: 400px; */
-	border-radius: 20% 50% 50% 50%;  
-	filter: blur(100px);
-  background: radial-gradient(circle at 50% 50%,rgb(0, 136, 255), rgba(76, 0, 255, 0));
+	border-radius: 0% 0% 50% 50%;
+  rotate: 10deg;
+	filter: blur(70px);
+  background: radial-gradient(circle at 50% 50%,rgb(0, 157, 255), rgba(76, 0, 255, 0));
   opacity: 0.4;
 }
 
@@ -70,8 +71,8 @@
 /*   width: 400px;
   height: 400px; */
 	border-radius: 0% 50% 0% 50%;  
-	filter: blur(100px);
-  background: radial-gradient(circle at 50% 50%,rgb(0, 255, 119), rgba(76, 0, 255, 0));
+	filter: blur(70px);
+  background: radial-gradient(circle at 50% 50%,rgb(0, 168, 78), rgba(76, 0, 255, 0));
   opacity: 0.4;
 }
 

@@ -10,12 +10,13 @@
   },
   "devDependencies": {
     "@nuxt/content": "^2.2.2",
-    "@nuxtjs/i18n": "^8.0.0-beta.6",
     "nuxt": "3.0.0",
     "vitest": "^0.25.3"
   },
   "dependencies": {
+    "@highlightjs/vue-plugin": "highlightjs/vue-plugin",
     "@nuxtjs/tailwindcss": "^6.1.3",
+    "highlight.js": "^11.7.0",
     "nuxt-icon": "^0.1.8",
     "vue-github-button": "^3.1.0"
   }

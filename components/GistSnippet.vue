@@ -61,7 +61,6 @@ code.hljs{
 
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import 'highlight.js/lib/common';
-import javascript from 'highlight.js/lib/languages/javascript';
 
 export default {
     name: 'GistSnippet',

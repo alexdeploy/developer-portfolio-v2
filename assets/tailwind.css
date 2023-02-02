@@ -6,71 +6,39 @@ html {
     @apply bg-dark-background;
     height: stretch;
     width: stretch;
-    margin: 30px
+    margin: 30px;
 }
 
 body {
-    height: 100%;
-    width: 100%;
+    height: stretch;
+    width: stretch;
 }
 
 #__nuxt {
-    height: 100%;
-    width: 100%;
-}
-
-.box {
-  @apply bg-blue-background;
+  @apply bg-blue-background flex flex-col justify-between;
   border-radius: 7px;
   border: 1px solid #1E2D3D;
-  height: stretch;
-  width: stretch;
+  height: 100%;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
 
   html {
     margin: 15px;
-    min-height: stretch;
+    min-height: 100%;
     height: stretch;
     width: stretch;
   }
 
-  body {
-
-  }
-
   #__nuxt {
-    height: 100%;
+    @apply bg-blue-background flex flex-col justify-between;
+    height: auto;
+    min-height: 100%; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
     width: 100%;
-
+    overflow-y: scroll;
     width: auto;
   }
-
-  .box {
-    width: 100%;
-    min-height: 100%;
-
-    height: auto;
-    overflow-y: scroll;
-  }
-}
-
-/* Transition Effect (All elements) */
-
-/* * {
-    transition: all 0.25s ease-out;
-} */
-
-/* Page transition effects */
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.3s;
-}
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  filter: blur(1rem);
 }
 
 /* Borders */
@@ -90,6 +58,8 @@ body {
 .border-left {
   border-left: 1px solid #1E2D3D;
 }
+
+/* Fonts */
 
 @font-face {
     font-family: "Fira Code Light";

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full z-10 lg:hidden">
+  <div id="mobile-menu" class="w-full z-10 lg:hidden">
 
     <!-- header -->
     <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
@@ -68,10 +68,6 @@ export default {
 
 #nav-link-mobile.active {
   color: white
-}
-
-#menu {
-/*   width: fit-content; */
 }
 
 </style>

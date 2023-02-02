@@ -1,5 +1,6 @@
 const siteTitle = 'Álex Rueda | Full Stack Developer'
-const config = require('./alexrueda.json')
+const config = require('./developer.json')
+
 /*
  * Nuxt 3 Config File
  Usage: https://nuxt.com/docs/api/configuration/nuxt-config
@@ -39,7 +40,6 @@ export default defineNuxtConfig({
    */
   modules: [
     'nuxt-icon',
-    '@nuxtjs/i18n',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
   ],
@@ -47,7 +47,6 @@ export default defineNuxtConfig({
   components: {
     dirs: [
       '~/components',
-      '~/components/library'
     ],
   },
   
@@ -61,32 +60,8 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config',
     exposeConfig: true, // true to resolve the tailwind config in runtime. https://tailwindcss.nuxt.dev/getting-started/options/#exposeconfig
     injectPosition: 0,
-    viewer: true, // set up the /_tailwind/ route. (Disable in production) https://tailwindcss.nuxt.dev/getting-started/options/#viewer
+    viewer: false,
   },
-
-  /**
-   * * i18n Config
-   * Official module: https://nuxt.com/modules/i18n
-   */
-  i18n: {
-    defaultLocale: 'en',
-    detectBrowserLanguage: false,
-    langDir: 'lang/',
-    lazy: true,
-    locales: [
-      {
-        code: 'es',
-        file: 'es.json',
-        iso: 'es-ES',
-        name: 'Español',
-      },
-      {
-        code: 'en',
-        file: 'en.json',
-        iso: 'en-US',
-        name: 'English',
-      },
-  ]},
 
   /**
    * * Runtime Config (Environment Variables)
@@ -99,7 +74,6 @@ export default defineNuxtConfig({
     public: {
       apiBase: '/api',
       info: config
-   /*    info: config */
     }
   }
 })

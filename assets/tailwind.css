@@ -34,7 +34,7 @@ body {
   #__nuxt {
     @apply bg-blue-background flex flex-col justify-between;
     height: auto;
-    min-height: 100%; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
+    min-height: stretch; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
     width: 100%;
     overflow-y: scroll;
     width: auto;

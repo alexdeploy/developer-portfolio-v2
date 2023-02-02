@@ -1,7 +1,6 @@
 {
     "developer": "Álex Rueda",
     "job": "Desarrollador Full Stack",
-    "slogan": "I use turn coffee into software.",
     "about": {
         "sections": {
             "personal-info": {
@@ -93,5 +92,10 @@
                 }
             }
         }
+    },
+    "gists": {
+        "1": "799fe15f4b75706242b10d978e935067",
+        "2": "d05d3b4a855e5f01ce8dd5f93d169162",
+        "3": "cf907ab509a862f400e5d05d36c2d2af"
     }
 }

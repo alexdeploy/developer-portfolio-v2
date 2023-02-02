@@ -57,28 +57,28 @@
 
                   <!-- section content title -->
                   <div id="section-content-title-contact" class="flex items-center min-w-full" @click="toggleDirectSources()">
-                    <img id="arrow-down" src="public/icons/arrow-down.svg" alt="" class="mx-3">
+                    <img id="arrow-down" src="/icons/arrow-down.svg" alt="" class="mx-3">
                     <p v-html="config.info.contact.direct.title" class="font-fira_regular text-white text-sm"></p>
                   </div>
   
                   <!-- section content folders -->
                   <div id="contact-sources" class="my-5 hidden lg:flex lg:flex-col">
                     <div v-for="(source, key) in config.info.contact.direct.sources" :key="key" class="flex items-center my-2">
-                      <img :src="'public/icons/' + key + '.svg'" alt="" class="mx-4">
+                      <img :src="'/icons/' + key + '.svg'" alt="" class="mx-4">
                       <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white"></a>
                     </div>
                   </div>
 
                   <!-- social links -->
                   <div id="section-content-title-contact" class="flex items-center border-top" @click="toggleSocialLinks()">
-                    <img id="arrow-down2" src="public/icons/arrow-down.svg" alt="" class="mx-3">
+                    <img id="arrow-down2" src="/icons/arrow-down.svg" alt="" class="mx-3">
                     <p v-html="config.info.contact.find_me_also_in.title" class="font-fira_regular text-white text-sm"></p>
                   </div>
   
                   <!-- section content folders -->
                   <div id="social-links" class="my-5 hidden lg:flex lg:flex-col">
                     <div v-for="(source, key) in config.info.contact.find_me_also_in.sources" :key="key" class="flex items-center my-2">
-                      <img :src="'public/icons/link.svg'" alt="" class="mx-4">
+                      <img :src="'/icons/link.svg'" alt="" class="mx-4">
                       <a :href="source.url + source.user" class="font-fira_retina text-menu-text hover:text-white" target="_blank">{{ source.title }}</a>
                     </div>
                   </div>

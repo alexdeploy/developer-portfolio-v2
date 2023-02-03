@@ -2,7 +2,7 @@
     
     <section class="w-full h-full lg:flex">
 
-        <PageMenu id="page-menu"/>
+        <PageMenu />
 
         <div class="flex flex-col w-full">
 

@@ -22,6 +22,8 @@ body {
   width: 100%;
 }
 
+/* SM - LG */
+
 @media (max-width: 1024px) {
 
   html {
@@ -38,6 +40,25 @@ body {
     width: 100%;
     overflow-y: scroll;
     width: auto;
+  }
+}
+
+/* LG - XL */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  #page-menu, #nav-logo {
+    min-width: 275px !important;
+    max-width: 275px !important;
+
+  }
+}
+
+/* XL to infinite */
+@media (min-width: 1281px) {
+
+  /* desktop page-menu and */
+  #page-menu, #nav-logo {
+    min-width: 310px !important;
+    max-width: 310px !important;
   }
 }
 

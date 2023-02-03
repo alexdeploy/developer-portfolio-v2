@@ -2,10 +2,10 @@
   <section id="hello" class="flex h-full">
 
     <!-- gradients -->
-    <div class="css-blurry-gradient z-10 w-48 h-96 translate-x-40 translate-y-20"></div>
-    <div class="css-blurry-gradient2 z-10 w-48 h-96 -translate-x-0 -translate-y-10"></div>
+    <div class="css-blurry-gradient-blue z-10 w-48 h-96"></div>
+    <div class="css-blurry-gradient-green z-10 w-48 h-96"></div>
     
-    <PageMenu id="page-menu" />
+    <PageMenu />
 
     <div class="grid grid-cols-12 z-20 m-7 lg:m-0">
 
@@ -14,13 +14,13 @@
   
         <div class="pb-10 md:py-0">
           <p class="font-fira_retina text-hello-name">Hi all, I am</p>
-          <h1 class="font-fira_regular text-6xl text-hello-name pt-4 pb-2">Álex Rueda</h1>
-          <p class="font-fira_regular text-xl sm:text-3xl text-purple-text">> Full-Stack Developer</p>
+          <h1 class="font-fira_regular text-6xl text-hello-name pt-4 pb-2">{{ config.dev.name }}</h1>
+          <p class="font-fira_regular text-xl sm:text-3xl text-purple-text">> {{ config.dev.role }}</p>
         </div>
 
         <div class="py-10 md:pt-20">
-          <p class="font-fira_retina text-hello-gray hidden md:flex">// Complete the game to continue</p>
-          <p class="font-fira_retina text-hello-gray text-sm md:text-md">// find my profile on Github:</p>
+          <p class="font-fira_retina text-hello-gray hidden md:flex py-2">// complete the game to continue</p>
+          <p class="font-fira_retina text-hello-gray text-sm md:text-md">// you can also see it on my Github page</p>
 
           <p class="font-fira_medium py-3">
             <span class="text-codeline-tag">
@@ -33,7 +33,7 @@
                = 
               </span>
             <span class="text-codeline-link underline underline-offset-4 text-sm md:text-md">
-              <a href="https://github.com/alexruedadev">"https://github.com/alexruedadev"</a>
+              <a href="https://github.com/alexruedadev">"“https://github.com/example/url"</a>
             </span>
           </p>
         </div>
@@ -43,7 +43,7 @@
       <!-- game -->
       <div id="game" class="col-span-4 hidden lg:flex flex-col justify-center col-start-7">
         
-        <img src="/images/game.png" alt="" class="xl:w-10/12">
+        <img src="/images/game.png" alt="" class="">
       </div>
     </div>
 
@@ -53,28 +53,99 @@
 
 <style>
 
-.css-blurry-gradient {
+.css-blurry-gradient-blue {
   position: fixed;
-  /* transform: translate(275%, 80%); */
+  /* transform: translate(575%, 30%); */
 /*   width: 400px;
   height: 400px; */
 	border-radius: 0% 0% 50% 50%;
   rotate: 10deg;
 	filter: blur(70px);
-  background: radial-gradient(circle at 50% 50%,rgb(0, 157, 255), rgba(76, 0, 255, 0));
+  background: radial-gradient(circle at 50% 50%,rgba(77, 91, 206, 1), rgba(76, 0, 255, 0));
   opacity: 0.4;
 }
 
-.css-blurry-gradient2 {
+.css-blurry-gradient-green {
   position: fixed;
   /* transform: translate(175%, 10%); */
 /*   width: 400px;
   height: 400px; */
 	border-radius: 0% 50% 0% 50%;  
 	filter: blur(70px);
-  background: radial-gradient(circle at 50% 50%,rgb(0, 168, 78), rgba(76, 0, 255, 0));
-  opacity: 0.4;
+  background: radial-gradient(circle at 50% 50%,rgba(67, 217, 173, 1), rgba(76, 0, 255, 0));
+  opacity: 0.2;
+}
+
+/* MD */
+
+@media (min-width: 1024px) {
+
+  .css-blurry-gradient-blue {
+    transform: translate(70rem, 30%);
+  }
+
+  .css-blurry-gradient-green {
+    transform: translate(60rem, 20%);
+  }
+
+}
+
+/* LG */
+
+@media (min-width: 1024px) {
+
+.css-blurry-gradient-blue {
+  transform: translate(70rem, 30%);
+}
+
+.css-blurry-gradient-green {
+  transform: translate(60rem, 20%);
+}
+
+}
+
+/* XL */
+
+@media (min-width: 1280px) {
+
+  .css-blurry-gradient-blue {
+    transform: translate(75rem, 30%);
+    width: 500px;
+    height: 500px;
+    opacity: 0.7;
+    border-radius: 100% 50% 100% 0%;  
+  }
+
+  .css-blurry-gradient-green {
+    transform: translate(55rem, -5rem);
+    filter: blur(100px);
+    rotate: 10deg;
+    width: 400px;
+    height: 400px;
+    opacity: 0.5;
+    border-radius: 100% 0% 0% 0%;
+    rotate: 10deg;
+  }
+
 }
 
 </style>
+
+<script>
+export default {
+  name: 'Hello',
+  setup() {
+    const config = useRuntimeConfig()
+    return {
+      config
+    }
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+  }
+}
+</script>
 

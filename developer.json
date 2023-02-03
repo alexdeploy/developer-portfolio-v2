@@ -1,41 +1,46 @@
 {
-    "developer": "Álex Rueda",
-    "job": "Desarrollador Full Stack",
+    "name": "Micheal Weaver",
+    "logo_name": "micheal-weaver",
+    "role": "Front-end developer",
     "about": {
         "sections": {
-            "personal-info": {
-                "title": "personal-info",
-                "icon": "icons/info-personal.svg",
-                "info": { 
-                    "bio": {
-                        "title": "bio",
-                        "info": "About me I have 5 years of experience in web development lorem ipsum dolor sit amet,  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat  nulla pariatur. Excepteur sint occaecat  officia deserunt mollit anim id est laborum."
-                    },
-                    "interests": {
-                        "title": "interests",
-                        "info": "I love to learn new things, and i..."
-                    },
-                    "education": {
-                        "title": "education",
-                        "info": "I have a degree in Computer Science..."
-                    }
-                }
-            },
             "professional-info": {
                 "title": "professional-info",
                 "icon": "icons/info-professional.svg",
                 "info": {
                     "experience": {
                         "title": "experience",
-                        "info": "I have 5 years of experience in web..."
+                        "description": "I have 5 years of experience in web..."
                     },
                     "skills": {
                         "title": "skills",
-                        "info": "My principal skills..."
+                        "description": "My principal skills..."
                     },
                     "languages": {
                         "title": "languages",
-                        "info": "My main languages are..."
+                        "description": "My main languages are..."
+                    }
+                }
+            },
+            "personal-info": {
+                "title": "personal-info",
+                "icon": "icons/info-personal.svg",
+                "info": { 
+                    "bio": {
+                        "title": "bio",
+                        "description": "<br> About me <br> I have 5 years of experience in web development lorem ipsum dolor sit amet,  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in <br><br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat  nulla pariatur. Excepteur sint occaecat  officia deserunt mollit anim id est laborum."
+                    },
+                    "interests": {
+                        "title": "interests",
+                        "description": "I love to learn new things, and i..."
+                    },
+                    "education": {
+                        "title": "education",
+                        "description": "I have a degree in Computer Science...",
+                        "files": {
+                            "high-school": "I have been in 'Las viñas'...",
+                            "university": "The university..."
+                        }
                     }
                 }
             },
@@ -45,15 +50,15 @@
                 "info": {
                     "free-time": {
                         "title": "free-time",
-                        "info": "In my free time I like to..."
+                        "description": "In my free time I like to..."
                     },
                     "sports": {
                         "title": "sports",
-                        "info": "My principal interets are..."
+                        "description": "My principal interets are..."
                     },
                     "favorite-games": {
                         "title": "favorite-games",
-                        "info": "My favourite games are..."
+                        "description": "My favourite games are..."
                     }
                 }
             }

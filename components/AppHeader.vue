@@ -4,7 +4,7 @@
 
           <div class="flex">
             <NuxtLink id="nav-logo" to="/">
-              alex-rueda
+              {{ config.dev.logo_name }}
             </NuxtLink>
 
             <NuxtLink id="nav-link" to="/" :class="{ active: isActive('/') }">
@@ -47,9 +47,12 @@
 }
 
 #nav-logo {
-  width: 275px;
   border-right: 1px solid #1E2D3D;
   @apply text-menu-text font-fira_retina px-6 h-full flex items-center;
+}
+
+#nav-logo:hover {
+  background-color: #1E2D3D;
 }
 
 #nav-link.active, #nav-link-contact.active {
@@ -68,7 +71,14 @@ export default {
     isActive() {
       return route => this.$route.path === route;
     }
-  }
+  },
+  setup() {
+    const config = useRuntimeConfig()
+
+    return {
+      config
+    }
+  },
 };
 
 </script>

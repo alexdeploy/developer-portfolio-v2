@@ -78,22 +78,27 @@
                 "linkedin": {
                     "title": "Linkedin profile",
                     "url": "https://www.linkedin.com/in/",
-                    "user": "alexsrueda"
+                    "user": "username"
                 },
                 "github": {
                     "title": "Github profile",
                     "url": "https://github.com/",
-                    "user": "alexruedadev"
+                    "user": "username"
                 },
                 "twitter": {
                     "title": "Twitter account",
                     "url": "https://twitter.com/",
-                    "user": "alexdeploy"
+                    "user": "username"
                 },
                 "twitch": {
                     "title": "Twitch channel",
                     "url": "https://twitch.com/",
-                    "user": "alexdeploy"
+                    "user": "username"
+                },
+                "facebook": {
+                    "title": "Facebook profile",
+                    "url": "https://facebook.com/",
+                    "user": "username"
                 }
             }
         }

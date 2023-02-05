@@ -2,10 +2,10 @@
     <div id="console">
 
       <!-- bolts -->
-      <img src="icons/console/bolt-up-left.svg" alt="" class="absolute top-2 left-2 w-6 opacity-70">
-      <img src="icons/console/bolt-up-right.svg" alt="" class="absolute top-2 right-2 w-6 opacity-70">
-      <img src="icons/console/bolt-down-left.svg" alt="" class="absolute bottom-2 left-2 w-6 opacity-70">
-      <img src="icons/console/bolt-down-right.svg" alt="" class="absolute bottom-2 right-2 w-6 opacity-70">
+      <img src="/icons/console/bolt-up-left.svg" alt="" class="absolute top-2 left-2 w-6 opacity-70">
+      <img src="/icons/console/bolt-up-right.svg" alt="" class="absolute top-2 right-2 w-6 opacity-70">
+      <img src="/icons/console/bolt-down-left.svg" alt="" class="absolute bottom-2 left-2 w-6 opacity-70">
+      <img src="/icons/console/bolt-down-right.svg" alt="" class="absolute bottom-2 right-2 w-6 opacity-70">
 
 
       <!-- Game Screen -->

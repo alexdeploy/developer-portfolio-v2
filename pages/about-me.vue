@@ -1,5 +1,5 @@
 <template>
-      <section id="about" class="lg:flex block h-full">
+      <section id="about" class="lg:flex block max-h-full h-full overflow-hidden">
 
         <!-- mobile title -->
         <div class="lg:hidden font-fira_retina text-white p-6 border-bot h-min">
@@ -46,7 +46,7 @@
           </div>
 
           <!-- mobile -->
-          <div id="section-content" class="lg:hidden w-full border-right">
+          <div id="section-content" class="lg:hidden w-full">
 
             <div v-for="section in config.dev.about.sections" :key="section.title">
               
@@ -77,12 +77,12 @@
         </div>
         <!-- MENU END -->
 
-        <div class="flex flex-col lg:grid lg:grid-cols-2 h-full w-full">
+        <div class="flex flex-col lg:grid lg:grid-cols-2 h-full w-full overflow-hidden">
           
-          <div id="left" class="h-full w-full flex flex-col">
+          <div id="left" class="h-full w-full flex flex-col border-right">
             
             <!-- windows tab desktop -->
-            <div class="tab-height w-full hidden lg:flex border-right border-bot items-center">
+            <div class="tab-height w-full hidden lg:flex border-bot items-center">
               <div class="flex items-center border-right h-full">
                 <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
                 <img src="/icons/close.svg" alt="" class="m-3">
@@ -90,7 +90,7 @@
             </div>
 
             <!-- windows tab mobile -->
-            <div class="tab-height w-full flex lg:hidden items-center mx-5 mt-10 mb-2">
+            <div class="tab-height flex lg:hidden items-center mx-5 mt-10 mb-2">
               <div class="flex items-end h-full">
                 <span class="text-white"> // </span>
                 <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-white text-sm px-3"></p>
@@ -100,7 +100,7 @@
             </div>
             
             <!-- content -->
-            <div class="h-full w-full border-right flex">
+            <div class="h-full w-full lg:border-right flex overflow-hidden">
               <div class="w-full h-full ml-5 mr-10 my-14">
                   <TextCodeEditor :text="config.dev.about.sections[currentSection].info[folder].description" />
               </div>
@@ -115,21 +115,29 @@
           
           </div>
   
-          <div id="right" class="w-full flex flex-col aspect-square">
+          <div id="right" class="max-w-full flex flex-col">
             
             <!-- windows tab -->
-            <div class="tab-height w-full flex-none border-right border-bot items-center">
+            <div class="tab-height w-full h-full flex-none lg:border-right border-bot items-center">
 
             </div>
 
-            <!-- title -->
-            <h3 class="text-menu-text font-fira_retina text-sm m-5">// Code snippet showcase:</h3>
+            <!-- content -->
+            <div id="gists-content" class="flex overflow-y-hidden">
+              
+              <div id="gists" class="flex flex-col w-full overflow-scroll">
+                <!-- title -->
+                <h3 class="text-menu-text font-fira_retina text-sm m-5">// Code snippet showcase:</h3>
+                <!-- snippets -->
+                <GistSnippet v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
+              </div>
 
-            <!-- snippets -->
-            <div id="snippets" class="w-full flex flex-col aspect-square">
-              <GistSnippet v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
+              <!-- scroll bar -->
+              <div id="scroll-bar" class="h-full border-left hidden lg:flex justify-center py-1">
+                <div id="scroll"></div>
+              </div>
             </div>
-          
+
           </div>
         </div>
 
@@ -177,19 +185,20 @@
   color:white;
 }
 
-.section > path {
-  color:aqua
-}
-
 #right {
   height: 100%;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
-#snippets {
+#gists-content {
   height: 100%;
-  overflow-y: scroll;
+  overflow: hidden;
 }
+
+#gists::-webkit-scrollbar {
+  display: none;
+}
+
 
 </style>
 

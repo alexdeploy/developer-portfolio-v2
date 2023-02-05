@@ -38,13 +38,12 @@ body {
     height: auto;
     min-height: stretch; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
     width: 100%;
-    overflow-y: scroll;
     width: auto;
   }
 }
 
 /* LG - XL */
-@media (min-width: 1024px) and (max-width: 1280px) {
+@media (min-width: 1024px) and (max-width: 1536px) {
   #page-menu, #nav-logo {
     min-width: 275px !important;
     max-width: 275px !important;
@@ -53,7 +52,7 @@ body {
 }
 
 /* XL to infinite */
-@media (min-width: 1281px) {
+@media (min-width: 1536px) {
 
   /* desktop page-menu and */
   #page-menu, #nav-logo {
@@ -78,6 +77,29 @@ body {
 
 .border-left {
   border-left: 1px solid #1E2D3D;
+}
+
+/* Scroll bar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+  border-left: 1px solid #1E2D3D;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #607B96;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7B9BBB;
 }
 
 /* Fonts */

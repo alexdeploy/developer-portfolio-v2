@@ -1,6 +1,6 @@
 <template>
-  <div class="code-container flex font-fira_regular text-menu-text">
-    <div class="line-numbers flex flex-col w-32">
+  <div class="code-container flex font-fira_regular text-menu-text text-sm">
+    <div class="line-numbers lg:flex flex-col w-32 hidden">
 
       <!-- line numbers and asteriscs -->
       <div v-for="n in lines" class="grid grid-cols-2 justify-end" :key="n">

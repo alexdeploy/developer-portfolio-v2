@@ -1,6 +1,6 @@
 <template>
         <!-- dekstop menu (left) -->
-        <nav id="page-menu" :class="route == '/' ? 'hidden lg:flex' :'w-full h-fit lg:h-full text-sm'">
+        <nav id="page-menu" :class="route == '/' ? 'hidden xl:flex' :'w-full h-fit lg:h-full text-sm'">
 
             <!-- HELLO PAGE -->
             <div v-if="route == '/'" class=" hidden">

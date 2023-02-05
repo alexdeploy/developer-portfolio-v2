@@ -1,5 +1,5 @@
 <template>
-  <section id="hello" class="flex h-full">
+  <section id="hello" class="flex h-full lg:pl-32 xl:pl-0">
 
     <!-- gradients -->
     <div class="css-blurry-gradient-blue z-10 w-48 h-96"></div>
@@ -41,9 +41,9 @@
       </div>
   
       <!-- game -->
-      <div id="game" class="col-span-4 hidden lg:flex flex-col justify-center col-start-7">
-        
-        <img src="/images/game.png" alt="" class="">
+      <div id="game" class="hidden lg:flex flex-col justify-center col-start-6">
+        <Console />
+        <!-- <img src="/images/game.png" alt="" class=""> -->
       </div>
     </div>
 
@@ -70,61 +70,35 @@
   /* transform: translate(175%, 10%); */
 /*   width: 400px;
   height: 400px; */
-	border-radius: 0% 50% 0% 50%;  
+	border-radius: 0% 50% 0% 50%;
 	filter: blur(70px);
   background: radial-gradient(circle at 50% 50%,rgba(67, 217, 173, 1), rgba(76, 0, 255, 0));
   opacity: 0.2;
-}
-
-/* MD */
-
-@media (min-width: 1024px) {
-
-  .css-blurry-gradient-blue {
-    transform: translate(70rem, 30%);
-  }
-
-  .css-blurry-gradient-green {
-    transform: translate(60rem, 20%);
-  }
-
 }
 
 /* LG */
 
 @media (min-width: 1024px) {
 
-.css-blurry-gradient-blue {
-  transform: translate(70rem, 30%);
-}
-
-.css-blurry-gradient-green {
-  transform: translate(60rem, 20%);
-}
-
-}
-
-/* XL */
-
-@media (min-width: 1280px) {
-
   .css-blurry-gradient-blue {
-    transform: translate(75rem, 30%);
+    bottom: 10%;
+    right: 10%;
     width: 500px;
     height: 500px;
     opacity: 0.7;
-    border-radius: 100% 50% 100% 0%;  
+    border-radius: 100% 50% 100% 0%;
   }
 
   .css-blurry-gradient-green {
-    transform: translate(55rem, -5rem);
+    top: 10%;
+    right: 35%;
     filter: blur(100px);
     rotate: 10deg;
     width: 400px;
     height: 400px;
     opacity: 0.5;
     border-radius: 100% 0% 0% 0%;
-    rotate: 10deg;
+    rotate: 20deg;
   }
 
 }

@@ -7,11 +7,6 @@
 
             </div>
 
-            <!-- PROJECTS PAGE -->
-            <div v-if="route == '/projects'" class="w-full h-full">
-              <p>projects subsection</p>
-            </div>
-
             <!-- CONTACT PAGE -->
             <div id="contact-menu" v-if="route == '/contact-me'" class="w-full h-full flex flex-col border-right">
 

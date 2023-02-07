@@ -18,11 +18,11 @@
             <!-- details and stars -->
             <div class="flex text-menu-text font-fira_retina text-xs justify-self-end mx-2">
                 <div class="flex mx-2 hover:cursor-pointer hover:text-white">
-                    <img src="/icons/comments.svg" alt="" class="w-4 h-4 mx-2">
+                    <img src="/icons/gist/comments.svg" alt="" class="w-4 h-4 mx-2">
                     <span class="" @click="showComment(gist.id)">details</span>
                 </div>
                 <div class="flex hover:cursor-pointer hover:text-white">
-                    <img src="/icons/star.svg" alt="" class="w-4 h-4 mx-2">
+                    <img src="/icons/gist/star.svg" alt="" class="w-4 h-4 mx-2">
                     <span class="">stars</span>
                 </div>
             </div>

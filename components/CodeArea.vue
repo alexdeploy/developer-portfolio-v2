@@ -1,5 +1,5 @@
 <template>
-    <div class="font-fira_retina text-white">
+    <div class="font-fira_retina text-white text-sm">
         <p>
             <span class="tag">
                 const

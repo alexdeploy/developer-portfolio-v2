@@ -108,5 +108,28 @@
         "2": "694c1f32332788a2ac7f37b09e5aa40e",
         "3": "694c1f32332788a2ac7f37b09e5aa40e"
 
+    },
+    "projects": {
+        "1": {
+            "title": "_ui-animations",
+            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "img": "/images/projects/ui-animations.png",
+            "tech": ["React"],
+            "url": "https://github.com/"
+        },
+        "2": {
+            "title": "_tetris-game",
+            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "img": "/images/projects/tetris-game.png",
+            "tech": ["React"],
+            "url": "https://github.com/"
+        },
+        "3": {
+            "title": "_ethereum",
+            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "img": "/images/projects/ethereum.png",
+            "tech": ["Vue"],
+            "url": "https://github.com/"
+        }
     }
 }

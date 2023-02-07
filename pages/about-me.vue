@@ -79,7 +79,7 @@
 
         <div class="flex flex-col lg:grid lg:grid-cols-2 h-full w-full overflow-hidden">
           
-          <div id="left" class="h-full w-full flex flex-col border-right">
+          <div id="left" class="w-full flex flex-col border-right">
             
             <!-- windows tab desktop -->
             <div class="tab-height w-full hidden lg:flex border-bot items-center">
@@ -100,7 +100,7 @@
             </div>
             
             <!-- content -->
-            <div class="h-full w-full lg:border-right flex overflow-hidden">
+            <div id="text-editor" class="h-full w-full lg:border-right flex overflow-scroll">
               <div class="w-full h-full ml-5 mr-10 my-14">
                   <TextCodeEditor :text="config.dev.about.sections[currentSection].info[folder].description" />
               </div>
@@ -185,7 +185,7 @@
   color:white;
 }
 
-#right {
+#right, #left {
   height: 100%;
   overflow: hidden;
 }
@@ -196,6 +196,10 @@
 }
 
 #gists::-webkit-scrollbar {
+  display: none;
+}
+
+#text-editor::-webkit-scrollbar {
   display: none;
 }
 

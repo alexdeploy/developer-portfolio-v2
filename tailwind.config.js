@@ -23,7 +23,8 @@ module.exports = {
                 'mobile-menu-blue': '#011627',
                 'placeholder-gray': '#465E77',
                 'greenfy': '#43D9AD',
-                'bluefy-dark': '#011627'
+                'bluefy-dark': '#011627',
+                'purplefy': '#5565E8',
 
             }
         },

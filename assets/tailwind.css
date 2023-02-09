@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+h3, h2 {
+  @apply font-fira_retina;
+  font-size: 15px;
+}
+
 html {
     @apply bg-dark-background;
     height: stretch;
@@ -22,44 +27,64 @@ body {
   width: 100%;
 }
 
-/* SM - LG */
 
+/* SM - LG */
 @media (max-width: 1024px) {
 
-  html {
-    margin: 15px;
-    min-height: 100%;
-    height: stretch;
-    width: stretch;
-  }
+html {
+  margin: 15px;
+  min-height: 100%;
+  height: stretch;
+  width: stretch;
+}
 
-  #__nuxt {
-    @apply bg-blue-background flex flex-col justify-between;
-    height: auto;
-    min-height: stretch; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
-    width: 100%;
-    width: auto;
-  }
+#__nuxt {
+  @apply bg-blue-background flex flex-col justify-between;
+  height: auto;
+  min-height: stretch; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
+  width: 100%;
+  width: auto;
+}
+
+#page-menu, #nav-logo, #filter-menu {
+  border: 0px;
+}
 }
 
 /* LG - XL */
-@media (min-width: 1024px) and (max-width: 1536px) {
-  #page-menu, #nav-logo {
-    min-width: 275px !important;
-    max-width: 275px !important;
-
-  }
+@media (min-width: 1024px) {
+#page-menu, #nav-logo, #filter-menu {
+  min-width: 250px !important;
+  max-width: 250px !important;
+}
 }
 
 /* XL to infinite */
 @media (min-width: 1536px) {
 
-  /* desktop page-menu and */
-  #page-menu, #nav-logo {
-    min-width: 310px !important;
-    max-width: 310px !important;
-  }
+/* desktop page-menu and */
+#page-menu, #nav-logo, #filter-menu {
+  min-width: 310px !important;
+  max-width: 310px !important;
 }
+}
+
+
+
+/* Mobile */
+#mobile-page-title {
+  font-size: 14px;
+  height: 70px;
+  color: white;
+  padding: 0 25px;
+  align-items: center;
+}
+
+.section-arrow {
+  margin-right: 10px;
+  transition: 0.1s;
+}
+
 
 /* Borders */
 

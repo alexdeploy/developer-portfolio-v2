@@ -1,8 +1,8 @@
 <template>
-      <section id="about" class="lg:flex block max-h-full h-full overflow-hidden">
+      <section id="about" class="flex flex-col flex-auto lg:flex-row overflow-hidden">
 
         <!-- mobile title -->
-        <div class="lg:hidden font-fira_retina text-white p-6 border-bot h-min">
+        <div id="mobile-page-title" class="flex lg:hidden">
           <h2>_about-me</h2>
         </div>
 
@@ -46,30 +46,48 @@
           </div>
 
           <!-- mobile -->
-          <div id="section-content" class="lg:hidden w-full">
+          <div id="section-content" class="lg:hidden w-full font-fira_regular">
 
             <div v-for="section in config.dev.about.sections" :key="section.title">
               
               <!-- section title (mobile) -->
-              <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden items-center min-w-full mb-1" @click="focusCurrentSection(section)">
-                <img src="/icons/arrow-down.svg" alt="" class="mx-3">
-                <p v-html="section.title" class="font-fira_regular text-white text-sm"></p>
+              <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden mb-1" @click="focusCurrentSection(section)">
+                <img src="/icons/arrow.svg" :id="'section-arrow-' + section.title" alt="" class="section-arrow">
+                <p v-html="section.title" class=" text-white text-sm"></p>
               </div>
     
               <!-- folders -->
-              <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'">
+              <div :id="'folders-' + section.title" class="hidden"> <!-- <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'"> -->
                 <div v-for="(folder, key, index) in config.dev.about.sections[section.title].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
                   <div class="flex col-span-2">
                     <img id="diple" src="/icons/diple.svg">
                     <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
                     <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
                   </div>
-                  <div v-if="folder.files !== undefined" :id="'files-' + folder.title">
-                    <p v-for="(file, key) in folder.files" :key="key">{{ key }}</p>
+                  <div v-if="folder.files !== undefined" class="col-span-2">
+                    <div v-for="(file, key) in folder.files" :key="key" class="hover:text-white hover:cursor-pointer flex my-2">
+                      <img src="/icons/markdown.svg" alt="" class="ml-8 mr-3"/>
+                      <p >{{ key }}</p>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
               
+            </div>
+
+            <!-- section content title -->
+            <div id="section-content-title" class="flex items-center min-w-full" @click="showContacts()">
+              <img src="/icons/arrow.svg" alt="" id="section-arrow" class="section-arrow">
+              <p v-html="config.dev.contact.direct.title" class="font-fira_regular text-white text-sm"></p>
+            </div>
+
+            <!-- section content folders -->
+            <div id="contacts" class="hidden lg:flex lg:flex-col">
+              <div v-for="(source, key) in config.dev.contact.direct.sources" :key="key" class="flex items-center my-2">
+                <img :src="'/icons/' + key + '.svg'" alt="">
+                <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white ml-4"></a>
+              </div>
             </div>
 
           </div>
@@ -85,23 +103,21 @@
             <div class="tab-height w-full hidden lg:flex border-bot items-center">
               <div class="flex items-center border-right h-full">
                 <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
-                <img src="/icons/close.svg" alt="" class="m-3">
+                <img src="/icons/close.svg" alt="" class="mx-3">
               </div>
             </div>
 
             <!-- windows tab mobile -->
-            <div class="tab-height flex lg:hidden items-center mx-5 mt-10 mb-2">
-              <div class="flex items-end h-full">
-                <span class="text-white"> // </span>
-                <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-white text-sm px-3"></p>
+            <div id="tab-mobile" class="flex lg:hidden font-fira_retina">
+                <span class="text-white">// </span>
+                <h3 v-html="config.dev.about.sections[currentSection].title" class="text-white px-2"></h3>
                 <span class="text-menu-text"> / </span>
-                <p v-html="config.dev.about.sections[currentSection].info[folder].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
-              </div>
+                <h3 v-html="config.dev.about.sections[currentSection].info[folder].title" class="text-menu-text pl-2"></h3>
             </div>
             
             <!-- content -->
             <div id="text-editor" class="h-full w-full lg:border-right flex overflow-scroll">
-              <div class="w-full h-full ml-5 mr-10 my-14">
+              <div class="w-full h-full ml-5 mr-10 lg:my-5">
                   <TextCodeEditor :text="config.dev.about.sections[currentSection].info[folder].description" />
               </div>
               
@@ -118,16 +134,21 @@
           <div id="right" class="max-w-full flex flex-col">
             
             <!-- windows tab -->
-            <div class="tab-height w-full h-full flex-none lg:border-right border-bot items-center">
+            <div class="tab-height w-full h-full hidden lg:flex border-bot items-center">
+
+            </div>
+
+            <!-- windows tab mobile -->
+            <div class="tab-height w-full h-full flex-none lg:hidden items-center">
 
             </div>
 
             <!-- content -->
             <div id="gists-content" class="flex overflow-y-hidden">
               
-              <div id="gists" class="flex flex-col w-full overflow-scroll">
+              <div id="gists" class="flex flex-col w-full overflow-scroll lg:px-10 lg:py-5">
                 <!-- title -->
-                <h3 class="text-menu-text font-fira_retina text-sm m-5">// Code snippet showcase:</h3>
+                <h3 class="text-white lg:text-menu-text mb-4">// Code snippet showcase:</h3>
                 <!-- snippets -->
                 <GistSnippet v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
               </div>
@@ -160,7 +181,13 @@
 }
 
 .tab-height {
-  height: 35px;
+  min-height: 35px;
+  max-height: 35px;
+}
+
+#tab-mobile {
+  padding: 25px 20px 0px 25px;
+  align-items: flex-end;
 }
 
 #scroll-bar{
@@ -195,6 +222,18 @@
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  #gists-content {
+    height: 100%;
+    padding: 0px 25px;
+    overflow: hidden;
+  }
+
+  #about {
+  min-height: stretch;
+}
+}
+
 #gists::-webkit-scrollbar {
   display: none;
 }
@@ -203,6 +242,21 @@
   display: none;
 }
 
+.section-arrow {
+  transition: 0.1s;
+}
+
+#text-editor {
+  font-size: 16px;
+}
+
+#contacts {
+  padding: 0px 25px;
+}
+
+#about {
+  height: stretch;
+}
 
 </style>
 
@@ -241,8 +295,8 @@ export default {
       this.currentSection = section.title
       this.folder = Object.keys(section.info)[0]
 
-      // toggle hidden class
-      document.getElementById('folders-' + section.title).classList.toggle('hidden')
+      document.getElementById('folders-' + section.title).classList.toggle('hidden') // show folders
+      document.getElementById('section-arrow-' + section.title).classList.toggle('rotate-90'); // rotate arrow
     },
     focusCurrentFolder(folder) {
       this.folder = folder.title
@@ -255,7 +309,11 @@ export default {
      */
     toggleFiles() {
       document.getElementById('file-' + this.folder).classList.toggle('hidden')
-    }
+    },
+    showContacts() {
+      document.getElementById('contacts').classList.toggle('hidden')
+      document.getElementById('section-arrow').classList.toggle('rotate-90'); // rotate arrow
+    },
   }
 }
 </script>

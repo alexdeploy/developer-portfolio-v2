@@ -1,6 +1,6 @@
 <template>
     
-    <section class="w-full h-full lg:flex">
+    <section class="w-full h-full flex flex-col flex-auto lg:flex-row">
 
         <PageMenu />
 

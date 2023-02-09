@@ -10,15 +10,15 @@
                 "info": {
                     "experience": {
                         "title": "experience",
-                        "description": "I have 5 years of experience in web..."
+                        "description": "<br>Over the past 5 years, I have gained valuable experience as a front-end developer. I have worked on a wide range of projects, from small websites to large-scale applications. My expertise in HTML, CSS, JavaScript, and React.js has allowed me to create visually appealing and user-friendly websites. I have also developed an understanding of best practices for accessibility and have implemented these principles in my work.<br><br>In addition, I have gained experience working with various back-end technologies and integrating front-end features with RESTful APIs. I have also worked in Agile development environments and have become familiar with project management tools such as Jira. These experiences have honed my skills and have given me the confidence to tackle any front-end development project."
                     },
-                    "skills": {
-                        "title": "skills",
-                        "description": "My principal skills..."
+                    "hard-skills": {
+                        "title": "hard-skills",
+                        "description": "<br>As a front-end developer, I possess a unique set of skills that enable me to bring website designs to life. My expertise includes HTML, CSS, JavaScript, and React.js.<br><br>I have a keen eye for detail and a strong understanding of responsive design, ensuring that websites look great on any device. I am also proficient in using version control systems such as Git, and have experience working with CSS preprocessors such as Sass. My ability to work in a fast-paced environment, strong problem-solving skills, and commitment to meeting project deadlines make me an ideal candidate for any front-end development project."
                     },
-                    "languages": {
-                        "title": "languages",
-                        "description": "My main languages are..."
+                    "soft-skills": {
+                        "title": "soft-skills",
+                        "description": "<br>I bring more than just technical skills to the table. I possess excellent soft skills that make me an asset to any team.<br><br> I am a strong communicator, able to explain complex technical concepts in a clear and concise manner. I work well under pressure and have the ability to prioritize tasks effectively, ensuring projects are completed on time. My positive attitude and eagerness to learn and take on new challenges make me a team player who is always willing to go the extra mile. I am able to collaborate with designers, back-end developers, and project managers to produce high-quality results. These soft skills, combined with my technical expertise, make me a well-rounded front-end developer."
                     }
                 }
             },
@@ -32,11 +32,11 @@
                     },
                     "interests": {
                         "title": "interests",
-                        "description": "I love to learn new things, and i..."
+                        "description": "<br>I am constantly learning and adapting to new technologies. My creativity and attention to detail make me an asset in designing elegant and user-friendly interfaces. <br><br> In my free time, I enjoy building personal projects and participating in hackathons to challenge myself and improve my skills. I am always looking for new opportunities to grow and contribute to meaningful projects."
                     },
                     "education": {
                         "title": "education",
-                        "description": "I have a degree in Computer Science...",
+                        "description": "<br>I have always been passionate about learning and self-improvement. Throughout my studies, I have sought out challenging coursework and have consistently pushed myself to expand my knowledge and skills. I have a strong background in a range of subjects, including mathematics, computer science, and design.<br><br> I believe that continuous learning is key to success, and I am always looking for new opportunities to improve myself, whether through coursework, online courses, or personal projects. I am a fast learner and I am able to apply what I have learned to real-world problems, making me a valuable asset in any academic or professional setting.",
                         "files": {
                             "high-school": "I have been in 'Las viñas'...",
                             "university": "The university..."
@@ -48,17 +48,13 @@
                 "title": "hobbies-info",
                 "icon": "icons/info-hobbies.svg",
                 "info": {
-                    "free-time": {
-                        "title": "free-time",
-                        "description": "In my free time I like to..."
-                    },
                     "sports": {
                         "title": "sports",
-                        "description": "My principal interets are..."
+                        "description": "<br>I am an avid sports enthusiast and have participated in a range of team and individual sports, including soccer, basketball, and tennis. I enjoy the challenges that come with each sport and the sense of accomplishment that comes with improving my skills.<br><br> I believe that sports provide a great way to stay active, build relationships, and develop a competitive spirit. I am always looking for new opportunities to get involved in sports and continue to challenge myself both physically and mentally. Whether it's playing in a pick-up game with friends or participating in a competitive league, I believe that sports are a crucial part of a healthy and balanced lifestyle."
                     },
                     "favorite-games": {
                         "title": "favorite-games",
-                        "description": "My favourite games are..."
+                        "description": "<br>I am a passionate gamer with a love for strategy-based games such as League of Legends and Final Fantasy. These games offer a unique mix of strategy, teamwork, and individual skill, which I find extremely engaging.<br><br> I enjoy learning and mastering new champions and strategies in League of Legends, and I find the rich worlds and characters in Final Fantasy to be incredibly immersive. In my free time, I enjoy playing and competing with friends, and I am always looking for new challenges and ways to improve my gameplay. I believe that video games offer a fantastic way to unwind, connect with others, and develop problem-solving and strategic thinking skills."
                     }
                 }
             }
@@ -105,8 +101,7 @@
     },
     "gists": {
         "1": "83861a67e377633ee8368df01ee3a355",
-        "2": "694c1f32332788a2ac7f37b09e5aa40e",
-        "3": "694c1f32332788a2ac7f37b09e5aa40e"
+        "2": "694c1f32332788a2ac7f37b09e5aa40e"
 
     },
     "projects": {
@@ -114,21 +109,21 @@
             "title": "_ui-animations",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
             "img": "/images/projects/ui-animations.png",
-            "tech": ["React"],
+            "tech": ["React", "Gatsby", "CSS"],
             "url": "https://github.com/"
         },
         "2": {
             "title": "_tetris-game",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
             "img": "/images/projects/tetris-game.png",
-            "tech": ["React"],
+            "tech": ["React", "HTML"],
             "url": "https://github.com/"
         },
         "3": {
             "title": "_ethereum",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
             "img": "/images/projects/ethereum.png",
-            "tech": ["Vue"],
+            "tech": ["Vue", "Flutter"],
             "url": "https://github.com/"
         }
     }

@@ -43,7 +43,8 @@
 }
 
 #nav-link:hover, #nav-link-contact:hover {
-  background-color: #1E2D3D;
+  background-color: #1e2d3d74;
+  color: white;
 }
 
 #nav-logo {
@@ -52,7 +53,8 @@
 }
 
 #nav-logo:hover {
-  background-color: #1E2D3D;
+  background-color: #1e2d3d74;
+  color: white;
 }
 
 #nav-link.active, #nav-link-contact.active {

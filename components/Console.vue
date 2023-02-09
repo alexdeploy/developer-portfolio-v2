@@ -2,25 +2,25 @@
     <div id="console">
 
       <!-- bolts -->
-      <img src="/icons/console/bolt-up-left.svg" alt="" class="absolute top-2 left-2 w-6 opacity-70">
-      <img src="/icons/console/bolt-up-right.svg" alt="" class="absolute top-2 right-2 w-6 opacity-70">
-      <img src="/icons/console/bolt-down-left.svg" alt="" class="absolute bottom-2 left-2 w-6 opacity-70">
-      <img src="/icons/console/bolt-down-right.svg" alt="" class="absolute bottom-2 right-2 w-6 opacity-70">
+      <img id="corner" src="/icons/console/bolt-up-left.svg" alt="" class="absolute top-2 left-2 opacity-70">
+      <img id="corner"  src="/icons/console/bolt-up-right.svg" alt="" class="absolute top-2 right-2 opacity-70">
+      <img id="corner"  src="/icons/console/bolt-down-left.svg" alt="" class="absolute bottom-2 left-2 opacity-70">
+      <img id="corner"  src="/icons/console/bolt-down-right.svg" alt="" class="absolute bottom-2 right-2 opacity-70">
 
 
       <!-- Game Screen -->
       <div id="game-screen" ref="gameScreen"></div>
 
-      <button id="start-button" class="font-fira_retina text-sm py-2 px-4" @click="startGame">start-game</button>
+      <button id="start-button" class="font-fira_retina" @click="startGame">start-game</button>
 
       <!-- Game Over -->
       <div id="game-over" class="hidden">
-        <span class="font-fira_retina text-greenfy text-2xl bg-bluefy-dark h-12 flex items-center justify-center">GAME OVER!</span>
+        <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">GAME OVER!</span>
         <button class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white" @click="startAgain">start-again</button>
       </div>
 
       <div id="congrats" class="hidden">
-        <span class="font-fira_retina text-greenfy text-2xl bg-bluefy-dark h-12 flex items-center justify-center">WELL DONE!</span>
+        <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">WELL DONE!</span>
         <button class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white" @click="startAgain">play-again</button>
       </div>
 
@@ -34,20 +34,20 @@
 
           <div id="buttons" class="w-full flex flex-col items-center gap-1 pt-5">
 
-              <button id="console-button" class="">
+              <button id="console-button" class="button-up" @click="move('up')">
                 <img src="/icons/console/arrow-button.svg" alt="">
               </button>
 
               <div class="grid grid-cols-3 gap-1">
-                <button id="console-button">
+                <button id="console-button" class="button-left" @click="move('left')">
                   <img src="/icons/console/arrow-button.svg" alt="" class="-rotate-90">
                 </button>
 
-                <button id="console-button">
+                <button id="console-button" class="button-down" @click="move('down')">
                   <img src="/icons/console/arrow-button.svg" alt="" class="rotate-180">
                 </button>
 
-                <button id="console-button">
+                <button id="console-button" class="button-right" @click="move('right')">
                   <img src="/icons/console/arrow-button.svg" alt="" class="rotate-90">
                 </button>
             </div>
@@ -75,7 +75,7 @@
         </div>
       </div>
         <!-- skip -->
-        <NuxtLink to="/about-me" class="px-4 py-2 border-2 rounded-lg text-white font-fira_retina text-sm flex hover:bg-white/20">
+        <NuxtLink id="skip-btn" to="/about-me" class="font-fira_retina flex hover:bg-white/20">
           skip
         </NuxtLink>
         
@@ -112,7 +112,7 @@
         { x: 15, y: 23 },
         { x: 15, y: 24 },
       ],
-        direction: "up"
+        direction: "up",
       };
     },
     methods: {
@@ -246,8 +246,10 @@
         gameScreen.innerHTML = "";
 
         // responsive cell screen
-        // const cellSize = (this.$refs.gameScreen.offsetWidth / 40) + "px";
-        
+        // (this.$refs.gameScreen.offsetWidth / 20) + "px";
+
+        /* const widthCells = window.innerWidth > 1536 ? 24 : 20; */
+        const cellSize = window.innerWidth > 1536 ? "10px" : "8px";
         // eje y
         for (let i = 0; i < 40; i++) {
           // exe x
@@ -255,8 +257,9 @@
 
             /* cell style */
             let cell = document.createElement("div");
-            cell.style.width = '10px'
-            cell.style.height = '10px'
+            cell.classList.add("cell");
+            cell.style.width = cellSize
+            cell.style.height = cellSize
             cell.style.display = "flex";
             cell.style.flexShrink = 0;
             cell.classList.add("black");
@@ -314,6 +317,30 @@
       for (let i = 0; i < scoreFoods.length; i++) {
         scoreFoods[i].style.opacity = 0.3;
       }
+    },
+    move(direction){
+      switch (direction) {
+        case "up":
+        if (this.direction !== "down") {
+              this.direction = "up";
+            }
+          break;
+        case "down":
+        if (this.direction !== "up") {
+              this.direction = "down";
+            }
+          break;
+        case "left":
+        if (this.direction !== "right") {
+              this.direction = "left";
+            }
+          break;
+        case "right":
+        if (this.direction !== "left") {
+              this.direction = "right";
+            }
+          break;
+      }
     }
   },
   mounted() {
@@ -343,13 +370,19 @@
         }
       }
     });
-  
+
+    /* window.innerWidth < 1536 ? cellSize = 8 : cellSize = 10; */
     /* this.food = {
       x: Math.floor(Math.random() * 24),
       y: Math.floor(Math.random() * 40)
     }; */
-  
+    window.onresize = () => {
+      this.render();
+    };
+
     this.render();
+
+
   }
 };
 </script>
@@ -380,6 +413,8 @@
 }
 
 #start-button {
+  padding-inline: 16px;
+  padding-block: 8px;
   border-radius: 10px;
   border: 1px solid black;
   background-color: #FEA55F;
@@ -387,9 +422,9 @@
   cursor: pointer;
   position: absolute;
   bottom: 20%;
-  left: 18%;
-/*   top: 60%;
-  left: 65%; */
+  left: 17%;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
 }
 
 #start-button:hover {
@@ -398,7 +433,6 @@
 
 #console-menu{
   height: 400px;
-
 }
 
 #console-button {
@@ -409,6 +443,11 @@
   align-items: center;
   width: 50px;
   height: 30px;
+}
+
+#console-button:hover {
+  background-color: #010c15d8;
+  box-shadow: #43D9AD 0 0 10px;
 }
 
 #instructions {
@@ -431,5 +470,97 @@
   bottom: 12%;
   color: #43D9AD;
   width: 240px;
+}
+
+#game-over, #congrats > span {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+
+#corner {
+  width: 24px;
+  height: 24px;
+}
+
+#skip-btn{
+  font-size: 14px;
+  color: white;
+  padding-inline: 16px;
+  padding-block: 8px;
+  border: 2px solid white;
+  border-radius: 0.5rem; /* 8px */
+}
+
+
+@media (min-width: 1024px) and (max-width: 1536px) {
+  #game-screen {
+    width: 192px;
+    height: 320px;
+  }
+
+  #console {
+    width: 420px;
+    height: 370px;
+    padding: 24px;
+
+  }
+
+  #start-button {
+  padding-inline: 12px;
+  padding-block: 6px;
+  border-radius: 8px;
+  bottom: 20%;
+  left: 17%;
+  font-size: 0.75rem; /* 14px */
+  line-height: 1rem; /* 20px */
+}
+
+  #console-menu{
+  height: 320px;
+}
+
+#instructions {
+  font-size: 12px;
+}
+
+#console-button {
+  width: 40px;
+  height: 25px;
+  border-radius: 6px;
+}
+
+#score-board {
+  font-size: 12px;
+}
+
+.food {
+  width: 6px;
+  height: 6px;
+}
+
+#game-over, #congrats {
+  position: absolute;
+  bottom: 10%;
+  color: #43D9AD;
+  width: 192px;
+}
+
+#game-over, #congrats > span {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+
+#corner {
+  width: 20px;
+  height: 20px;
+}
+
+#skip-btn{
+  font-size: 12px;
+  padding-inline: 12px;
+  padding-block: 6px;
+  border: 2px solid white;
+  border-radius: 0.5rem; /* 8px */
+}
 }
 </style>

@@ -11,7 +11,7 @@
             <div id="contact-menu" v-if="route == '/contact-me'" class="w-full h-full flex flex-col border-right">
 
               <!-- mobile title -->
-              <div class="lg:hidden font-fira_retina text-white p-6 border-bot">
+              <div id="mobile-page-title" class="lg:hidden">
                 <h2>_contact-me</h2>
               </div>
 
@@ -97,9 +97,13 @@ export default {
 }
 
 #section-content-title {
+  width: 100%;
+  min-height: 35px;
   border-bottom: 1px solid #1E2D3D;
-  width: 200px;
-  height: 35px;
+  }
+
+#section-content-title:hover {
+  cursor: pointer;
 }
 
 #section-content-title-contact {
@@ -116,10 +120,11 @@ export default {
   }
 
   #section-content-title {
-  border-bottom: 0px;
   width: 100%;
-  height: 35px;
+  height: 30px;
   background-color: #1E2D3D;
+  align-items: center;
+  padding: 0 25px;
   }
 
   #section-content-title-contact {

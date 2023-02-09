@@ -1,27 +1,27 @@
 <template>
-    <div class="gist m-7" v-if="dataFetched">
+    <div class="gist mb-5 lg:mt-5" v-if="dataFetched">
         
         <!-- head info -->
         <div class="flex justify-between my-3">
 
             <div class="flex">
                 <!-- avatar -->
-                <img :src="gist.owner.avatar_url" alt="" class="w-8 rounded-full mx-2">
+                <img :src="gist.owner.avatar_url" alt="" class="w-8 h-8 rounded-full mx-2">
     
                 <!-- username & gist date info -->
                 <div class="flex flex-col">
-                    <p class="font-fira_bold text-purple-text text-xs">@{{ gist.owner.login }}</p>
+                    <p class="font-fira_bold text-purple-text text-xs pb-1">@{{ gist.owner.login }}</p>
                     <p class="font-fira_retina text-xs text-menu-text">Created {{ monthsAgo }} months ago</p>
                 </div>
             </div>
 
             <!-- details and stars -->
-            <div class="flex text-menu-text font-fira_retina text-xs justify-self-end mx-2">
-                <div class="flex mx-2 hover:cursor-pointer hover:text-white">
-                    <img src="/icons/gist/comments.svg" alt="" class="w-4 h-4 mx-2">
-                    <span class="" @click="showComment(gist.id)">details</span>
+            <div class="flex text-menu-text font-fira_retina text-xs justify-self-end lg:mx-2">
+                <div class="flex lg:mx-2 hover:cursor-pointer hover:text-white">
+                    <img src="/icons/gist/comments.svg" alt="" class="w-4 h-4 mr-2">
+                    <span @click="showComment(gist.id)">details</span>
                 </div>
-                <div class="flex hover:cursor-pointer hover:text-white">
+                <div class="hidden lg:flex hover:cursor-pointer hover:text-white">
                     <img src="/icons/gist/star.svg" alt="" class="w-4 h-4 mx-2">
                     <span class="">stars</span>
                 </div>
@@ -29,9 +29,9 @@
             
         </div>
 
-        <highlightjs class="snippet-container text-sm" language="js" :code="content"/>
-        <div :id="'comment' + gist.id" class="flex hidden justify-between text-menu-text font-fira_retina text-sm mt-4 pt-4 border-top">
-            <p v-if="comment" class="w-5/6">{{ comment }}</p>
+        <highlightjs class="snippet-container" :code="content"/>
+        <div :id="'comment' + gist.id" class="flex hidden justify-between text-menu-text font-fira_retina mt-4 pt-4 border-top">
+            <p id="comment" v-if="comment" class="w-5/6">{{ comment }}</p>
             <p v-else class="w-5/6">No comments.</p>
             <img src="/icons/close.svg" alt="" class="hover:cursor-pointer" @click="showComment(gist.id)">
         </div>
@@ -44,33 +44,45 @@
     padding: 5px;
     border-radius: 15px;
     border: 1px solid #1E2D3D;
+    font-size: 14px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    max-height: 220px;
+
+    
 }
 
 .snippet-container pre {
     margin: 0;
     overflow: hidden;
-    height: 250px;
+    width: 100%;
+    max-height: 220px;
 }
 
 .snippet-container code {
     white-space: pre-wrap;
-    max-height: 250px;
-    overflow-y: scroll;
+    max-height: 220px;
+    width: max-content;
+    overflow: hidden;
 
 }
 
-.snippet-container > code::-webkit-scrollbar {
+.snippet-container::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 
 pre code.hljs{
     display:block;
-    overflow-x:auto;
-    padding:2em
+    /* overflow-x:auto; */
+    padding:1.5em
 }
 
 code.hljs{
     padding:3px 5px
+}
+
+#comment {
+    font-size: 14px;
 }
 
 /* #comment {

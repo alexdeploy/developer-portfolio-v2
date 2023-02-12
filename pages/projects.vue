@@ -1,5 +1,5 @@
 <template>
-  <section class="lg:flex block max-h-full h-full overflow-hidden w-full">
+  <section class="flex flex-col flex-auto lg:flex-row overflow-hidden">
 
     <!-- mobile title -->
     <div id="mobile-page-title" class="flex lg:hidden">
@@ -17,7 +17,7 @@
       <nav id="filter-menu" class="w-full flex-col border-right font-fira_regular text-menu-text hidden lg:flex">
         <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
           <input type="checkbox" :id="tech" @click="filterProjects(tech)">
-          <img :src="'/icons/techs/' + tech + '.svg'" alt="" class="w-5 h-5 mx-4">
+          <img :id="'icon-tech-' + tech" :src="'/icons/techs/' + tech + '.svg'" alt="" class="tech-icon w-5 h-5 mx-4">
           <span>{{ tech }}</span>
         </div>
       </nav>
@@ -35,7 +35,7 @@
       </div>
 
       <!-- windows tab mobile -->
-      <div class="tab-height flex lg:hidden items-center m-5">
+      <div id="tab" class="flex lg:hidden items-center">
           <span class="text-white"> // </span>
           <p class="font-fira_regular text-white text-sm px-3">projects</p>
           <span class="text-menu-text"> / </span>
@@ -43,7 +43,12 @@
       </div>
 
       <!-- projects -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-full m-6 lg:m-16">
+      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-full">
+        <div id="not-found" class="hidden font-fira_retina text-menu-text my-5">
+          <span>
+            No matching projects for these technologies X__X
+          </span>
+        </div>
         <div v-for="(project, key, index) in projects" :key="key" class="lg:p-5">
 
           <!-- title -->
@@ -59,12 +64,12 @@
             </div>
 
             <div class="p-8 border-top">
-              <p class="text-menu-text font-fira_retina text-sm">
+              <p class="text-menu-text font-fira_retina text-sm mb-5">
                 {{ project.description }}
               </p>
-              <button id="view-button" class="text-white font-fira_retina py-2 px-4 w-fit text-xs rounded-lg mt-5">
+              <a id="view-button" :href="project.url" target="_blank" class="text-white font-fira_retina py-2 px-4 w-fit text-xs rounded-lg">
                   view-project
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -79,11 +84,27 @@
   padding: 10px 25px;
 }
 
+#tab {
+  padding: 25px 25px 5px;
+}
+
+.tech-icon {
+  opacity: 0.4;
+}
+
+.tech-icon.active {
+  opacity: 1;
+}
+
+#projects-case {
+  padding: 100px;
+}
 #project-card {
   border: 1px solid #1E2D3D;
   background-color: #011221;
   border-radius: 15px;
   max-width: 370px;
+  max-height: 315px;
 }
 
 #showcase {
@@ -138,6 +159,11 @@ input[type="checkbox"]:focus {
   box-shadow: none;
 }
 
+@media (max-width: 768px) {
+  #projects-case {
+    padding: 0px 25px 40px;
+  }
+}
 
 @keyframes animateToBottom {
   from {
@@ -169,7 +195,11 @@ export default {
   },
   methods: {
     filterProjects(tech) {
-      console.log(tech);
+
+      // tech icon opacity change
+      console.log(tech)
+      document.getElementById('icon-tech-' + tech).classList.toggle('active');
+
       const check = document.getElementById(tech);
       if (check.checked) {
         this.filters = this.filters.filter((item) => item !== 'all'); // remove 'all' from filters
@@ -178,22 +208,26 @@ export default {
         this.filters = this.filters.filter((item) => item !== tech); // remove tech from filters
         this.filters.length === 0 ? this.filters.push('all') : null; // add 'all' to filters if filters is empty
       }
-      
       this.filters[0] == 'all' ? this.projects = this.config.public.dev.projects : this.projects = this.filterProjectsBy(this.filters);
-      console.log(this.filters);
-      console.log(this.projects);
+
+      if(this.projects.length === 0){
+        document.getElementById('not-found').classList.remove('hidden');
+      }else{
+        document.getElementById('not-found').classList.add('hidden');
+      }
       
     },
     hiddeSection() {
       document.getElementById('filter-menu').classList.toggle('hidden');
-      document.getElementById('section-arrow').classList.toggle('rotate-90');
+      document.getElementsByClassName('section-arrow')[0].classList.toggle('rotate-90');
     },
     filterProjectsBy(filters) {
       const projectArray = Object.values(this.config.public.dev.projects);
+
       return projectArray.filter(project => {
         return filters.every(filter => project.tech.includes(filter));
       });
-    }
+    },
   },
 };
 

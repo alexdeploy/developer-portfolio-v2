@@ -1,17 +1,22 @@
 <template>
-    <footer class="flex justify-between border-top text-menu-text font-fira_retina text-sm">
+    <footer class='flex md:justify-between border-top text-menu-text font-fira_retina text-sm'>
 
         <!-- social icons -->
-        <div id="social-icons" class="flex">
-            <span class="h-full flex justify-center items-center border-right px-5">
+        <div class="w-full flex justify-between md:justify-start">
+            <span id="social-title" class="h-full flex justify-center items-center border-right px-5">
                 find me in:
             </span>
-            <NuxtLink :to="social.twitter.url + social.twitter.user" target="_blank" class="flex justify-center items-center">
-                <Icon name="ri:twitter-fill" class="w-6 h-6 m-auto"/>
+            <div id="social-icons" class="flex">
+                <NuxtLink :to="social.twitter.url + social.twitter.user" target="_blank" class="flex justify-center items-center">
+                    <Icon name="ri:twitter-fill" class="w-6 h-6 m-auto"/>
+                </NuxtLink>
+                <NuxtLink :to="social.facebook.url + social.facebook.user" target="_blank" class="flex justify-center items-center">
+                    <Icon name="ri:facebook-fill" class="w-6 h-6 m-auto"/>
+                </NuxtLink>
+                <NuxtLink :to="social.github.url + social.github.user" target="_blank" class="flex md:hidden justify-center items-center">
+                <Icon name="ri:github-fill" class="w-6 h-6 m-auto" />
             </NuxtLink>
-            <NuxtLink :to="social.facebook.url + social.facebook.user" target="_blank" class="flex justify-center items-center">
-                <Icon name="ri:facebook-fill" class="w-6 h-6 m-auto"/>
-            </NuxtLink>
+            </div>
         </div>
 
         <!-- github user -->
@@ -48,15 +53,49 @@ footer a:hover {
     opacity: 1;
 }
 
+@media (max-width: 768px) {
+
+    #social-title {
+        border-right: none;
+    }
+
+    #social-icons > a {
+        border-right: none;
+        border-left: 1px solid #1E2D3D;
+    }
+}
+
 </style>
 
 <script>
 export default {
     name: 'AppFooter',
+    data() {
+        return {
+          route: this.$route.path,
+          device: '',
+        }
+    },
     setup() {
         return {
             social: useRuntimeConfig().dev.contact.find_me_also_in.sources
         }
   },
+  computed: {
+
+  },
+  mounted() {
+/*     // get device width
+    const screenWidth = window.innerWidth;
+
+    // set device
+    if (screenWidth < 768) {
+      this.device = 'mobile'
+    } else {
+      this.device = 'desktop'
+    }
+
+    console.log(this.device) */
+  }
 }
 </script>

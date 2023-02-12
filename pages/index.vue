@@ -42,7 +42,7 @@
   
       <!-- game -->
       <div id="game" class="hidden lg:flex flex-col justify-center col-start-7 xl:col-start-6">
-        <Console />
+        <SnakeGame />
         <!-- <img src="/images/game.png" alt="" class=""> -->
       </div>
     </div>

@@ -90,6 +90,7 @@
 
 #tab {
   padding: 25px 25px 5px;
+  flex-wrap: wrap;
 }
 
 .tech-icon {

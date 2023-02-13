@@ -43,10 +43,16 @@
       </div>
 
       <!-- projects -->
-      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full">
-        <div id="not-found" class="hidden font-fira_retina text-menu-text my-5">
-          <span>
-            No matching projects for these technologies X__X
+      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full h-full">
+        <div id="not-found" class="hidden flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
+          <span class="flex justify-center text-4xl pb-3">
+            X__X
+          </span>
+          <span class="text-white flex justify-center text-xl">
+            No matching projects
+          </span>
+          <span class="flex justify-center">
+            for these technologies
           </span>
         </div>
         <div id="project" v-for="(project, key, index) in projects" :key="key" class="lg:p-5">
@@ -248,8 +254,13 @@ export default {
       this.filters[0] == 'all' ? this.projects = this.config.public.dev.projects : this.projects = this.filterProjectsBy(this.filters);
 
       if(this.projects.length === 0){
+        // set flex to projects-case
+        document.getElementById('projects-case').classList.remove('grid');
         document.getElementById('not-found').classList.remove('hidden');
+        
       }else{
+        // set grid to projects-case
+        document.getElementById('projects-case').classList.add('grid');
         document.getElementById('not-found').classList.add('hidden');
       }
       

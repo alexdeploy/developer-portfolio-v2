@@ -57,9 +57,15 @@
   color: white;
 }
 
-#nav-link.active, #nav-link-contact.active {
+#nav-link.router-link-active, #nav-link-contact.router-link-active {
   border-bottom: 2px solid #FEA55F;
-  color: #FFFFFF;
+  color: white;
+}
+
+#nav-logo.router-link-active {
+  border-right: 1px solid #1E2D3D;
+  border-bottom: none;
+  @apply text-menu-text;
 }
 
 </style>
@@ -68,7 +74,6 @@
 
 export default {
   computed: {
-
     // Set active class to current page link
     isActive() {
       return route => this.$route.path === route;

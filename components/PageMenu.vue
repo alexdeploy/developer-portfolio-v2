@@ -20,7 +20,7 @@
 
                   <!-- section content title -->
                   <div id="section-content-title-contact" class="flex items-center min-w-full" @click="toggleDirectSources()">
-                    <img id="arrow-down" src="/icons/arrow-down.svg" alt="" class="mx-3">
+                    <img id="arrow-down" src="/icons/arrow.svg" alt="" class="mx-3">
                     <p v-html="config.dev.contact.direct.title" class="font-fira_regular text-white text-sm"></p>
                   </div>
   
@@ -34,7 +34,7 @@
 
                   <!-- social links -->
                   <div id="section-content-title-contact" class="flex items-center border-top w-full" @click="toggleSocialLinks()">
-                    <img id="arrow-down2" src="/icons/arrow-down.svg" alt="" class="mx-3">
+                    <img id="arrow-down2" src="/icons/arrow.svg" alt="" class="mx-3">
                     <p v-html="config.dev.contact.find_me_also_in.title" class="font-fira_regular text-white text-sm"></p>
                   </div>
   
@@ -75,15 +75,14 @@ export default {
      * Toggle contact sources hidding
      */
     toggleDirectSources() {
-      
       document.getElementById('contact-sources').classList.toggle('lg:hidden');
       document.getElementById('contact-sources').classList.toggle('hidden');
-      document.getElementById('arrow-down').classList.toggle('-rotate-90')
+      document.getElementById('arrow-down').classList.toggle('rotate-90')
     },
     toggleSocialLinks() {
       document.getElementById('social-links').classList.toggle('lg:hidden');
       document.getElementById('social-links').classList.toggle('hidden')
-      document.getElementById('arrow-down2').classList.toggle('-rotate-90')
+      document.getElementById('arrow-down2').classList.toggle('rotate-90')
     }
   }
 }
@@ -94,6 +93,14 @@ export default {
 #sections {
   border-right: 1px solid #1E2D3D;
   width: 75px
+}
+
+#arrow-down, #arrow-down2 {
+/*   margin-inline: 0.5rem; */
+}
+
+#arrow-down, #arrow-down2 {
+  transition: 0.1s;
 }
 
 </style>

@@ -109,6 +109,7 @@
 
 #project {
   min-width: 370px;
+  margin-bottom: 5px;
 }
 #project-card {
   border: 1px solid #1E2D3D;
@@ -175,6 +176,10 @@ input[type="checkbox"]:focus {
   #projects-case {
     padding: 0px 25px 40px;
   }
+
+  #project {
+    min-width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -183,7 +188,9 @@ input[type="checkbox"]:focus {
     padding: 50px 50px 40px;
   }
   #project {
-    margin: 10px
+    width: 100%;
+    min-width: 100%;
+    padding-inline: 5px;
   }
 }
 

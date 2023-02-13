@@ -152,6 +152,7 @@ html {
 ::-webkit-scrollbar {
   width: 20px;
   border-left: 1px solid #1E2D3D;
+  display: none;
 }
 
 /* Track */

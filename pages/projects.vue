@@ -24,7 +24,7 @@
 
     <!-- content -->
 
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col w-full overflow-hidden">
       
       <!-- windows tab -->
       <div class="tab-height w-full hidden lg:flex border-bot items-center">
@@ -43,7 +43,7 @@
       </div>
 
       <!-- projects -->
-      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full h-full">
+      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full h-full overflow-scroll lg:self-center">
         <div id="not-found" class="hidden flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
           <span class="flex justify-center text-4xl pb-3">
             X__X
@@ -55,7 +55,7 @@
             for these technologies
           </span>
         </div>
-        <div id="project" v-for="(project, key, index) in projects" :key="key" class="lg:p-5">
+        <div id="project" v-for="(project, key, index) in projects" :key="key" class="lg:mx-5">
 
           <!-- title -->
           <span class="flex text-sm my-3">
@@ -119,6 +119,7 @@
   min-width: 370px;
   margin-bottom: 5px;
 }
+
 #project-card {
   border: 1px solid #1E2D3D;
   background-color: #011221;
@@ -228,18 +229,18 @@ input[type="checkbox"]:focus {
 
 <script>
 export default {
+  setup() {
+    const config = useRuntimeConfig()
+    return {
+      config
+    }
+  },
   data() {
     return {
       techs: ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter'],
       filters: ['all'],
       projects: '',
     };
-  },
-  setup() {
-    const config = useRuntimeConfig()
-    return {
-      config
-    }
   },
   mounted() {
     this.projects = this.config.public.dev.projects;
@@ -276,11 +277,16 @@ export default {
       document.getElementById('filter-menu').classList.toggle('hidden');
       document.getElementsByClassName('section-arrow')[0].classList.toggle('rotate-90');
     },
+    /**
+     * * Filter projects by techs
+     * * Each filter has to be an string with tech name that matches with project.tech !!
+     * ? If you want to filter projects that matches with ALL tech in filters, use 'every' instead of 'some'
+     * @param {*} filters is an array with techs names.
+     */
     filterProjectsBy(filters) {
       const projectArray = Object.values(this.config.public.dev.projects);
-
       return projectArray.filter(project => {
-        return filters.every(filter => project.tech.includes(filter));
+        return filters.some(filter => project.tech.includes(filter)); // change here your condition 'some' or 'every'
       });
     },
   },

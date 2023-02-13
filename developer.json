@@ -102,28 +102,48 @@
     "gists": {
         "1": "83861a67e377633ee8368df01ee3a355",
         "2": "694c1f32332788a2ac7f37b09e5aa40e"
-
     },
     "projects": {
         "1": {
             "title": "_ui-animations",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/ui-animations.png",
-            "tech": ["React", "Gatsby", "CSS"],
+            "img": "/images/projects/ui-animations2.png",
+            "tech": ["Flutter"],
             "url": "https://github.com/"
         },
         "2": {
-            "title": "_tetris-game",
+            "title": "_ai-resources",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/tetris-game.png",
-            "tech": ["React", "HTML"],
+            "img": "/images/projects/ai-resources.png",
+            "tech": ["Gatsby"],
             "url": "https://github.com/"
         },
         "3": {
+            "title": "_worldmap",
+            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "img": "/images/projects/worldmap.png",
+            "tech": ["Angular"],
+            "url": "https://github.com/"
+        },
+        "4": {
+            "title": "_ui-animations",
+            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "img": "/images/projects/ui-animations.png",
+            "tech": ["React"],
+            "url": "https://github.com/"
+        },
+        "5": {
+            "title": "_tetris-game",
+            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "img": "/images/projects/tetris-game.png",
+            "tech": ["React"],
+            "url": "https://github.com/"
+        },
+        "6": {
             "title": "_ethereum",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
             "img": "/images/projects/ethereum.png",
-            "tech": ["Vue", "Flutter"],
+            "tech": ["Vue"],
             "url": "https://github.com/"
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="font-fira_retina text-white text-sm">
+    <div class="font-fira_retina text-white">
         <p>
             <span class="tag">
                 const
@@ -34,17 +34,21 @@
                 name
             </span>
             :
+            <span class="text-codeline-link">"</span>
 	        <span id="name-value" class="text-codeline-link">
-                "{{ name }}"
-            </span> 
+                {{ name }}
+            </span>
+            <span class="text-codeline-link">"</span>
             , <br> &nbsp;&nbsp;
             <span id="email" class="tag-name">
                 email
             </span>
 	        :
+            <span class="text-codeline-link">"</span>
             <span id="email-value" class="text-codeline-link">
-                "{{ email }}"
+                {{ email }}
             </span>
+            <span class="text-codeline-link">"</span>
             , <br> &nbsp;&nbsp;
             <span id="message" class="tag-name">
                 message
@@ -58,7 +62,7 @@
             , <br> &nbsp;&nbsp;
 	        date: 
             <span class="text-codeline-link">
-                "Thu 21 Apr"
+                "{{ date }}"
             </span>
             <br>
             }
@@ -92,6 +96,11 @@
 
 <script>
 export default {
+    data(){
+        return {
+            date: new Date().toDateString(),
+        }
+    },
     props: {
         name: String,
         email: String,

@@ -18,7 +18,7 @@
         <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
           <input type="checkbox" :id="tech" @click="filterProjects(tech)">
           <img :id="'icon-tech-' + tech" :src="'/icons/techs/' + tech + '.svg'" alt="" class="tech-icon w-5 h-5 mx-4">
-          <span>{{ tech }}</span>
+          <span :id="'title-tech-' + tech">{{ tech }}</span>
         </div>
       </nav>
 
@@ -43,13 +43,13 @@
       </div>
 
       <!-- projects -->
-      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-full">
+      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full">
         <div id="not-found" class="hidden font-fira_retina text-menu-text my-5">
           <span>
             No matching projects for these technologies X__X
           </span>
         </div>
-        <div v-for="(project, key, index) in projects" :key="key" class="lg:p-5">
+        <div id="project" v-for="(project, key, index) in projects" :key="key" class="lg:p-5">
 
           <!-- title -->
           <span class="flex text-sm my-3">
@@ -60,6 +60,9 @@
           <!-- info -->
           <div id="project-card" class="flex flex-col">
             <div id="window">
+              <div class="absolute flex right-3 top-3">
+                <img v-for="tech in project.tech" :key="tech" :src="'/icons/techs/filled/' + tech + '.svg'" alt="" class="w-6 h-6 mx-1 hover:opacity-75">
+              </div>
               <img id="showcase" :src="project.img" alt="" class="">
             </div>
 
@@ -96,8 +99,16 @@
   opacity: 1;
 }
 
+#title-tech.active {
+  color: white;
+}
+
 #projects-case {
-  padding: 100px;
+  /* padding: 100px; */
+}
+
+#project {
+  min-width: 370px;
 }
 #project-card {
   border: 1px solid #1E2D3D;
@@ -118,6 +129,7 @@
 
 #window {
   max-height: 150px;
+  position: relative;
   overflow: hidden;
 }
 
@@ -165,6 +177,23 @@ input[type="checkbox"]:focus {
   }
 }
 
+@media (min-width: 768px) {
+  #projects-case {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 50px 50px 40px;
+  }
+  #project {
+    margin: 10px
+  }
+}
+
+@media (min-width: 1350px) {
+  #projects-case {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* padding: 100px 100px 40px; */
+  }
+}
+
 @keyframes animateToBottom {
   from {
     transform: translate3d(0, -200px, 0);
@@ -196,9 +225,8 @@ export default {
   methods: {
     filterProjects(tech) {
 
-      // tech icon opacity change
-      console.log(tech)
-      document.getElementById('icon-tech-' + tech).classList.toggle('active');
+      document.getElementById('icon-tech-' + tech).classList.toggle('active'); // change tech icon opacity
+      document.getElementById('title-tech-' + tech).classList.toggle('active'); // change tech text color
 
       const check = document.getElementById(tech);
       if (check.checked) {

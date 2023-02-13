@@ -1,5 +1,5 @@
 <template>
-    <form id="contact-form" class="mx-8 my-16 text-sm self-center w-4/5 max-w-lg">
+    <form id="contact-form" class="mx-8 my-16 text-sm self-center w-4/5">
         <div class="flex flex-col">
             <label for="name" class="mb-3">_name:</label>
             <input type="text" id="name-input" name="name" :placeholder="name" class="p-2 mb-5 placeholder-slate-600" required>
@@ -49,7 +49,7 @@ form {
 }
 input {
     background-color: #011221;
-    border: 1px solid #1E2D3D;
+    border: 2px solid #1E2D3D;
     border-radius: 7px;
     
 }
@@ -63,15 +63,14 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 1px solid #1E2D3D;
   -webkit-text-fill-color: rgb(190, 190, 190);
-  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
   transition: background-color 5000s ease-in-out 0s;
+  border: 2px solid #607b96;
 }
 
 #message-input {
     background-color: #011221;
-    border: 1px solid #1E2D3D;
+    border: 2px solid #1E2D3D;
     border-radius: 7px;
     resize: none;
     height: 150px;
@@ -86,9 +85,14 @@ select:-webkit-autofill:focus {
     cursor: pointer;
 }
 
-input:focus, #message-area:focus {
+input:focus, #message-input:focus {
     outline: none;
     transition: none;
-    box-shadow: 0 0 10px #607B96;
+    border: 2px solid #607b96;
+    box-shadow: #607b9669 0px 0px 0px 2px;
   }
+
+#contact-form {
+    max-width: 370px;
+}
 </style>

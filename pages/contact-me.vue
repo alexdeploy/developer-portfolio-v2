@@ -1,6 +1,6 @@
 <template>
     
-    <section class="w-full h-full flex flex-col flex-auto lg:flex-row">
+    <section class="w-full h-full flex flex-col flex-auto lg:flex-row overflow-hidden">
 
         <PageMenu />
 
@@ -30,7 +30,7 @@
 
             <div class="h-full w-full border-right flex">
             
-            <div class="w-full h-full p-20">
+            <div class="w-full h-full p-20 overflow-scroll">
                 <CodeArea :name="name" :email="email" :message="message" />
             </div>
             <!-- scroll bar -->
@@ -52,9 +52,9 @@
 export default {
     data() {
         return {
-            name: 'Jonathan Davis',
-            email: 'jonathan-davis@gmail.com',
-            message: 'Hey! Just checked your website and it looks awesome! Also, I checked your articled on Medium. Lerned a few nice tips. Thanks!',
+            name: '',
+            email: '',
+            message: '',
         }
     },
     mounted(){

@@ -69,7 +69,49 @@ html {
 }
 }
 
+#section-content-title {
+  width: 100%;
+  min-height: 35px;
+  border-bottom: 1px solid #1E2D3D;
+  }
 
+#section-content-title:hover {
+  cursor: pointer;
+}
+
+#section-content-title-contact {
+  @apply cursor-pointer;
+  border-bottom: 1px solid #1E2D3D;
+
+  height: 35px;
+}
+
+/* MOBILE MENU VIEW */
+@media (max-width: 1024px) {
+  #page-menu {
+    width: 100% !important;
+  }
+
+  #section-content-title {
+  width: 100%;
+  height: 30px;
+  background-color: #1E2D3D;
+  align-items: center;
+  padding: 0 25px;
+  }
+
+  #section-content-title-contact {
+    width: 100%;
+    height: 35px;
+    background-color: #1E2D3D;
+    margin-bottom: 3px
+  }
+
+  #left, #contact-menu {
+    border-right: 0px;
+  }
+
+}
 
 /* Mobile */
 #mobile-page-title {

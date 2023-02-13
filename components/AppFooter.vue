@@ -78,7 +78,7 @@ export default {
     },
     setup() {
         return {
-            social: useRuntimeConfig().dev.contact.find_me_also_in.sources
+            social: useRuntimeConfig().dev.contact.social
         }
   },
   computed: {

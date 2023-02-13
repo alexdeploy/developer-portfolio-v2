@@ -64,36 +64,48 @@
         "direct": {
             "title": "contact",
             "sources": {
-                "email": "me@alexrueda.dev",
-                "phone": "+34 618 299 553"
+                "email": "user@gmail.com",
+                "phone": "+3598246359"
+            }
+        },
+        "social": {
+            "github": {
+                "title": "Github profile",
+                "url": "https://github.com/",
+                "user": "username"
+            },
+            "facebook": {
+                "title": "Facebook profile",
+                "url": "https://facebook.com/",
+                "user": "username"
+            },
+            "twitter": {
+                "title": "Twitter account",
+                "url": "https://twitter.com/",
+                "user": "username"
             }
         },
         "find_me_also_in": {
             "title": "find-me-also-in",
             "sources": {
-                "linkedin": {
-                    "title": "Linkedin profile",
-                    "url": "https://www.linkedin.com/in/",
+                "youtube": {
+                    "title": "YouTube channel",
+                    "url": "https://www.youtube.com/",
                     "user": "username"
                 },
-                "github": {
-                    "title": "Github profile",
-                    "url": "https://github.com/",
+                "gurushots": {
+                    "title": "GuruShots profile",
+                    "url": "https://gurushots.com/",
                     "user": "username"
                 },
-                "twitter": {
-                    "title": "Twitter account",
-                    "url": "https://twitter.com/",
+                "instagram": {
+                    "title": "Instagram account",
+                    "url": "https://instagram.com/",
                     "user": "username"
                 },
                 "twitch": {
-                    "title": "Twitch channel",
+                    "title": "Twitch profile",
                     "url": "https://twitch.com/",
-                    "user": "username"
-                },
-                "facebook": {
-                    "title": "Facebook profile",
-                    "url": "https://facebook.com/",
                     "user": "username"
                 }
             }

@@ -1,26 +1,33 @@
 <template>
   <section class="flex flex-col flex-auto lg:flex-row overflow-hidden">
 
-    <!-- mobile title -->
-    <div id="mobile-page-title" class="flex lg:hidden">
+    <div id="mobile-page-title">
       <h2>_projects</h2>
     </div>
 
     <!-- section title (mobile) -->
-
-      <div id="section-content-title" class="flex lg:hidden" @click="hiddeSection()">
-        <img class="section-arrow" src="/icons/arrow.svg">
+    <div id="section-content-title" class="flex lg:hidden" @click="hiddeSection()">
+      <img class="section-arrow" src="/icons/arrow.svg">
+      <p class="font-fira_regular text-white text-sm">projects</p>
+    </div>
+    
+    <div id="filter-menu" class="w-full flex-col border-right font-fira_regular text-menu-text hidden lg:flex">
+      <!-- title -->
+      <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
+        <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3 open">
         <p class="font-fira_regular text-white text-sm">projects</p>
       </div>
-  
+
       <!-- filter menu -->
-      <nav id="filter-menu" class="w-full flex-col border-right font-fira_regular text-menu-text hidden lg:flex">
+      <nav id="filters" class="w-full flex-col">
+  
         <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
           <input type="checkbox" :id="tech" @click="filterProjects(tech)">
           <img :id="'icon-tech-' + tech" :src="'/icons/techs/' + tech + '.svg'" alt="" class="tech-icon w-5 h-5 mx-4">
           <span :id="'title-tech-' + tech">{{ tech }}</span>
         </div>
       </nav>
+    </div>
 
     <!-- content -->
 
@@ -55,8 +62,8 @@
             for these technologies
           </span>
         </div>
-        <div id="project" v-for="(project, key, index) in projects" :key="key" class="lg:mx-5">
 
+        <div id="project" v-for="(project, key, index) in projects" :key="key" class="lg:mx-5">
           <!-- title -->
           <span class="flex text-sm my-3">
             <h3 v-if="index == null" class="text-purplefy font-fira_bold mr-3">Project {{ key + 1 }}</h3>
@@ -73,7 +80,7 @@
               <img id="showcase" :src="project.img" alt="" class="">
             </div>
 
-            <div class="p-8 border-top">
+            <div class="pb-8 pt-6 px-6 border-top">
               <p class="text-menu-text font-fira_retina text-sm mb-5">
                 {{ project.description }}
               </p>
@@ -90,7 +97,7 @@
 
 <style>
 
-#filter-menu {
+#filters {
   padding: 10px 25px;
 }
 
@@ -116,7 +123,7 @@
 }
 
 #project {
-  min-width: 370px;
+  min-width: 400px;
   margin-bottom: 5px;
 }
 
@@ -124,8 +131,8 @@
   border: 1px solid #1E2D3D;
   background-color: #011221;
   border-radius: 15px;
-  max-width: 370px;
-  max-height: 315px;
+  max-width: 400px;
+  /* max-height: 315px; */
 }
 
 #showcase {
@@ -137,8 +144,12 @@
   background-color: #1C2B3A;
 }
 
+#view-button:hover {
+  background-color: #263B50;
+}
+
 #window {
-  max-height: 150px;
+  max-height: 120px;
   position: relative;
   overflow: hidden;
 }
@@ -213,7 +224,13 @@ input[type="checkbox"]:focus {
 @media (min-width: 1350px) {
   #projects-case {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 50px 80px 40px;
     /* padding: 100px 100px 40px; */
+  }
+  #project {
+    width: 100%;
+    min-width: 100%;
+    padding-inline: 20px;
   }
 }
 

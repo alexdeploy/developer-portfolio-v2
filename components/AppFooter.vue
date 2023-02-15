@@ -1,5 +1,5 @@
 <template>
-    <footer class='flex md:justify-between border-top text-menu-text font-fira_retina text-sm'>
+    <footer class='flex md:justify-between border-top text-menu-text font-fira_retina'>
 
         <!-- social icons -->
         <div class="w-full flex justify-between md:justify-start">
@@ -8,13 +8,13 @@
             </span>
             <div id="social-icons" class="flex">
                 <NuxtLink :to="social.twitter.url + social.twitter.user" target="_blank" class="flex justify-center items-center">
-                    <Icon name="ri:twitter-fill" class="w-6 h-6 m-auto"/>
+                    <Icon name="ri:twitter-fill"/>
                 </NuxtLink>
                 <NuxtLink :to="social.facebook.url + social.facebook.user" target="_blank" class="flex justify-center items-center">
-                    <Icon name="ri:facebook-fill" class="w-6 h-6 m-auto"/>
+                    <Icon name="ri:facebook-fill"/>
                 </NuxtLink>
                 <NuxtLink :to="social.github.url + social.github.user" target="_blank" class="flex md:hidden justify-center items-center">
-                <Icon name="ri:github-fill" class="w-6 h-6 m-auto" />
+                <Icon name="ri:github-fill"/>
             </NuxtLink>
             </div>
         </div>
@@ -22,7 +22,7 @@
         <!-- github user -->
         <NuxtLink :to="social.github.url + social.github.user" target="_blank" class="hidden md:flex items-center px-5 border-left">
             @{{ social.github.user }}
-            <Icon name="ri:github-fill" class="w-6 h-6 ml-2" />
+            <Icon name="ri:github-fill"/>
         </NuxtLink>
 
     </footer>
@@ -31,8 +31,9 @@
 <style>
 
 footer {
-    height: 50px;
-    min-height: 50px;
+    height: 40px;
+    min-height: 40px;
+    font-size: 13px;
 }
 
 footer a:hover {
@@ -42,12 +43,21 @@ footer a:hover {
 #social-icons > a {
     border-right: 1px solid #1E2D3D;
     height: 100%;
-    width: 55px;
+    width: 50px;
  }
 
 #social-icons > a > svg {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    margin: auto;
     opacity: 0.4;
 }
+
+footer > a > svg {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    margin-left: 0.5rem; /* 8px */
+  }
 
 #social-icons > a:hover svg {
     opacity: 1;
@@ -63,6 +73,11 @@ footer a:hover {
         border-right: none;
         border-left: 1px solid #1E2D3D;
     }
+
+    #social-icons > a > svg {
+        width: 1.5rem; /* 20px */
+        height: 1.5rem; /* 20px */
+  }
 }
 
 </style>
@@ -73,29 +88,12 @@ export default {
     data() {
         return {
           route: this.$route.path,
-          device: '',
         }
     },
     setup() {
         return {
-            social: useRuntimeConfig().dev.contact.social
+            social: useRuntimeConfig().dev.contacts.social
         }
-  },
-  computed: {
-
-  },
-  mounted() {
-/*     // get device width
-    const screenWidth = window.innerWidth;
-
-    // set device
-    if (screenWidth < 768) {
-      this.device = 'mobile'
-    } else {
-      this.device = 'desktop'
-    }
-
-    console.log(this.device) */
-  }
+    },
 }
 </script>

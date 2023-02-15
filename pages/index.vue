@@ -5,7 +5,7 @@
     <div class="css-blurry-gradient-blue z-10 w-48 h-96"></div>
     <div class="css-blurry-gradient-green z-10 w-48 h-96"></div>
     
-    <PageMenu />
+    <nav id="page-menu" class='hidden xl:flex'></nav>
 
     <div class="grid grid-cols-12 z-20 m-7 lg:m-0 flex-1">
 
@@ -107,10 +107,6 @@
     opacity: 0.5;
     border-radius: 100% 0% 0% 0%;
     rotate: 20deg;
-  }
-
-  @media (max-width: 1536px){
-    
   }
 }
 

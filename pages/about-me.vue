@@ -1,171 +1,197 @@
 <template>
-      <section id="about" class="flex flex-col flex-auto lg:flex-row overflow-hidden">
+  <section id="about-me" class="page">
 
-        <!-- mobile title -->
-        <div id="mobile-page-title" class="flex lg:hidden">
-          <h2>_about-me</h2>
+    <div id="mobile-page-title">
+      <h2>_about-me</h2>
+    </div>
+
+    <div id="page-menu" class="w-full flex">
+
+      <!-- DESKTOP section icons -->
+      <div id="sections">
+        <div id="section-icon" v-for="section in config.dev.about.sections" :key="section.title" :class="{ active: isSectionActive(section.title)}">
+          <img :id="'section-icon-' + section.title" :src="section.icon" :alt="section.title + '-section'" @click="focusCurrentSection(section)">
+        </div>
+      </div>
+
+      <!-- focused section content -->
+      <div id="section-content" class="hidden lg:block w-full h-full border-right">
+
+        <!-- title -->
+        <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
+          <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3 open">
+          <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-white text-sm"></p>
         </div>
 
-        <!-- MENU -->
-        <div id="page-menu" class="w-full h-auto flex">
-
-          <!-- section icons (desktop) -->
-          <div id="sections" class="hidden lg:block h-full w-20">
-            <div id="section-icon" v-for="section in config.dev.about.sections" :key="section.title" :class="{ active: isSectionActive(section.title)}">
-              <img :id="'section-icon-' + section.title" :src="section.icon" alt="" @click="focusCurrentSection(section)">
+        <!-- folders -->
+        <div>
+          <div v-for="(folder, key, index) in config.dev.about.sections[currentSection].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
+            <div class="flex col-span-2 hover:text-white hover:cursor-pointer">
+              <img id="diple" src="/icons/diple.svg" alt="" :class="{ open: isOpen(folder.title)}">
+              <img :src="'/icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
+              <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
+            </div>
+            <div v-if="folder.files !== undefined" class="col-span-2">
+              <div v-for="(file, key) in folder.files" :key="key" class="hover:text-white hover:cursor-pointer flex my-2">
+                <img src="/icons/markdown.svg" alt="" class="ml-8 mr-3"/>
+                <p >{{ key }}</p>
+              </div> 
             </div>
           </div>
-
-          <!-- dekstop -->
-          <div id="section-content" class="hidden lg:block w-full h-full border-right">
-
-            <!-- section title (desktop) -->
-            <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
-              <img src="/icons/arrow-down.svg" alt="" class="mx-3">
-              <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-white text-sm"></p>
-            </div>
-
-            <!-- folders -->
-            <div>
-              <div v-for="(folder, key, index) in config.dev.about.sections[currentSection].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
-                <div class="flex col-span-2 hover:text-white hover:cursor-pointer">
-                    <img id="diple" src="/icons/diple.svg" alt="" :class="{ open: isOpen(folder.title)}">
-                    <img :src="'/icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
-                    <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
-                  </div>
-                  <div v-if="folder.files !== undefined" class="col-span-2">
-                    <div v-for="(file, key) in folder.files" :key="key" class="hover:text-white hover:cursor-pointer flex my-2">
-                      <img src="/icons/markdown.svg" alt="" class="ml-8 mr-3"/>
-                      <p >{{ key }}</p>
-                    </div>
-                    
-                  </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- mobile -->
-          <div id="section-content" class="lg:hidden w-full font-fira_regular">
-
-            <div v-for="section in config.dev.about.sections" :key="section.title">
-              
-              <!-- section title (mobile) -->
-              <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden mb-1" @click="focusCurrentSection(section)">
-                <img src="/icons/arrow.svg" :id="'section-arrow-' + section.title" alt="" class="section-arrow">
-                <p v-html="section.title" class=" text-white text-sm"></p>
-              </div>
-    
-              <!-- folders -->
-              <div :id="'folders-' + section.title" class="hidden"> <!-- <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'"> -->
-                <div v-for="(folder, key, index) in config.dev.about.sections[section.title].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
-                  <div class="flex col-span-2">
-                    <img id="diple" src="/icons/diple.svg">
-                    <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
-                    <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
-                  </div>
-                  <div v-if="folder.files !== undefined" class="col-span-2">
-                    <div v-for="(file, key) in folder.files" :key="key" class="hover:text-white hover:cursor-pointer flex my-2">
-                      <img src="/icons/markdown.svg" alt="" class="ml-8 mr-3"/>
-                      <p >{{ key }}</p>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-
-            <!-- section content title -->
-            <div id="section-content-title" class="flex items-center min-w-full" @click="showContacts()">
-              <img src="/icons/arrow.svg" alt="" id="section-arrow" class="section-arrow">
-              <p v-html="config.dev.contact.direct.title" class="font-fira_regular text-white text-sm"></p>
-            </div>
-
-            <!-- section content folders -->
-            <div id="contacts" class="hidden lg:flex lg:flex-col">
-              <div v-for="(source, key) in config.dev.contact.direct.sources" :key="key" class="flex items-center my-2">
-                <img :src="'/icons/' + key + '.svg'" alt="">
-                <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white ml-4"></a>
-              </div>
-            </div>
-
-          </div>
-
         </div>
-        <!-- MENU END -->
 
-        <div class="flex flex-col lg:grid lg:grid-cols-2 h-full w-full overflow-hidden">
+        <!-- contact -->
+        <div id="section-content-title-contact" class="flex items-center min-w-full border-top">
+          <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3 open">
+          <p v-html="config.dev.contacts.direct.title" class="font-fira_regular text-white text-sm"></p>
+        </div>
+        <div id="contact-sources" class="hidden lg:flex lg:flex-col my-2">
+          <div v-for="(source, key) in config.dev.contacts.direct.sources" :key="key" class="flex items-center mb-2">
+            <img :src="'/icons/' + key + '.svg'" alt="" class="mx-4">
+            <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white"></a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- mobile -->
+      <div id="section-content" class="lg:hidden w-full font-fira_regular">
+
+        <div v-for="section in config.dev.about.sections" :key="section.title">
           
-          <div id="left" class="w-full flex flex-col border-right">
-            
-            <!-- windows tab desktop -->
-            <div class="tab-height w-full hidden lg:flex border-bot items-center">
-              <div class="flex items-center border-right h-full">
-                <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
-                <img src="/icons/close.svg" alt="" class="mx-3">
-              </div>
-            </div>
-
-            <!-- windows tab mobile -->
-            <div id="tab-mobile" class="flex lg:hidden font-fira_retina">
-                <span class="text-white">// </span>
-                <h3 v-html="config.dev.about.sections[currentSection].title" class="text-white px-2"></h3>
-                <span class="text-menu-text"> / </span>
-                <h3 v-html="config.dev.about.sections[currentSection].info[folder].title" class="text-menu-text pl-2"></h3>
-            </div>
-            
-            <!-- content -->
-            <div id="text-editor" class="h-full w-full lg:border-right flex overflow-scroll">
-              <div class="w-full h-full ml-5 mr-10 lg:my-5">
-                  <TextCodeEditor :text="config.dev.about.sections[currentSection].info[folder].description" />
-              </div>
-              
-              <!-- scroll bar -->
-              <div id="scroll-bar" class="h-full border-left hidden lg:flex justify-center py-1">
-                <div id="scroll">
-                </div>
-              </div>
-
-            </div>
-          
+          <!-- section title (mobile) -->
+          <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden mb-1" @click="focusCurrentSection(section)">
+            <img src="/icons/arrow.svg" :id="'section-arrow-' + section.title" alt="" class="section-arrow">
+            <p v-html="section.title" class=" text-white text-sm"></p>
           </div>
-  
-          <div id="right" class="max-w-full flex flex-col">
-            
-            <!-- windows tab -->
-            <div class="tab-height w-full h-full hidden lg:flex border-bot items-center">
 
-            </div>
-
-            <!-- windows tab mobile -->
-            <div class="tab-height w-full h-full flex-none lg:hidden items-center">
-
-            </div>
-
-            <!-- content -->
-            <div id="gists-content" class="flex overflow-y-hidden">
-              
-              <div id="gists" class="flex flex-col w-full overflow-scroll lg:px-10 lg:py-5">
-                <!-- title -->
-                <h3 class="text-white lg:text-menu-text mb-4">// Code snippet showcase:</h3>
-                <!-- snippets -->
-                <GistSnippet v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
+          <!-- folders -->
+          <div :id="'folders-' + section.title" class="hidden"> <!-- <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'"> -->
+            <div v-for="(folder, key, index) in config.dev.about.sections[section.title].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
+              <div class="flex col-span-2">
+                <img id="diple" src="/icons/diple.svg">
+                <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
+                <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
               </div>
-
-              <!-- scroll bar -->
-              <div id="scroll-bar" class="h-full border-left hidden lg:flex justify-center py-1">
-                <div id="scroll"></div>
+              <div v-if="folder.files !== undefined" class="col-span-2">
+                <div v-for="(file, key) in folder.files" :key="key" class="hover:text-white hover:cursor-pointer flex my-2">
+                  <img src="/icons/markdown.svg" alt="" class="ml-8 mr-3"/>
+                  <p >{{ key }}</p>
+                </div>
+                
               </div>
             </div>
+          </div>
+          
+        </div>
 
+        <!-- section content title -->
+        <div id="section-content-title" class="flex items-center min-w-full" @click="showContacts()">
+          <img src="/icons/arrow.svg" alt="" id="section-arrow" class="section-arrow">
+          <p v-html="config.dev.contacts.direct.title" class="font-fira_regular text-white text-sm"></p>
+        </div>
+
+        <!-- section content folders -->
+        <div id="contacts" class="hidden">
+          <div v-for="(source, key) in config.dev.contacts.direct.sources" :key="key" class="flex items-center my-2">
+            <img :src="'/icons/' + key + '.svg'" alt="">
+            <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white ml-4"></a>
           </div>
         </div>
 
-      </section>
+      </div>
+
+    </div>
+    <!-- MENU END -->
+
+    <!-- content -->
+    <div class="flex flex-col lg:grid lg:grid-cols-2 h-full w-full">
+      
+      <div id="left" class="w-full flex flex-col border-right">
+        
+        <!-- windows tab desktop -->
+        <div class="tab-height w-full hidden lg:flex border-bot items-center">
+          <div class="flex items-center border-right h-full">
+            <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
+            <img src="/icons/close.svg" alt="" class="mx-3">
+          </div>
+        </div>
+
+        <!-- windows tab mobile -->
+        <div id="tab-mobile" class="flex lg:hidden font-fira_retina">
+            <span class="text-white">// </span>
+            <h3 v-html="config.dev.about.sections[currentSection].title" class="text-white px-2"></h3>
+            <span class="text-menu-text"> / </span>
+            <h3 v-html="config.dev.about.sections[currentSection].info[folder].title" class="text-menu-text pl-2"></h3>
+        </div>
+        
+        <!-- text -->
+        <div id="commented-text" class="flex h-full w-full lg:border-right overflow-hidden">
+
+          <div class="w-full h-full ml-5 mr-10 lg:my-5 overflow-scroll">
+              <CommentedText :text="config.dev.about.sections[currentSection].info[folder].description" />
+          </div>
+          
+          <!-- scroll bar -->
+          <div id="scroll-bar" class="h-full border-left hidden lg:flex justify-center py-1">
+            <div id="scroll">
+          </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <div id="right" class="max-w-full flex flex-col">
+        
+      <!-- windows tab -->
+      <div class="tab-height w-full h-full hidden lg:flex border-bot items-center">
+
+      </div>
+
+      <!-- windows tab mobile -->
+      <div class="tab-height w-full h-full flex-none lg:hidden items-center">
+
+      </div>
+
+        <div id="gists-content" class="flex">
+        
+          <div id="gists" class="flex flex-col lg:px-6 lg:py-4 w-full overflow-hidden">
+            <!-- title -->
+            <h3 class="text-white lg:text-menu-text mb-4 text-sm">// Code snippet showcase:</h3>
+
+            <div class="flex flex-col overflow-scroll">
+              <!-- snippets -->
+              <GistSnippet v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
+            </div>
+          </div>
+
+          <!-- scroll bar -->
+          <div id="scroll-bar" class="h-full border-left hidden lg:flex justify-center py-1">
+            <div id="scroll"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style>
+
+#sections {
+  width: 5rem; /* 80px */
+  height: 100%;
+  display: none;
+  border-right: 1px solid #1E2D3D;
+}
+
+/* LG */
+@media (min-width: 1024px) {
+  #sections {
+    display: block;
+  }
+}
 
 #section-icon {
   @apply my-6 hover:cursor-pointer flex justify-center;
@@ -234,28 +260,12 @@
 }
 }
 
-#gists::-webkit-scrollbar {
-  display: none;
-}
-
-#text-editor::-webkit-scrollbar {
-  display: none;
-}
-
 .section-arrow {
   transition: 0.1s;
 }
 
-#text-editor {
-  font-size: 16px;
-}
-
-#contacts {
+#section-content #contacts {
   padding: 0px 25px;
-}
-
-#about {
-  height: stretch;
 }
 
 </style>
@@ -310,6 +320,7 @@ export default {
     toggleFiles() {
       document.getElementById('file-' + this.folder).classList.toggle('hidden')
     },
+    /* Mobile */
     showContacts() {
       document.getElementById('contacts').classList.toggle('hidden')
       document.getElementById('section-arrow').classList.toggle('rotate-90'); // rotate arrow

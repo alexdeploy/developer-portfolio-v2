@@ -4,7 +4,7 @@
     <!-- header -->
     <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
       <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5">
-        alex-rueda
+        {{ config.dev.logo_name }}
       </NuxtLink>
       <Icon @click="toggleMobileMenu()" name="icon-park-outline:hamburger-button" class="w-7 h-7 mx-5 my-auto text-hello-gray" />
     </div>
@@ -33,8 +33,12 @@
 
 <script>
 export default {
-  mounted(){
-    
+  setup() {
+    const config = useRuntimeConfig()
+
+    return {
+      config
+    }
   },
   methods: {
     toggleMobileMenu(){
@@ -42,8 +46,13 @@ export default {
       const menu = document.getElementById('menu');
       menu.classList.toggle('hidden')
       const section = document.getElementsByTagName('section')[0];
-      section.classList.toggle('hidden')
-      
+
+      // Hide / show section
+      if (section.style.display === 'none') {
+        section.style.display = 'flex';
+      } else {
+        section.style.display = 'none';
+      }
     }
   },
   computed: {

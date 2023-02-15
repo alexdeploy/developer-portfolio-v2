@@ -1,5 +1,5 @@
 <template>
-    <form id="contact-form" class="mx-8 my-16 text-sm self-center w-4/5">
+    <form id="contact-form" class="text-sm">
         <div class="flex flex-col">
             <label for="name" class="mb-3">_name:</label>
             <input type="text" id="name-input" name="name" :placeholder="name" class="p-2 mb-5 placeholder-slate-600" required>
@@ -35,10 +35,17 @@ export default {
             required: true
         }
     },
-    methods: {
-
+    mounted() {
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const message = document.querySelector('textarea[name="message"]').value;
+            
+            // Here the code to send the email
+            
+        });
     }
-
 }
 </script>
 
@@ -85,6 +92,10 @@ select:-webkit-autofill:focus {
     cursor: pointer;
 }
 
+#submit-button:hover {
+    background-color: #263B50;
+}
+
 input:focus, #message-input:focus {
     outline: none;
     transition: none;
@@ -94,5 +105,24 @@ input:focus, #message-input:focus {
 
 #contact-form {
     max-width: 370px;
+    width: 100%;
+}
+
+@media (max-width: 1920px) {
+    #contact-form {
+        max-width: 320px;
+        max-height: 400px;
+    }
+    #submit-button {
+        /* width: 100%; */
+        font-size: 12px;
+    }
+    textarea {
+        font-size: 13px;
+        max-height: 130px !important;
+    }
+    input {
+        font-size: 13px;
+    }
 }
 </style>

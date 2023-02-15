@@ -1,6 +1,6 @@
 <template>
     <header id="navbar" class="w-full hidden lg:flex flex-col">
-      <nav class="w-full h-12 flex justify-between text-sm border-bot">
+      <nav class="w-full flex justify-between border-bot">
 
           <div class="flex">
             <NuxtLink id="nav-logo" to="/">
@@ -66,6 +66,11 @@
   border-right: 1px solid #1E2D3D;
   border-bottom: none;
   @apply text-menu-text;
+}
+
+#navbar > nav {
+  height: 45px;
+  font-size: 13px;
 }
 
 </style>

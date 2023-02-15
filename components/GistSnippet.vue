@@ -1,12 +1,12 @@
 <template>
-    <div class="gist mb-5 lg:mt-5" v-if="dataFetched">
+    <div class="gist mb-5" v-if="dataFetched">
         
         <!-- head info -->
-        <div class="flex justify-between my-3">
+        <div class="flex justify-between my-2">
 
             <div class="flex">
                 <!-- avatar -->
-                <img :src="gist.owner.avatar_url" alt="" class="w-8 h-8 rounded-full mx-2">
+                <img :src="gist.owner.avatar_url" alt="" class="w-8 h-8 rounded-full mr-2">
     
                 <!-- username & gist date info -->
                 <div class="flex flex-col">
@@ -44,12 +44,10 @@
     padding: 5px;
     border-radius: 15px;
     border: 1px solid #1E2D3D;
-    font-size: 14px;
+    font-size: 12px;
     overflow-y: scroll;
     overflow-x: scroll;
     max-height: 220px;
-
-    
 }
 
 .snippet-container pre {
@@ -130,7 +128,6 @@ export default {
         this.language = Object.values(gist.files)[0].language
         this.dataFetched = true
         this.comment = await this.setComments(gist.comments_url)
-        console.log(this.comment)
         },
         setMonths(date) {
             let now = new Date()
@@ -151,7 +148,7 @@ export default {
                 let body = data[0].body
                 return body
             } catch {
-                console.log('no comments')
+                console.log(`no comments found on ${comments_url}`)
             }
         },
         showComment(id) {

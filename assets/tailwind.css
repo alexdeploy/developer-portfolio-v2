@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 h3, h2 {
-  @apply font-fira_retina;
+ /*  @apply font-fira_retina; */
+  font-family: 'Fira Code Retina';
   font-size: 15px;
 }
 
@@ -19,7 +20,7 @@ body {
     width: stretch;
 }
 
-section.page {
+main.page {
   width: 100%;
   height: 100%;
   display: flex;
@@ -80,7 +81,8 @@ section.page {
   }
 
   #__nuxt {
-    @apply bg-blue-background flex flex-col justify-between;
+    @apply bg-blue-background flex flex-col;
+    justify-content: space-between;
     height: auto;
     min-height: stretch; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
     width: 100%;
@@ -163,7 +165,7 @@ section.page {
       width: 100%;
   }
 
-  section.page {
+  main.page {
     flex-direction: row;
   }
 }

@@ -1,57 +1,162 @@
 <template>
-  <section id="hello" class="flex h-full lg:pl-32 xl:pl-0">
+  	<main v-if="!loading" id="hello">
 
-    <!-- gradients -->
-    <div class="css-blurry-gradient-blue z-10 w-48 h-96"></div>
-    <div class="css-blurry-gradient-green z-10 w-48 h-96"></div>
-    
-    <nav id="page-menu" class='hidden xl:flex'></nav>
+    	<!-- gradients -->
+    	<div class="css-blurry-gradient-blue"></div>
+    	<div class="css-blurry-gradient-green"></div>
 
-    <div class="grid grid-cols-12 z-20 m-7 lg:m-0 flex-1">
+		<section class="hero">
+		
+			<div class="head">
+				<span>
+					Hi all, I am
+				</span>
+				<h1>{{ config.dev.name }}</h1>
+				<h2>> {{ config.dev.role }}</h2>
+			</div>
 
-      <!-- hello -->
-      <div id="info" class="col-span-12 lg:col-span-5 flex flex-col md:justify-center">
-  
-        <div class="pb-10 md:py-0">
-          <p class="font-fira_retina text-hello-name">Hi all, I am</p>
-          <h1 class="font-fira_regular text-5xl 2xl:text-6xl text-hello-name pt-4 pb-2">{{ config.dev.name }}</h1>
-          <p class="font-fira_regular text-xl lg:text-2xl 2xl:text-3xl text-purple-text">> {{ config.dev.role }}</p>
-        </div>
+			<div id="info">
+				<span class="action">
+					// complete the game to continue
+				</span>
+				<span :class="{hide: isMobile}">
+					// you can also see it on my Github page
+				</span>
+				<span :class="{hide: !isMobile}">
+					// find my profile on Github:
+				</span>
+				<p class="code">
+					<span class="identifier">
+						const
+					</span>
+					<span class="variable-name">
+						githubLink
+					</span>
+					<span class="operator">
+						=
+					</span>
+					<a class="string" :href="'https://github.com/' + config.public.dev.contacts.social.github.user">
+						"https://github.com/{{ config.public.dev.contacts.social.github.user }}"
+					</a>
+				</p>
+			</div>
+		</section>
 
-        <div id="sub-info" class="py-10 md:pt-20">
-          <p class="font-fira_retina text-hello-gray hidden md:flex py-2">// complete the game to continue</p>
-          <p class="font-fira_retina text-hello-gray">// you can also see it on my Github page</p>
+		<section class="game" v-if="!isMobile">
+			<SnakeGame />
+		</section>
 
-          <p class="font-fira_medium py-3">
-            <span class="text-codeline-tag">
-              const 
-            </span>
-            <span class="text-codeline-name">
-              githubLink
-            </span>
-            <span class="text-white">
-               = 
-              </span>
-            <span class="text-codeline-link underline underline-offset-4">
-              <a href="https://github.com/alexruedadev">"“https://github.com/example/url"</a>
-            </span>
-          </p>
-        </div>
-  
-      </div>
-  
-      <!-- game -->
-      <div id="game" class="hidden lg:flex flex-col justify-center col-start-7 xl:col-start-6">
-        <SnakeGame />
-        <!-- <img src="/images/game.png" alt="" class=""> -->
-      </div>
-    </div>
-
-
-  </section>
+	</main>
 </template>
 
 <style>
+
+#hello {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex: 1 1 auto;
+  padding-left: 275px;
+  /* padding-top: 5rem; */ /* 80px */
+}
+.hero {
+	width: 100%;
+	justify-content: center;
+	
+}
+.game {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+/* 	align-items: center; */
+	z-index: 20;
+}
+
+#hello .hero {
+	display: flex;
+	flex-direction: column;
+	/* display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr)); */
+	margin: 0rem;
+}
+
+
+#hello .head span {
+  font-size: 18px;
+  line-height: 1;
+  color: #E5E9F0;
+  font-family: 'Fira Code Retina';
+}
+
+#hello .head h1 {
+  font-size: 58px;
+  line-height: 1;
+  color: #E5E9F0;
+  font-family: 'Fira Code Regular';
+  padding-top: 1rem; /* 16px */
+  padding-bottom: 1rem; /* 16px */
+}
+
+#hello .head h2 {
+  font-size: 32px;
+  line-height: 1;
+  color: #4D5BCE;
+  font-family: 'Fira Code Retina';
+}
+
+.head {
+  padding-bottom: 3rem;
+}
+
+#info {
+	display: flex;
+	flex-direction: column;
+}
+
+#info > span {
+  font-size: 14px;
+  line-height: 1;
+  color: #607B96;
+  font-family: 'Fira Code Retina';
+  padding-bottom: 1rem; /* 16px */
+}
+
+.code {
+  font-family: 'Fira Code Medium';
+  color: #E5E9F0;
+}
+
+.code .identifier {
+  color: #4D5BCE;
+}
+
+.code .variable-name {
+  color: #43D9AD;
+}
+
+.code .operator {
+  color: white;
+}
+
+.code .string {
+  color: #E99287;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+#info {
+	padding-block: 2.5rem;
+}
+
+#info .action {
+	display: flex
+}
+
+.hide {
+  display: none;
+}
 
 .css-blurry-gradient-blue {
   position: fixed;
@@ -64,6 +169,7 @@
 	filter: blur(70px);
   background: radial-gradient(circle at 50% 50%,rgba(77, 91, 206, 1), rgba(76, 0, 255, 0));
   opacity: 0.5;
+  z-index: 10;
 }
 
 .css-blurry-gradient-green {
@@ -76,11 +182,65 @@
 	filter: blur(70px);
   background: radial-gradient(circle at 50% 50%,rgba(67, 217, 173, 1), rgba(76, 0, 255, 0));
   opacity: 0.5;
+  z-index: 10;
 }
 
-#sub-info {
-      font-size: 0.875rem;
-    }
+#info {
+  font-size: 14px;
+}
+
+
+/* mobile */
+@media (max-width: 768px) {
+
+	#hello {
+		padding-left: 0;
+	}
+
+	#hello .hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		margin: 1.75rem; /* 28px */
+	}
+	.head {
+		padding-top: 4rem; /* 40px */
+	}
+
+	#hello .head h2 {
+		font-size: 20px;
+		color: #43D9AD;
+	}
+	
+	#info .action {
+		display: none;
+	}
+
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+	#hello {
+		padding-left: 0;
+	}
+	#hello .hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 1.75rem; /* 28px */
+	}
+	.head {
+		padding-top: 4rem; /* 40px */
+	}
+
+}
+
+@media (min-width: 1024px) and (max-width: 1320px) {
+	#hello {
+		padding-left: 135px;
+	}
+}
+
 
 /* LG */
 
@@ -110,6 +270,15 @@
   }
 }
 
+@media (min-width: 1920px){
+	#hello {
+		padding-left: 310px;
+	}
+	#hello .head h1 {
+		font-size: 62px;
+	}
+}
+
 </style>
 
 <script>
@@ -123,9 +292,34 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
+      loading: true
     }
   },
+  mounted() {
+    // Detectamos si es mobile
+    if (window.innerWidth <= 1024) {
+      this.isMobile = true
+    }
+
+    // Escuchamos los cambios de tamaño de pantalla
+    window.addEventListener('resize', this.handleResize)
+
+    // When the component is mounted, we can remove the loader.
+    this.loading = false
+  },
+  beforeDestroy() {
+    // Remove the event listener when the component is destroyed.
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
+    handleResize() {
+      if (window.innerWidth <= 1024) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    }
   }
 }
 </script>

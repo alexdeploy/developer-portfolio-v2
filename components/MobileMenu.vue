@@ -3,10 +3,11 @@
 
     <!-- header -->
     <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
-      <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5">
+      <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5" to="/" @click="goHome()">
         {{ config.dev.logo_name }}
       </NuxtLink>
-      <Icon @click="toggleMobileMenu()" name="icon-park-outline:hamburger-button" class="w-7 h-7 mx-5 my-auto text-hello-gray" />
+      <img src="/icons/burger.svg" v-if="!menuOpen" @click="toggleMobileMenu()" class="w-5 h-5 mx-5 my-auto"/>
+      <img src="/icons/burger-close.svg" v-else @click="toggleMobileMenu()" name="icon-park-outline:close" class="w-5 h-5 mx-5 my-auto"/>
     </div>
 
     <!-- mobile menu -->
@@ -33,6 +34,11 @@
 
 <script>
 export default {
+  data(){
+    return {
+      menuOpen: false
+    }
+  },
   setup() {
     const config = useRuntimeConfig()
 
@@ -43,15 +49,25 @@ export default {
   methods: {
     toggleMobileMenu(){
 
+      this.menuOpen ? this.menuOpen = false : this.menuOpen = true
+
       const menu = document.getElementById('menu');
       menu.classList.toggle('hidden')
-      const section = document.getElementsByTagName('section')[0];
 
+      const page = document.getElementsByTagName('main')[0];
       // Hide / show section
-      if (section.style.display === 'none') {
-        section.style.display = 'flex';
+      if (page.style.display === 'none') {
+        page.style.display = 'flex';
       } else {
-        section.style.display = 'none';
+        page.style.display = 'none';
+      }
+    },
+    goHome() {
+      const menu = document.getElementById('menu');
+      if(!menu.classList.contains('hidden')){
+        menu.classList.toggle('hidden')
+        document.getElementsByTagName('main')[0].style.display = 'flex';
+        this.menuOpen ? this.menuOpen = false : this.menuOpen = true
       }
     }
   },
@@ -59,7 +75,7 @@ export default {
     // Set active class to current page link
     isActive() {
       return route => this.$route.path === route;
-    }
+    },
   }
 }
 </script>

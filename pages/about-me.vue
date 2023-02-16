@@ -1,5 +1,5 @@
 <template>
-  <section id="about-me" class="page">
+  <main v-if="!loading" id="about-me" class="page">
 
     <div id="mobile-page-title">
       <h2>_about-me</h2>
@@ -174,7 +174,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </main>
 </template>
 
 <style>
@@ -277,6 +277,7 @@ export default {
     return {
       currentSection: 'personal-info',
       folder: 'bio',
+      loading: true,
     }
   },
   /**
@@ -325,6 +326,9 @@ export default {
       document.getElementById('contacts').classList.toggle('hidden')
       document.getElementById('section-arrow').classList.toggle('rotate-90'); // rotate arrow
     },
+  },
+  mounted(){
+    this.loading = false
   }
 }
 </script>

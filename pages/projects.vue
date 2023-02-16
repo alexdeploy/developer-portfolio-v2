@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col flex-auto lg:flex-row overflow-hidden">
+  <main v-if="!loading" class="flex flex-col flex-auto lg:flex-row overflow-hidden">
 
     <div id="mobile-page-title">
       <h2>_projects</h2>
@@ -92,7 +92,7 @@
         </div>
       </div>
   </div>
-  </section>
+</main>
 </template>
 
 <style>
@@ -257,10 +257,12 @@ export default {
       techs: ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter'],
       filters: ['all'],
       projects: '',
+      loading: true,
     };
   },
   mounted() {
     this.projects = this.config.public.dev.projects;
+    this.loading = false;
   },
   methods: {
     filterProjects(tech) {

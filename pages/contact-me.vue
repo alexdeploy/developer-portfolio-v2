@@ -1,5 +1,5 @@
 <template>
-    <section id="contact-me" class="page">
+    <main id="contact-me" class="page">
 
         <div id="mobile-page-title">
             <h2>_contact-me</h2>
@@ -76,7 +76,7 @@
             </div>
 
         </div>
-    </section>
+    </main>
 </template>
 
 <script>

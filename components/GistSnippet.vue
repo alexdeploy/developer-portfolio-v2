@@ -10,7 +10,9 @@
     
                 <!-- username & gist date info -->
                 <div class="flex flex-col">
-                    <p class="font-fira_bold text-purple-text text-xs pb-1">@{{ gist.owner.login }}</p>
+                    <a id="username" :href="'https://github.com/' + gist.owner.login" target="_blank" class="font-fira_bold text-purple-text text-xs pb-1 hover:cursor-pointer">
+                        @{{ gist.owner.login }}
+                    </a>
                     <p class="font-fira_retina text-xs text-menu-text">Created {{ monthsAgo }} months ago</p>
                 </div>
             </div>
@@ -81,6 +83,10 @@ code.hljs{
 
 #comment {
     font-size: 14px;
+}
+
+#username:hover {
+    color: #5e6ef2;
 }
 
 /* #comment {

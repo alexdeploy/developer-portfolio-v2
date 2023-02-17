@@ -1,5 +1,6 @@
-const siteTitle = 'Álex Rueda | Full Stack Developer'
 const config = require('./developer.json')
+const siteTitle = `${config.name} | ${config.role}`
+
 
 /*
  * Nuxt 3 Config File
@@ -39,8 +40,6 @@ export default defineNuxtConfig({
    * Official modules: https://nuxt.com/modules
    */
   modules: [
-    'nuxt-icon',
-    '@nuxt/content',
     '@nuxtjs/tailwindcss',
   ],
 

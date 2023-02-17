@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Logo" src="public/logo2.png" width="100" />
+  <img alt="Logo" src="public/logo.png" width="100" />
 </div>
 <h1 align="center">
   developer-portfolio

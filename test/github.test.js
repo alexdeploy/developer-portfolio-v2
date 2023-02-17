@@ -33,7 +33,6 @@ describe('Testing Github Gists API', () => {
             }
             return false;
         }
-        console.log(gist)
         expect(isJson(gist)).toBe(true)
   })
 

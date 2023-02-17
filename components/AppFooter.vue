@@ -8,13 +8,13 @@
             </span>
             <div id="social-icons" class="flex">
                 <NuxtLink :to="social.twitter.url + social.twitter.user" target="_blank" class="flex justify-center items-center">
-                    <Icon name="ri:twitter-fill"/>
+                    <img src="/icons/social/twitter.svg"/>
                 </NuxtLink>
                 <NuxtLink :to="social.facebook.url + social.facebook.user" target="_blank" class="flex justify-center items-center">
-                    <Icon name="ri:facebook-fill"/>
+                    <img src="/icons/social/facebook.svg"/>
                 </NuxtLink>
                 <NuxtLink :to="social.github.url + social.github.user" target="_blank" class="flex md:hidden justify-center items-center">
-                <Icon name="ri:github-fill"/>
+                <img src="/icons/social/github.svg"/>
             </NuxtLink>
             </div>
         </div>
@@ -22,7 +22,7 @@
         <!-- github user -->
         <NuxtLink :to="social.github.url + social.github.user" target="_blank" class="hidden md:flex items-center px-5 border-left">
             @{{ social.github.user }}
-            <Icon name="ri:github-fill"/>
+            <img src="/icons/social/github.svg"/>
         </NuxtLink>
 
     </footer>
@@ -46,20 +46,20 @@ footer a:hover {
     width: 50px;
  }
 
-#social-icons > a > svg {
+#social-icons > a > img {
     width: 1.25rem; /* 20px */
     height: 1.25rem; /* 20px */
     margin: auto;
     opacity: 0.4;
 }
 
-footer > a > svg {
+footer > a > img {
     width: 1.25rem; /* 20px */
     height: 1.25rem; /* 20px */
     margin-left: 0.5rem; /* 8px */
   }
 
-#social-icons > a:hover svg {
+#social-icons > a:hover img {
     opacity: 1;
 }
 
@@ -74,7 +74,7 @@ footer > a > svg {
         border-left: 1px solid #1E2D3D;
     }
 
-    #social-icons > a > svg {
+    #social-icons > a > img {
         width: 1.5rem; /* 20px */
         height: 1.5rem; /* 20px */
   }

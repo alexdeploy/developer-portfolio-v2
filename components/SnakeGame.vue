@@ -91,6 +91,7 @@
         score: 0,
         gameInterval: null,
         gameStarted: false,
+        gameOver: false,
         food: { x: 10, y: 5 },
         snake: [
         { x: 10, y: 12 },
@@ -136,6 +137,7 @@
 
         // reiniciar datos del juego
         this.gameStarted = false;
+        this.gameOver = false;
         this.restartScore();
         this.food = {
           x: 10,
@@ -219,6 +221,8 @@
               this.food = { x: null, y: null } // remove food
               clearInterval(this.gameInterval); // stop game
               document.getElementById('congrats').style.display = 'block' // show congrats
+              this.gameOver = true; // game over
+              this.gameStarted = false; // stop game
 
             } else {
 
@@ -237,8 +241,9 @@
           // GAME OVER: if snake leave from game window or eat itself
           clearInterval(this.gameInterval);
           document.getElementById('game-over').style.display = 'block'
+          this.gameStarted = false;
+          this.gameOver = true;
         }
-    
         this.render();
       },
       render() {
@@ -306,7 +311,6 @@
                 }
             }
             gameScreen.appendChild(cell);
-            
         }
       }
       
@@ -365,6 +369,16 @@
           case 40:
             if (this.direction !== "up") {
               this.direction = "down";
+            }
+            break;
+        }
+      } else {
+        switch (event.keyCode) {
+          case 32:
+            if(this.gameOver){
+              this.startAgain();
+            }else {
+              this.startGame();
             }
             break;
         }

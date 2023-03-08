@@ -163,7 +163,7 @@
 
             <div class="flex flex-col overflow-scroll">
               <!-- snippets -->
-              <GistSnippet v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
+              <GistSnippet data-aos="fade-down" v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
             </div>
           </div>
 

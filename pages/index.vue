@@ -51,12 +51,13 @@
 
 <style>
 
-#hello {
+#hello { 
   display: flex;
   height: 100%;
   width: 100%;
   flex: 1 1 auto;
   padding-left: 275px;
+  overflow: hidden;
   /* padding-top: 5rem; */ /* 80px */
 }
 .hero {

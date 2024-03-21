@@ -12,7 +12,10 @@
 					Hi all, I am
 				</span>
 				<h1>{{ config.dev.name }}</h1>
-				<h2>> {{ config.dev.role }}</h2>
+        <span class="diple flex">
+          >&nbsp;
+				<h2 class="line-1 anim-typewriter max-w-fit"> {{ config.dev.role }} </h2>
+        </span>
 			</div>
 
 			<div id="info">
@@ -49,16 +52,40 @@
 	</main>
 </template>
 
-<style>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-#hello { 
+const config = useRuntimeConfig()
+
+const isMobile = ref(false)
+const loading = ref(false)
+
+onMounted(() => {
+  if (window.innerWidth <= 1024) isMobile.value = true
+  window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
+
+function handleResize() {
+  if (window.innerWidth <= 1024) {
+    isMobile.value = true
+  } else {
+    isMobile.value = false
+  }
+}
+</script>
+
+<style scoped>
+#hello {
   display: flex;
   height: 100%;
   width: 100%;
   flex: 1 1 auto;
   padding-left: 275px;
   overflow: hidden;
-  /* padding-top: 5rem; */ /* 80px */
 }
 .hero {
 	width: 100%;
@@ -100,7 +127,7 @@
   padding-bottom: 1rem; /* 16px */
 }
 
-#hello .head h2 {
+#hello .head h2, #hello .head .diple {
   font-size: 32px;
   line-height: 1;
   color: #4D5BCE;
@@ -190,6 +217,31 @@
   font-size: 14px;
 }
 
+/* Typewrite Animation */
+
+.line-1 {
+    width: fit-content;
+    border-right: 3px solid rgba(255,255,255,.75);
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 2px;
+}
+
+.anim-typewriter{
+    animation: typewriter 3.5s steps(40) 1s 1 normal both,
+    blinkTextCursor 800ms steps(40) infinite normal;
+}
+
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 100%;}
+}
+
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
 
 /* mobile */
 @media (max-width: 768px) {
@@ -208,7 +260,7 @@
 		padding-top: 4rem; /* 40px */
 	}
 
-	#hello .head h2 {
+	#hello .head h2, #hello .head .diple {
 		font-size: 20px;
 		color: #43D9AD;
 	}
@@ -281,47 +333,3 @@
 }
 
 </style>
-
-<script>
-export default {
-  name: 'Hello',
-  setup() {
-    const config = useRuntimeConfig()
-    return {
-      config
-    }
-  },
-  data() {
-    return {
-      isMobile: false,
-      loading: true
-    }
-  },
-  mounted() {
-    // Detectamos si es mobile
-    if (window.innerWidth <= 1024) {
-      this.isMobile = true
-    }
-
-    // Escuchamos los cambios de tamaño de pantalla
-    window.addEventListener('resize', this.handleResize)
-
-    // When the component is mounted, we can remove the loader.
-    this.loading = false
-  },
-  beforeDestroy() {
-    // Remove the event listener when the component is destroyed.
-    window.removeEventListener('resize', this.handleResize)
-  },
-  methods: {
-    handleResize() {
-      if (window.innerWidth <= 1024) {
-        this.isMobile = true
-      } else {
-        this.isMobile = false
-      }
-    }
-  }
-}
-</script>
-

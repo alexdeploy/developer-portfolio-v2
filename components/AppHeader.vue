@@ -1,7 +1,7 @@
 <template>
     <header id="navbar" class="w-full hidden lg:flex flex-col">
       <nav class="w-full flex justify-between border-bot">
-
+        <github-corner url="https://github.com/alexdeploy/developer-portfolio-v2" />
           <div class="flex">
             <NuxtLink id="nav-logo" to="/">
               {{ config.dev.logo_name }}
@@ -29,6 +29,30 @@
     </header>
 
 </template>
+
+<script>
+import GithubCorner from './GithubCorner.vue';
+export default {
+  name: 'AppHeader',
+  components: {
+    GithubCorner
+  },
+  computed: {
+    // Set active class to current page link
+    isActive() {
+      return route => this.$route.path === route;
+    }
+  },
+  setup() {
+    const config = useRuntimeConfig()
+
+    return {
+      config
+    }
+  },
+};
+
+</script>
 
 <style>
 
@@ -75,22 +99,3 @@
 
 </style>
 
-<script>
-
-export default {
-  computed: {
-    // Set active class to current page link
-    isActive() {
-      return route => this.$route.path === route;
-    }
-  },
-  setup() {
-    const config = useRuntimeConfig()
-
-    return {
-      config
-    }
-  },
-};
-
-</script>

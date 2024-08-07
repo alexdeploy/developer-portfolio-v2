@@ -107,9 +107,9 @@
     "projects": {
         "1": {
             "title": "Aermax",
-            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "description": "The Aermax project, for an industrial climbers company located in Germany, is an extensive endeavor focused on creating a robust and scalable platform by integrating both existing and newly developed microservices.",
             "img": "/images/projects/aermax.png",
-            "tech": ["Flutter,React,Nestjs,Spring-boot,RabbitMq"],
+            "tech": ["Flutter","React","Nestjs","Spring-boot","RabbitMq"],
             "url": "https://aermax.de/"
         },
         "2": {

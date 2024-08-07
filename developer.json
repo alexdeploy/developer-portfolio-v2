@@ -127,11 +127,11 @@
             "url": "https://lead-generator.incedo.net"
         },
         "4": {
-            "title": "_ui-animations",
-            "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/ui-animations.png",
+            "title": "Prosemaster",
+            "description": "Prosemaster is an AI-driven platform that helps you perfect your grammar, rephrase sentences, summarize texts, and create captivating articles effortlessly. It enhances your writing and communication skills, making it an essential tool for content creators, students, professionals, and anyone seeking to improve their written communication.",
+            "img": "/images/projects/prosemaster.png",
             "tech": ["React"],
-            "url": "https://github.com/"
+            "url": "https://github.com/doniaskima/Prosemaster"
         },
         "5": {
             "title": "_tetris-game",

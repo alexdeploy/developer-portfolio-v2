@@ -109,7 +109,7 @@
             "title": "Aermax",
             "description": "The Aermax project, for an industrial climbers company located in Germany, is an extensive endeavor focused on creating a robust and scalable platform by integrating both existing and newly developed microservices.",
             "img": "/images/projects/aermax.png",
-            "tech": ["Flutter","React","nestjs","spring-boot","rabbitmq","CSS","Typescript"],
+            "tech": ["Flutter","React","Nestjs","Spring-boot","RabbitMq","CSS","Typescript"],
             "url": "https://aermax.de/"
         },
         "2": {
@@ -123,14 +123,14 @@
             "title": "Incedo Lead Generator",
             "description": "I contributed to the project The Incedo Lead Generator, an innovative platform that enables precise targeting of your clearly defined target group. Whether in recruiting to find the right candidates or in sales to generate promising leads, through intelligent automation,",
             "img": "/images/projects/ilg.png",
-            "tech": ["React","nestjs","Typescript"],
+            "tech": ["React","Nestjs","Typescript"],
             "url": "https://lead-generator.incedo.net"
         },
         "4": {
             "title": "Prosemaster",
             "description": "Prosemaster is an AI-driven platform that helps you perfect your grammar, rephrase sentences, summarize texts, and create captivating articles effortlessly. It enhances your writing and communication skills, making it an essential tool for content creators, students, professionals, and anyone seeking to improve their written communication.",
             "img": "/images/projects/prosemaster.png",
-            "tech": ["React"],
+            "tech": ["React","Typescript","CSS"],
             "url": "https://github.com/doniaskima/Prosemaster"
         },
         "5": {

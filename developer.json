@@ -134,11 +134,11 @@
             "url": "https://github.com/doniaskima/Prosemaster"
         },
         "5": {
-            "title": "_tetris-game",
-            "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/tetris-game.png",
+            "title": "hashnode backend",
+            "description": "I reverse-engineered Hashnode and developed the backend using Node.js and Express.js, incorporating Redis for efficient data caching and management.",
+            "img": "/images/projects/hashnode.png",
             "tech": ["React"],
-            "url": "https://github.com/"
+            "url": "https://github.com/doniaskima/hashnode-Clone"
         },
         "6": {
             "title": "_ethereum",

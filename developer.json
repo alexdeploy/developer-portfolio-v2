@@ -28,18 +28,17 @@
                 "info": { 
                     "bio": {
                         "title": "bio",
-                        "description": "<br> About me <br> I have 5 years of experience in web development lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat  nulla pariatur. Excepteur sint occaecat  officia deserunt mollit anim id est laborum."
+                        "description": "<br> About me <br> With 3 years of web development experience, I've honed my skills through freelance projects with startups and side ventures, alongside actively developing my own SaaS solution. I thrive in dynamic settings that value rapid learning, teamwork, and agile methodologies to achieve objectives efficiently. Currently seeking opportunities that blend web development with cutting-edge strategies, particularly those leveraging cloud technology, data-driven insights, and pioneering digital innovations"
                     },
                     "interests": {
                         "title": "interests",
-                        "description": "<br>I am constantly learning and lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        "description": "<br>I am passionate about exploring the intersection of web development and innovative strategies. My interests lie in projects that push boundaries with cloud technology, harness the power of data intelligently, and lead the way in digital innovation. I enjoy collaborating with teams that embrace agile methods to deliver impactful solutions swiftly and effectively. Outside of work, I also enjoy staying updated on emerging technologies and contributing to open-source communities."
                     },
                     "education": {
                         "title": "education",
-                        "description": "<br>I have always been passionate about lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "description": "<br> I'm passionate about computer science and continually seek to expand my knowledge through education. My background has equipped me with strong skills in algorithms, software development, and problem-solving. I stay current with technological advancements and apply my education to contribute effectively to innovative projects and collaborative teams.",
                         "files": {
-                            "high-school": "I have been in 'Las viñas'...",
-                            "university": "The university..."
+                            "university": "Higher Institute of Informatics and Mathematics of Monastir"
                         }
                     }
                 }

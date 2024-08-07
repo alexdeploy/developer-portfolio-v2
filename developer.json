@@ -63,19 +63,14 @@
         "direct": {
             "title": "contacts",
             "sources": {
-                "email": "user@gmail.com",
-                "phone": "+3598246359"
+                "email": "doniaskima033@gmail.com",
+                "phone": "+330644091965"
             }
         },
         "social": {
             "github": {
                 "title": "Github profile",
                 "url": "https://github.com/",
-                "user": "doniaskima"
-            },
-            "facebook": {
-                "title": "Facebook profile",
-                "url": "https://facebook.com/",
                 "user": "doniaskima"
             },
             "twitter": {

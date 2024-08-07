@@ -109,15 +109,15 @@
             "title": "Aermax",
             "description": "The Aermax project, for an industrial climbers company located in Germany, is an extensive endeavor focused on creating a robust and scalable platform by integrating both existing and newly developed microservices.",
             "img": "/images/projects/aermax.png",
-            "tech": ["Flutter","React","nestjs","spring-boot","rabbitmq"],
+            "tech": ["Flutter","React","nestjs","spring-boot","rabbitmq","CSS"],
             "url": "https://aermax.de/"
         },
         "2": {
-            "title": "_ai-resources",
-            "description": "Duis aute irure dolor in velit esse cillum dolore.",
+            "title": "react-crafitify",
+            "description": "React-Crafitify is a versatile React component library designed to enhance the user interface of your web applications. With a focus on aesthetics and usability, React-Crafitify provides a collection of customizable UI components that can seamlessly integrate into your projects..",
             "img": "/images/projects/ai-resources.png",
-            "tech": ["Gatsby"],
-            "url": "https://github.com/"
+            "tech": ["React"],
+            "url": "https://github.com/doniaskima/react-crafitify"
         },
         "3": {
             "title": "_worldmap",

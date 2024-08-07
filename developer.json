@@ -106,11 +106,11 @@
     },
     "projects": {
         "1": {
-            "title": "_ui-animations",
+            "title": "Aermax",
             "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/ui-animations2.png",
-            "tech": ["Flutter"],
-            "url": "https://github.com/"
+            "img": "/images/projects/aermax.png",
+            "tech": ["Flutter,React,Nestjs,Spring-boot,RabbitMq"],
+            "url": "https://aermax.de/"
         },
         "2": {
             "title": "_ai-resources",

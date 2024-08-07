@@ -1,7 +1,7 @@
 {
     "name": "Donia Skima",
-    "logo_name": "donia-skima",
-    "role": "Front-end developer",
+    "logo_name": "Donia Skima",
+    "role": "Full stack developer",
     "about": {
         "sections": {
             "professional-info": {
@@ -72,27 +72,22 @@
             "github": {
                 "title": "Github profile",
                 "url": "https://github.com/",
-                "user": "username"
+                "user": "doniaskima"
             },
             "facebook": {
                 "title": "Facebook profile",
                 "url": "https://facebook.com/",
-                "user": "username"
+                "user": "doniaskima"
             },
             "twitter": {
                 "title": "Twitter account",
                 "url": "https://twitter.com/",
-                "user": "username"
+                "user": "doniaskima"
             }
         },
         "find_me_also_in": {
             "title": "find-me-also-in",
             "sources": {
-                "youtube": {
-                    "title": "YouTube channel",
-                    "url": "https://www.youtube.com/",
-                    "user": "username"
-                },
                 "gurushots": {
                     "title": "GuruShots profile",
                     "url": "https://gurushots.com/",
@@ -101,12 +96,7 @@
                 "instagram": {
                     "title": "Instagram account",
                     "url": "https://instagram.com/",
-                    "user": "username"
-                },
-                "twitch": {
-                    "title": "Twitch profile",
-                    "url": "https://twitch.com/",
-                    "user": "username"
+                    "user": "do.nia2240"
                 }
             }
         }

@@ -109,7 +109,7 @@
             "title": "Aermax",
             "description": "The Aermax project, for an industrial climbers company located in Germany, is an extensive endeavor focused on creating a robust and scalable platform by integrating both existing and newly developed microservices.",
             "img": "/images/projects/aermax.png",
-            "tech": ["Flutter","React","nestjs","spring-boot","rabbitmq","CSS"],
+            "tech": ["Flutter","React","nestjs","spring-boot","rabbitmq","CSS","Typescript"],
             "url": "https://aermax.de/"
         },
         "2": {
@@ -120,11 +120,11 @@
             "url": "https://github.com/doniaskima/react-crafitify"
         },
         "3": {
-            "title": "_worldmap",
-            "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/worldmap.png",
-            "tech": ["Angular"],
-            "url": "https://github.com/"
+            "title": "Incedo Lead Generator",
+            "description": "I contributed to the project The Incedo Lead Generator, an innovative platform that enables precise targeting of your clearly defined target group. Whether in recruiting to find the right candidates or in sales to generate promising leads, through intelligent automation,",
+            "img": "/images/projects/ilg.png",
+            "tech": ["React","nestjs","Typescript"],
+            "url": "https://lead-generator.incedo.net"
         },
         "4": {
             "title": "_ui-animations",

@@ -139,13 +139,6 @@
             "img": "/images/projects/hashnode.png",
             "tech": ["React"],
             "url": "https://github.com/doniaskima/hashnode-Clone"
-        },
-        "6": {
-            "title": "_ethereum",
-            "description": "Duis aute irure dolor in velit esse cillum dolore.",
-            "img": "/images/projects/ethereum.png",
-            "tech": ["Vue"],
-            "url": "https://github.com/"
         }
     }
 }

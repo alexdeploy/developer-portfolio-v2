@@ -28,15 +28,15 @@
                 "info": { 
                     "bio": {
                         "title": "bio",
-                        "description": "<br> About me <br> With 3 years of web development experience, I've honed my skills through freelance projects with startups and side ventures, alongside actively developing my own SaaS solution. I thrive in dynamic settings that value rapid learning, teamwork, and agile methodologies to achieve objectives efficiently. Currently seeking opportunities that blend web development with cutting-edge strategies, particularly those leveraging cloud technology, data-driven insights, and pioneering digital innovations"
+                        "description": "<br> About me <br> As a software developer, I am driven by a deep curiosity and passion for exploring the ever‐evolving world of IT. Eager to learn and grow, I continually seek out new technologies, tools, and methodologies to sharpen my skills and stay ahead of the curve. Working alongside motivated and talented individuals not only inspires me but also provides invaluable opportunities to learn from diverse perspectives and collaborate on challenging projects."
                     },
                     "interests": {
                         "title": "interests",
-                        "description": "<br>I am passionate about exploring the intersection of web development and innovative strategies. My interests lie in projects that push boundaries with cloud technology, harness the power of data intelligently, and lead the way in digital innovation. I enjoy collaborating with teams that embrace agile methods to deliver impactful solutions swiftly and effectively. Outside of work, I also enjoy staying updated on emerging technologies and contributing to open-source communities."
+                        "description": "<br>I have a strong interest in exploring the intersection of web development and innovative strategies. I enjoy collaborating with teams that embrace agile methodologies to deliver impactful solutions swiftly and effectively. Outside of work, I stay updated on emerging technologies and actively contribute to open-source communities."
                     },
                     "education": {
                         "title": "education",
-                        "description": "<br> I'm passionate about computer science and continually seek to expand my knowledge through education. My background has equipped me with strong skills in algorithms, software development, and problem-solving. I stay current with technological advancements and apply my education to contribute effectively to innovative projects and collaborative teams.",
+                        "description": "<br> I earned a degree in Computer Science with a strong focus on mathematics and programming. My background has equipped me with strong skills in algorithms, software development, and problem-solving. I stay current with technological advancements and apply my education to contribute effectively to innovative projects and collaborative teams.",
                         "files": {
                             "university": "Higher Institute of Informatics and Mathematics of Monastir"
                         }
@@ -63,7 +63,7 @@
         "direct": {
             "title": "contacts",
             "sources": {
-                "email": "doniaskima033@gmail.com",
+                "email": "doniaskima@doniacode.com",
                 "phone": "+330644091965"
             }
         },

@@ -109,32 +109,25 @@
             "url": "https://aermax.de/"
         },
         "2": {
-            "title": "react-crafitify",
-            "description": "React-Crafitify is a versatile React component library designed to enhance the user interface of your web applications. With a focus on aesthetics and usability, React-Crafitify provides a collection of customizable UI components that can seamlessly integrate into your projects..",
-            "img": "/images/projects/ai-resources.png",
-            "tech": ["React"],
-            "url": "https://github.com/doniaskima/react-crafitify"
-        },
-        "3": {
             "title": "Incedo Lead Generator",
             "description": "I contributed to the project The Incedo Lead Generator, an innovative platform that enables precise targeting of your clearly defined target group. Whether in recruiting to find the right candidates or in sales to generate promising leads, through intelligent automation,",
             "img": "/images/projects/ilg.png",
             "tech": ["React","Nestjs","Typescript"],
             "url": "https://lead-generator.incedo.net"
         },
-        "4": {
-            "title": "Prosemaster",
-            "description": "Prosemaster is an AI-driven platform that helps you perfect your grammar, rephrase sentences, summarize texts, and create captivating articles effortlessly. It enhances your writing and communication skills, making it an essential tool for content creators, students, professionals, and anyone seeking to improve their written communication.",
-            "img": "/images/projects/prosemaster.png",
-            "tech": ["React","Typescript","CSS"],
-            "url": "https://github.com/doniaskima/Prosemaster"
+        "3": {
+            "title": "Triqbriq/RentClean/Leutron",
+            "description": " I contributed to the development of customizations for the Haufe X360 platform to support our clients in their daily ERP processes.",
+            "img": "/images/projects/triqbriq.jpg",
+            "tech": ["Microsoft SQL Server","C Sharp","ASPX"],
+            "url": "https://rentclean.haufe-x360.app/(W(23))/Frames/Login.aspx?ReturnUrl=%2fMain%3fScreenId%3dFS999999"
         },
-        "5": {
-            "title": "hashnode backend",
-            "description": "I reverse-engineered Hashnode and developed the backend using Node.js and Express.js, incorporating Redis for efficient data caching and management.",
-            "img": "/images/projects/hashnode.png",
+        "4": {
+            "title": "react-crafitify",
+            "description": "React-Crafitify is a versatile React component library designed to enhance the user interface of your web applications. With a focus on aesthetics and usability, React-Crafitify provides a collection of customizable UI components that can seamlessly integrate into your projects..",
+            "img": "/images/projects/ai-resources.png",
             "tech": ["React"],
-            "url": "https://github.com/doniaskima/hashnode-Clone"
+            "url": "https://github.com/doniaskima/react-crafitify"
         }
     }
 }

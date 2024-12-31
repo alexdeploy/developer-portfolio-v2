@@ -9,8 +9,8 @@
                 "icon": "icons/info-professional.svg",
                 "info": {
                     "experience": {
-                        "title": "experience",
-                        "description": "<br>Over the past 5 years, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br><br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        "title": "Experience",
+                        "description": "With a proven track record of success in software development and team collaboration, I bring a wealth of experience to every project. My background includes working on diverse technologies, implementing efficient solutions, and driving innovation in fast-paced environments. From conceptualizing ideas to delivering robust systems, I consistently strive to exceed expectations and contribute to meaningful outcomes."
                     },
                     "hard-skills": {
                         "title": "hard-skills",
@@ -47,13 +47,9 @@
                 "title": "hobbies-info",
                 "icon": "icons/info-hobbies.svg",
                 "info": {
-                    "sports": {
-                        "title": "sports",
-                        "description": "<br>I am an avid sports enthusiast and lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                    },
                     "favorite-games": {
                         "title": "favorite-games",
-                        "description": "<br>I am a passionate gamer with Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br><br> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        "description": "<br> In my free time, I enjoy playing Valorant, a tactical first-person shooter that sharpens my strategic thinking and teamwork skills. It’s a great way to unwind while staying mentally engaged. Balancing gaming with my professional life helps me recharge and maintain a healthy work-life balance."
                     }
                 }
             }

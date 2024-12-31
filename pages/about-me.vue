@@ -284,7 +284,12 @@
           >
             <!-- title -->
             <h3 class="text-white lg:text-menu-text mb-4 text-sm">
-              // Code snippet showcase:
+              <GistSnippet
+                data-aos="fade-down"
+                v-for="(gist, key) in config.public.dev.gists"
+                :key="key"
+                :id="gist"
+              />
             </h3>
 
             <div class="flex flex-col overflow-scroll">

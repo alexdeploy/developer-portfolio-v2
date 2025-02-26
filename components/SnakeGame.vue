@@ -35,20 +35,20 @@
           <div id="buttons" class="w-full flex flex-col items-center gap-1 pt-5">
 
               <button id="console-button" class="button-up" @click="move('up')">
-                <img src="/icons/console/arrow-button.svg" alt="">
+                <img src="/icons/console/arrow-button.svg" alt="move up">
               </button>
 
               <div class="grid grid-cols-3 gap-1">
                 <button id="console-button" class="button-left" @click="move('left')">
-                  <img src="/icons/console/arrow-button.svg" alt="" class="-rotate-90">
+                  <img src="/icons/console/arrow-button.svg" alt="move left" class="-rotate-90">
                 </button>
 
                 <button id="console-button" class="button-down" @click="move('down')">
-                  <img src="/icons/console/arrow-button.svg" alt="" class="rotate-180">
+                  <img src="/icons/console/arrow-button.svg" alt="move down" class="rotate-180">
                 </button>
 
                 <button id="console-button" class="button-right" @click="move('right')">
-                  <img src="/icons/console/arrow-button.svg" alt="" class="rotate-90">
+                  <img src="/icons/console/arrow-button.svg" alt="move right" class="rotate-90">
                 </button>
             </div>
 

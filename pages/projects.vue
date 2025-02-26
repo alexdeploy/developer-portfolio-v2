@@ -10,8 +10,9 @@
       <img :class="showFilters ? 'section-arrow rotate-90' : 'section-arrow'" src="/icons/arrow.svg">
       <span class="font-fira_regular text-white text-sm">projects</span>
     </div>
-    
-    <div v-if="showFilters" id="filter-menu" class="w-full flex-col border-right font-fira_regular text-menu-text lg:flex">
+
+    <div v-if="showFilters" id="filter-menu"
+      class="w-full flex-col border-right font-fira_regular text-menu-text lg:flex">
       <!-- title -->
       <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
         <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3">
@@ -20,11 +21,11 @@
 
       <!-- filter menu -->
       <nav id="filters" class="w-full flex-col">
-  
+
         <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
           <input type="checkbox" :id="tech" @click="filterProjects(tech)">
           <img :id="'icon-tech-' + tech" :src="'/icons/techs/' + tech + '.svg'" alt="" class="tech-icon w-5 h-5 mx-4">
-          <span :id="'title-tech-' + tech">{{ tech }}</span>
+          <label :for="tech" :id="'title-tech-' + tech">{{ tech }}</label>
         </div>
       </nav>
     </div>
@@ -32,26 +33,29 @@
     <!-- content -->
 
     <div class="flex flex-col w-full overflow-hidden">
-      
+
       <!-- windows tab -->
       <div class="tab-height w-full hidden lg:flex border-bot items-center">
         <div class="flex items-center border-right h-full">
-          <p v-for="filter in filters" :key="filter" class="font-fira_regular text-menu-text text-sm px-3">{{ filter }};</p>
+          <p v-for="filter in filters" :key="filter" class="font-fira_regular text-menu-text text-sm px-3">{{ filter }};
+          </p>
           <img src="/icons/close.svg" alt="" class="m-3">
         </div>
       </div>
 
       <!-- windows tab mobile -->
       <div id="tab" class="flex lg:hidden items-center">
-          <span class="text-white"> // </span>
-          <p class="font-fira_regular text-white text-sm px-3">projects</p>
-          <span class="text-menu-text"> / </span>
-          <p v-for="filter in filters" :key="filter" class="font-fira_regular text-menu-text text-sm px-3">{{ filter }};</p>
+        <span class="text-white"> // </span>
+        <p class="font-fira_regular text-white text-sm px-3">projects</p>
+        <span class="text-menu-text"> / </span>
+        <p v-for="filter in filters" :key="filter" class="font-fira_regular text-menu-text text-sm px-3">{{ filter }};
+        </p>
       </div>
 
       <!-- projects -->
       <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full h-full overflow-scroll lg:self-center">
-        <div id="not-found" class="hidden flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
+        <div id="not-found"
+          class="hidden flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
           <span class="flex justify-center text-4xl pb-3">
             X__X
           </span>
@@ -62,17 +66,12 @@
             for these technologies
           </span>
         </div>
-        
-        <project-card
-          v-for="(project, key, index) in projects" 
-          :key="key" 
-          :index="index"
-          :project="project"
-        />
+
+        <project-card v-for="(project, key, index) in projects" :key="key" :index="index" :project="project" />
 
       </div>
-  </div>
-</main>
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -217,6 +216,7 @@ input[type="checkbox"]:focus {
   from {
     transform: translate3d(0, -200px, 0);
   }
+
   to {
     transform: translate3d(0, 10px, 0);
   }

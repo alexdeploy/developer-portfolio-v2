@@ -10,14 +10,14 @@
             <!-- contacts -->
             <div id="contacts" class="submenu">
                 <div class="title" @click="open('contacts')">
-                    <img class="arrow" src="/icons/arrow.svg">
+                    <img class="arrow" src="/icons/arrow.svg" alt="">
                     <h3>
                         contacts
                     </h3>
                 </div>
                 <div id="links">
                     <div v-for="(source, key) in contact.direct.sources" :key="key" class="link">
-                        <img :src="'/icons/' + key + '.svg'">
+                        <img :src="'/icons/' + key + '.svg'" alt="">
                         <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white"></a>
                     </div>
                 </div>
@@ -26,14 +26,14 @@
             <!-- find me also in -->
             <div id="find-me-in" class="submenu border-top">
                 <div class="title" @click="open('find-me-in')">
-                    <img class="arrow" src="/icons/arrow.svg">
+                    <img class="arrow" src="/icons/arrow.svg" alt="">
                     <h3>
                         find-me-also-in
                     </h3>
                 </div>
                 <div id="links">
                     <div v-for="(source, key) in contact.find_me_also_in.sources" :key="key" class="link">
-                        <img src="/icons/link.svg">
+                        <img src="/icons/link.svg" alt="">
                         <a :href="source.url + source.user" class="font-fira_retina text-menu-text hover:text-white" target="_blank">{{ source.title }}</a>
                     </div>
                 </div>

@@ -126,6 +126,17 @@
         this.gameStarted = true;
         this.gameInterval = setInterval(this.moveSnake, 50);
       },
+      generateNewFood() {
+        let newFood;
+        do {
+          newFood = {
+            x: Math.floor(Math.random() * 24),
+            y: Math.floor(Math.random() * 40)
+          };
+          // check if the new food is not on the snake
+        } while (this.snake.some(segment => segment.x === newFood.x && segment.y === newFood.y));
+        return newFood;
+      },
       startAgain() {
         // Mostrar botón de start-game
         document.getElementById("start-button").style.display = "block";
@@ -173,7 +184,7 @@
       moveSnake() {
         let newX = this.snake[0].x;
         let newY = this.snake[0].y;
-    
+
         switch (this.direction) {
           case "up":
             newY--;
@@ -188,57 +199,38 @@
             newX++;
             break;
         }
-        
-        // check if snake dont leave from game window
-        // and check if snake dont eat itself
-        if (
-          newX >= 0 &&
-          newX < 24 &&
-          newY >= 0 &&
-          newY < 40 &&
-          !this.snake.find(
-            snakeCell => snakeCell.x === newX && snakeCell.y === newY
-          )
-        ) {
-          /* snake move next cell */
-          this.snake.unshift({ x: newX, y: newY });
-    
-          /* check snake next cell is food */
-          if (newX === this.food.x && newY === this.food.y) {
-            
-            // add score
-            this.score++;
 
-            // add food to score board
+        if (
+            newX >= 0 &&
+            newX < 24 &&
+            newY >= 0 &&
+            newY < 40 &&
+            !this.snake.find(
+                snakeCell => snakeCell.x === newX && snakeCell.y === newY
+            )
+        ) {
+          this.snake.unshift({ x: newX, y: newY });
+
+          if (newX === this.food.x && newY === this.food.y) {
+            this.score++;
             const scoreFoods = document.getElementsByClassName("food");
             scoreFoods[this.score - 1].style.opacity = 1;
 
-            // check if score is 10 (max score)
             if(this.score === 10) {
-
-              // move snake head to food (fix snake head position at end)
-              this.snake.unshift({ x: newX, y: newY }); // move head
-              this.food = { x: null, y: null } // remove food
-              clearInterval(this.gameInterval); // stop game
-              document.getElementById('congrats').style.display = 'block' // show congrats
-              this.gameOver = true; // game over
-              this.gameStarted = false; // stop game
-
+              this.snake.unshift({ x: newX, y: newY });
+              this.food = { x: null, y: null }
+              clearInterval(this.gameInterval);
+              document.getElementById('congrats').style.display = 'block'
+              this.gameOver = true;
+              this.gameStarted = false;
             } else {
-
-              // create new food
-              this.food = {
-                x: Math.floor(Math.random() * 24),
-                y: Math.floor(Math.random() * 40)
-              };
+              // generate new food
+              this.food = this.generateNewFood();
             }
-
           } else {
-            // if next cell is not food: snake pop last cell
             this.snake.pop();
           }
         } else {
-          // GAME OVER: if snake leave from game window or eat itself
           clearInterval(this.gameInterval);
           document.getElementById('game-over').style.display = 'block'
           this.gameStarted = false;
@@ -250,17 +242,12 @@
         let gameScreen = this.$refs.gameScreen;
         gameScreen.innerHTML = "";
 
-        // responsive cell screen
-        // (this.$refs.gameScreen.offsetWidth / 20) + "px";
-
-        /* const widthCells = window.innerWidth > 1536 ? 24 : 20; */
         const cellSize = window.innerWidth > 1536 ? "10px" : "8px";
-        // eje y
+
         for (let i = 0; i < 40; i++) {
-          // exe x
+
           for (let j = 0; j < 24; j++) {
 
-            /* cell style */
             let cell = document.createElement("div");
             cell.classList.add("cell");
             cell.style.width = cellSize
@@ -268,53 +255,50 @@
             cell.style.display = "flex";
             cell.style.flexShrink = 0;
             cell.classList.add("black");
-            
-            /* Food cell style */
-            if (j === this.food.x && i === this.food.y) {
-              cell.style.backgroundColor = "#43D9AD";
-              cell.style.borderRadius = "50%";
-              cell.style.boxShadow = "0 0 10px #43D9AD";
-            }
-    
-            /* Estilo de la serpiente a medida que va crediendo */
+
+            /* 先渲染蛇身 */
             let snakeCell = this.snake.find(
                 snakeCell => snakeCell.x === j && snakeCell.y === i
             );
 
             if (snakeCell) {
-                cell.style.backgroundColor = "#43D9AD";
-                cell.style.opacity = 1 - (this.snake.indexOf(snakeCell) / this.snake.length);
+              cell.style.backgroundColor = "#43D9AD";
+              cell.style.opacity = 1 - (this.snake.indexOf(snakeCell) / this.snake.length);
               cell.classList.add("green");
 
-            }
-
-            /* Estilo de la cabeza */
-            if (snakeCell && this.snake.indexOf(snakeCell) === 0) {
-
+              /* 蛇頭的特殊樣式 */
+              if (this.snake.indexOf(snakeCell) === 0) {
                 let headRadius = "5px";
                 if (this.direction === "up") {
-                    cell.style.borderTopLeftRadius = headRadius;
-                    cell.style.borderTopRightRadius = headRadius;
+                  cell.style.borderTopLeftRadius = headRadius;
+                  cell.style.borderTopRightRadius = headRadius;
                 }
                 if (this.direction === "down") {
-
-                    cell.style.borderBottomLeftRadius = headRadius;
-                    cell.style.borderBottomRightRadius = headRadius;
+                  cell.style.borderBottomLeftRadius = headRadius;
+                  cell.style.borderBottomRightRadius = headRadius;
                 }
                 if (this.direction === "left") {
-                    cell.style.borderTopLeftRadius = headRadius;
-                    cell.style.borderBottomLeftRadius = headRadius;
+                  cell.style.borderTopLeftRadius = headRadius;
+                  cell.style.borderBottomLeftRadius = headRadius;
                 }
                 if (this.direction === "right") {
-                    cell.style.borderTopRightRadius = headRadius;
-                    cell.style.borderBottomRightRadius = headRadius;
+                  cell.style.borderTopRightRadius = headRadius;
+                  cell.style.borderBottomRightRadius = headRadius;
                 }
+              }
             }
+
+            /* 最後渲染食物，確保食物始終可見 */
+            if (j === this.food.x && i === this.food.y && !snakeCell) {
+              cell.style.backgroundColor = "#43D9AD";
+              cell.style.borderRadius = "50%";
+              cell.style.boxShadow = "0 0 10px #43D9AD";
+            }
+
             gameScreen.appendChild(cell);
+          }
         }
-      }
-      
-    },
+      },
     restartScore(){
       this.score = 0;
       const scoreFoods = document.getElementsByClassName("food");

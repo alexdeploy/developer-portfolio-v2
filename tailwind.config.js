@@ -12,11 +12,11 @@ module.exports = {
                 'neon-blue-l': '#05131e',
                 'neon-blue-xl': '#020204',
                 'dark-background': '#010C15',
-                'menu-text': '#607B96',
+                'menu-text': '#85a5c4',
                 'blue-background': '#011627',
                 'hello-name': '#E5E9F0',
-                'purple-text': '#4D5BCE',
-                'hello-gray': '#607B96',
+                'purple-text': '#81a0fd',
+                'hello-gray': '#84a6c8',
                 'codeline-link': '#E99287',
                 'codeline-tag': '#4D5BCE',
                 'codeline-name': '#43D9AD',
@@ -24,7 +24,7 @@ module.exports = {
                 'placeholder-gray': '#465E77',
                 'greenfy': '#43D9AD',
                 'bluefy-dark': '#011627',
-                'purplefy': '#5565E8',
+                'purplefy': '#799ffb',
 
             }
         },

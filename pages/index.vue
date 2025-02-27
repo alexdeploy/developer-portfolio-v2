@@ -146,7 +146,7 @@ function handleResize() {
 #info > span {
   font-size: 14px;
   line-height: 1;
-  color: #607B96;
+  color: #8da9c6;
   font-family: 'Fira Code Retina';
   padding-bottom: 1rem; /* 16px */
 }
@@ -157,7 +157,7 @@ function handleResize() {
 }
 
 .code .identifier {
-  color: #4D5BCE;
+  color: #6172ff;
 }
 
 .code .variable-name {

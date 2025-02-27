@@ -20,6 +20,9 @@ export default defineNuxtConfig({
    */
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en', // App language
+      },
       title: siteTitle, // App window nav title
       meta: [
         { charset: 'utf-8' },

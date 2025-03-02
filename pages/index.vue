@@ -11,10 +11,10 @@
 				<span>
 					Hi all, I am
 				</span>
-				<h1>{{ config.dev.name }}</h1>
+				<h1>{{ config.name }}</h1>
         <span class="diple flex">
           >&nbsp;
-				<h2 class="line-1 anim-typewriter max-w-fit"> {{ config.dev.role }} </h2>
+				<h2 class="line-1 anim-typewriter max-w-fit"> {{ config.role }} </h2>
         </span>
 			</div>
 
@@ -38,8 +38,8 @@
 					<span class="operator">
 						=
 					</span>
-					<a class="string" :href="'https://github.com/' + config.public.dev.contacts.social.github.user">
-						"https://github.com/{{ config.public.dev.contacts.social.github.user }}"
+					<a class="string" :href="'https://github.com/' + config.contacts.social.github.user">
+						"https://github.com/{{ config.contacts.social.github.user }}"
 					</a>
 				</p>
 			</div>
@@ -54,8 +54,9 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import DevConfig from '~/developer.json';
 
-const config = useRuntimeConfig()
+const config = ref(DevConfig)
 
 const isMobile = ref(false)
 const loading = ref(false)

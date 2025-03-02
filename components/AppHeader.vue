@@ -4,7 +4,7 @@
         <github-corner url="https://github.com/alexdeploy/developer-portfolio-v2" />
           <div class="flex">
             <NuxtLink id="nav-logo" to="/">
-              {{ config.dev.logo_name }}
+              {{ config.logo_name }}
             </NuxtLink>
 
             <NuxtLink id="nav-link" to="/" :class="{ active: isActive('/') }">
@@ -30,28 +30,24 @@
 
 </template>
 
-<script>
+<script setup>
 import GithubCorner from './GithubCorner.vue';
+import config from '~/developer.json';
+
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const isActive = (route) => {
+  return route === route.path;
+}
+
+</script>
+
+<script>
 export default {
   name: 'AppHeader',
-  components: {
-    GithubCorner
-  },
-  computed: {
-    // Set active class to current page link
-    isActive() {
-      return route => this.$route.path === route;
-    }
-  },
-  setup() {
-    const config = useRuntimeConfig()
-
-    return {
-      config
-    }
-  },
 };
-
 </script>
 
 <style>

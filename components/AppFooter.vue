@@ -28,6 +28,18 @@
     </footer>
 </template>
 
+<script setup>
+import config from '~/config/developer.json';
+
+const social = ref(config.contacts.social);
+</script>
+
+<script>
+export default {
+    name: 'AppFooter',
+}
+</script>
+
 <style>
 
 footer {
@@ -81,19 +93,3 @@ footer > a > img {
 }
 
 </style>
-
-<script>
-export default {
-    name: 'AppFooter',
-    data() {
-        return {
-          route: this.$route.path,
-        }
-    },
-    setup() {
-        return {
-            social: useRuntimeConfig().dev.contacts.social
-        }
-    },
-}
-</script>

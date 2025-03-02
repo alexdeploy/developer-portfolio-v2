@@ -9,7 +9,7 @@
 
       <!-- DESKTOP section icons -->
       <div id="sections">
-        <div id="section-icon" v-for="section in config.dev.about.sections" :key="section.title" :class="{ active: isSectionActive(section.title)}">
+        <div id="section-icon" v-for="section in config.about.sections" :key="section.title" :class="{ active: isSectionActive(section.title)}">
           <img :id="'section-icon-' + section.title" :src="section.icon" :alt="section.title + '-section'" @click="focusCurrentSection(section)">
         </div>
       </div>
@@ -20,12 +20,12 @@
         <!-- title -->
         <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
           <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3 open">
-          <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-white text-sm"></p>
+          <p v-html="config.about.sections[currentSection]?.title" class="font-fira_regular text-white text-sm"></p>
         </div>
 
         <!-- folders -->
         <div>
-          <div v-for="(folder, key, index) in config.dev.about.sections[currentSection].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
+          <div v-for="(folder, key, index) in config.about.sections[currentSection]?.info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
             <div class="flex col-span-2 hover:text-white hover:cursor-pointer">
               <img id="diple" src="/icons/diple.svg" alt="" :class="{ open: isOpen(folder.title)}">
               <img :src="'/icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
@@ -43,10 +43,10 @@
         <!-- contact -->
         <div id="section-content-title-contact" class="flex items-center min-w-full border-top">
           <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3 open">
-          <p v-html="config.dev.contacts.direct.title" class="font-fira_regular text-white text-sm"></p>
+          <p v-html="config.contacts.direct.title" class="font-fira_regular text-white text-sm"></p>
         </div>
         <div id="contact-sources" class="hidden lg:flex lg:flex-col my-2">
-          <div v-for="(source, key) in config.dev.contacts.direct.sources" :key="key" class="flex items-center mb-2">
+          <div v-for="(source, key) in config.contacts.direct.sources" :key="key" class="flex items-center mb-2">
             <img :src="'/icons/' + key + '.svg'" alt="" class="mx-4">
             <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white"></a>
           </div>
@@ -57,7 +57,7 @@
       <!-- mobile -->
       <div id="section-content" class="lg:hidden w-full font-fira_regular">
 
-        <div v-for="section in config.dev.about.sections" :key="section.title">
+        <div v-for="section in config.about.sections" :key="section.title">
           
           <!-- section title (mobile) -->
           <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden mb-1" @click="focusCurrentSection(section)">
@@ -67,7 +67,7 @@
 
           <!-- folders -->
           <div :id="'folders-' + section.title" class="hidden"> <!-- <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'"> -->
-            <div v-for="(folder, key, index) in config.dev.about.sections[section.title].info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
+            <div v-for="(folder, key, index) in config.about.sections[section.title]?.info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
               <div class="flex col-span-2">
                 <img id="diple" src="/icons/diple.svg">
                 <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
@@ -88,12 +88,12 @@
         <!-- section content title -->
         <div id="section-content-title" class="flex items-center min-w-full" @click="showContacts()">
           <img src="/icons/arrow.svg" alt="" id="section-arrow" class="section-arrow">
-          <p v-html="config.dev.contacts.direct.title" class="font-fira_regular text-white text-sm"></p>
+          <p v-html="config.contacts.direct.title" class="font-fira_regular text-white text-sm"></p>
         </div>
 
         <!-- section content folders -->
         <div id="contacts" class="hidden">
-          <div v-for="(source, key) in config.dev.contacts.direct.sources" :key="key" class="flex items-center my-2">
+          <div v-for="(source, key) in config.contacts.direct.sources" :key="key" class="flex items-center my-2">
             <img :src="'/icons/' + key + '.svg'" alt="">
             <a v-html="source" href="/" class="font-fira_retina text-menu-text hover:text-white ml-4"></a>
           </div>
@@ -112,7 +112,7 @@
         <!-- windows tab desktop -->
         <div class="tab-height w-full hidden lg:flex border-bot items-center">
           <div class="flex items-center border-right h-full">
-            <p v-html="config.dev.about.sections[currentSection].title" class="font-fira_regular text-menu-text text-sm px-3"></p>
+            <p v-html="config.about.sections[currentSection]?.title" class="font-fira_regular text-menu-text text-sm px-3"></p>
             <img src="/icons/close.svg" alt="" class="mx-3">
           </div>
         </div>
@@ -120,16 +120,16 @@
         <!-- windows tab mobile -->
         <div id="tab-mobile" class="flex lg:hidden font-fira_retina">
             <span class="text-white">// </span>
-            <h3 v-html="config.dev.about.sections[currentSection].title" class="text-white px-2"></h3>
+            <h3 v-html="config.about.sections[currentSection]?.title" class="text-white px-2"></h3>
             <span class="text-menu-text"> / </span>
-            <h3 v-html="config.dev.about.sections[currentSection].info[folder].title" class="text-menu-text pl-2"></h3>
+            <h3 v-html="config.about.sections[currentSection]?.info[folder].title" class="text-menu-text pl-2"></h3>
         </div>
         
         <!-- text -->
         <div id="commented-text" class="flex h-full w-full lg:border-right overflow-hidden">
 
           <div class="w-full h-full ml-5 mr-10 lg:my-5 overflow-scroll">
-              <CommentedText :text="config.dev.about.sections[currentSection].info[folder].description" />
+              <CommentedText :text="config.about.sections[currentSection]?.info[folder].description" />
           </div>
           
           <!-- scroll bar -->
@@ -163,7 +163,7 @@
 
             <div class="flex flex-col overflow-scroll">
               <!-- snippets -->
-              <GistSnippet data-aos="fade-down" v-for="(gist, key) in config.public.dev.gists" :key="key" :id="gist" />
+              <GistSnippet data-aos="fade-down" v-for="(gist, key) in config.gists" :key="key" :id="gist" />
             </div>
           </div>
 
@@ -271,7 +271,7 @@
 </style>
 
 <script>
-
+import DevConfig from '~/developer.json';
 export default {
   data() {
     return {
@@ -284,9 +284,8 @@ export default {
    * In setup we can define the data we want to use in the component before the component is created.
    */
   setup() {
-    const config = useRuntimeConfig()
     return {
-      config
+      config: DevConfig
     }
   },
   computed: {
@@ -312,7 +311,7 @@ export default {
     focusCurrentFolder(folder) {
       this.folder = folder.title
       // handle if folder belongs to the current section. It happens when you click on a folder from a different section in mobile view.
-      this.currentSection = this.config.dev.about.sections[this.currentSection].info[folder.title] ? this.currentSection : Object.keys(this.config.dev.about.sections).find(section => this.config.dev.about.sections[section].info[folder.title])
+      this.currentSection = this.config.about.sections[this.currentSection].info[folder.title] ? this.currentSection : Object.keys(this.config.about.sections).find(section => this.config.about.sections[section].info[folder.title])
     },
     /**
      * TODO: Hay que crear un método para que cuando se haga click en un folder, se muestren los archivos que contiene. Y si se hace click en un archivo, se muestre el contenido del archivo.

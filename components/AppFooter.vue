@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import config from '~/config/developer.json';
+import config from '~/developer.json';
 
 const social = ref(config.contacts.social);
 </script>

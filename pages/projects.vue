@@ -67,7 +67,7 @@
           </span>
         </div>
 
-        <project-card v-for="(project, key, index) in projects" :key="key" :index="index" :project="project" />
+        <project-card v-for="(project, index) in projects" :index="index" :project="project" />
 
       </div>
     </div>
@@ -76,13 +76,14 @@
 
 <script setup>
 import { ref } from 'vue'
+import DevConfig from '~/developer.json';
 
-const config = useRuntimeConfig()
+const config = ref(DevConfig)
 
 const techs = ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter']
 const filters = ref(['all'])
 const showFilters = ref(true)
-const projects = ref(config.public.dev.projects)
+const projects = ref(config.value.projects)
 
 function filterProjects(tech) {
   document.getElementById('icon-tech-' + tech).classList.toggle('active')
@@ -96,7 +97,7 @@ function filterProjects(tech) {
     filters.value = filters.value.filter((item) => item !== tech)
     filters.value.length === 0 ? filters.value.push('all') : null
   }
-  filters.value[0] == 'all' ? projects.value = config.public.dev.projects : projects.value = filterProjectsBy(filters.value)
+  filters.value[0] == 'all' ? projects.value = config.value.projects : projects.value = filterProjectsBy(filters.value)
 
   if (projects.value.length === 0) {
     document.getElementById('projects-case').classList.remove('grid')
@@ -108,7 +109,7 @@ function filterProjects(tech) {
 }
 
 function filterProjectsBy(filters) {
-  const projectArray = Object.values(config.public.dev.projects)
+  const projectArray = Object.values(config.value.projects)
   return projectArray.filter(project => {
     return filters.some(filter => project.tech.includes(filter))
   })

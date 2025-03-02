@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import DevConfig from '~/developer.json';
 export default {
     data() {
         return {
@@ -89,10 +90,8 @@ export default {
         }
     },
     setup() {
-        const contact = useRuntimeConfig().dev.contacts
-
         return {
-            contact
+            contact: DevConfig.contacts,
         }
     },
     methods: {

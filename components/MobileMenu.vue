@@ -4,7 +4,7 @@
     <!-- header -->
     <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
       <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5" to="/" @click="goHome()">
-        {{ config.dev.logo_name }}
+        {{ config.logoName }}
       </NuxtLink>
       <img src="/icons/burger.svg" alt="Open menu" v-if="!menuOpen" @click="toggleMobileMenu()"
         class="w-5 h-5 mx-5 my-auto" />
@@ -37,52 +37,43 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      menuOpen: false
-    }
-  },
-  setup() {
-    const config = useRuntimeConfig()
+<script setup>
+import { ref } from 'vue';
 
-    return {
-      config
-    }
-  },
-  methods: {
-    toggleMobileMenu() {
+import DevConfig from '~/developer.json';
 
-      this.menuOpen ? this.menuOpen = false : this.menuOpen = true
+const config = ref(DevConfig);
 
-      const menu = document.getElementById('menu');
-      menu.classList.toggle('hidden')
+const menuOpen = ref(false);
 
-      const page = document.getElementsByTagName('main')[0];
-      // Hide / show section
-      if (page.style.display === 'none') {
-        page.style.display = 'flex';
-      } else {
-        page.style.display = 'none';
-      }
-    },
-    goHome() {
-      const menu = document.getElementById('menu');
-      if (!menu.classList.contains('hidden')) {
-        menu.classList.toggle('hidden')
-        document.getElementsByTagName('main')[0].style.display = 'flex';
-        this.menuOpen ? this.menuOpen = false : this.menuOpen = true
-      }
-    }
-  },
-  computed: {
-    // Set active class to current page link
-    isActive() {
-      return route => this.$route.path === route;
-    },
+function toggleMobileMenu(){
+  menuOpen.value = !menuOpen.value;
+
+  const menu = document.getElementById('menu');
+  menu.classList.toggle('hidden');
+
+  const page = document.getElementsByTagName('main')[0];
+  // Hide / show section
+  if (page.style.display === 'none') {
+    page.style.display = 'flex';
+  } else {
+    page.style.display = 'none';
   }
-}
+};
+
+function goHome(){
+  const menu = document.getElementById('menu');
+  if (!menu.classList.contains('hidden')) {
+    menu.classList.toggle('hidden');
+    document.getElementsByTagName('main')[0].style.display = 'flex';
+    menuOpen.value = !menuOpen.value;
+  }
+};
+
+const isActive = (route) => {
+  return route === route.path;
+};
+
 </script>
 
 <style>

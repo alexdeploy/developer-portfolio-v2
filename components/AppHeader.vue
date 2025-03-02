@@ -34,12 +34,8 @@
 import GithubCorner from './GithubCorner.vue';
 import config from '~/developer.json';
 
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
-
 const isActive = (route) => {
-  return route === route.path;
+  return route === route;
 }
 
 </script>

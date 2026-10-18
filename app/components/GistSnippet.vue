@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import hljs from 'highlight.js/lib/common'
 import type { Gist } from '~/types/github'
 
 const props = defineProps<{ id: string }>()
@@ -11,10 +10,7 @@ const commentOpen = ref(false)
 const firstFile = computed(() => Object.values(gist.value?.files ?? {})[0])
 const content = computed(() => firstFile.value?.content ?? '')
 
-const highlighted = computed(() => {
-  if (!content.value) return { value: '', language: '' }
-  return hljs.highlightAuto(content.value)
-})
+const highlighted = computed(() => highlightCode(content.value, firstFile.value?.language))
 
 const monthsAgo = computed(() => {
   if (!gist.value) return 0

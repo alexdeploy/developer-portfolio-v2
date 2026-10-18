@@ -63,16 +63,20 @@
   }
 }
 
+/*
+ * The app frame (#__nuxt) fills the viewport minus a gutter, and its pages scroll inside.
+ * The gutter is padding on <html> (border-box thanks to Tailwind's preflight) instead of a margin
+ * with `height: stretch`: that keyword only works in Chrome, so Safari and Firefox rendered a frame
+ * as short as its content (issue #34). Plain percentages resolve the same in every browser.
+ */
 html {
     @apply bg-dark-background;
-    height: stretch;
-    width: stretch;
-    margin: 30px;
+    height: 100%;
+    padding: 30px;
 }
 
 body {
-    height: stretch;
-    width: stretch;
+    height: 100%;
 }
 
 main.page {
@@ -127,18 +131,23 @@ main.page {
 /* MOBILE AND TABLET (SM - LG) */
 @media (max-width: 1024px) {
 
+  /* On small screens the frame grows with the content, but never below the visible height. */
   html {
-    margin: 15px;
+    padding: 15px;
+    height: auto;
     min-height: 100%;
-    height: stretch;
-    width: stretch;
+  }
+
+  body {
+    height: auto;
   }
 
   #__nuxt {
     @apply bg-blue-background flex flex-col;
     justify-content: space-between;
     height: auto;
-    min-height: stretch; /* This allows the page view for mobile to be full height when the content is less than the screen height. */
+    min-height: calc(100vh - 30px);
+    min-height: calc(100dvh - 30px); /* dvh follows the mobile browser toolbars; older browsers keep the vh line */
     width: 100%;
     width: auto;
   }

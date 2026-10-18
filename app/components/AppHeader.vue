@@ -7,22 +7,22 @@ const isActive = (path: string) => route.path === path
 
 <template>
     <header id="navbar" class="w-full hidden lg:flex flex-col">
-      <nav class="w-full flex justify-between border-bot">
+      <nav aria-label="Main" class="w-full flex justify-between border-bot">
         <GithubCorner url="https://github.com/alexdeploy/developer-portfolio-v2" />
           <div class="flex">
             <NuxtLink id="nav-logo" to="/">
               {{ config.logo_name }}
             </NuxtLink>
 
-            <NuxtLink id="nav-link" to="/" :class="{ active: isActive('/') }">
+            <NuxtLink class="nav-link" to="/" :class="{ active: isActive('/') }">
               _hello
             </NuxtLink>
   
-            <NuxtLink id="nav-link" to="/about-me" :class="{ active: isActive('/about-me') }">
+            <NuxtLink class="nav-link" to="/about-me" :class="{ active: isActive('/about-me') }">
               _about-me
             </NuxtLink>
   
-            <NuxtLink id="nav-link" to="/projects" :class="{ active: isActive('/projects') }">
+            <NuxtLink class="nav-link" to="/projects" :class="{ active: isActive('/projects') }">
               _projects
             </NuxtLink>
           </div>
@@ -41,7 +41,7 @@ const isActive = (path: string) => route.path === path
 @reference "../assets/tailwind.css";
 
 
-#nav-link {
+.nav-link {
   border-right: 1px solid #1E2D3D;
   @apply text-menu-text font-fira_retina px-6 h-full flex items-center;
 }
@@ -51,7 +51,7 @@ const isActive = (path: string) => route.path === path
   @apply text-menu-text font-fira_retina px-6 h-full flex items-center;
 }
 
-#nav-link:hover, #nav-link-contact:hover {
+.nav-link:hover, #nav-link-contact:hover {
   background-color: #1e2d3d74;
   color: white;
 }
@@ -66,7 +66,7 @@ const isActive = (path: string) => route.path === path
   color: white;
 }
 
-#nav-link.router-link-active, #nav-link-contact.router-link-active {
+.nav-link.router-link-active, #nav-link-contact.router-link-active {
   border-bottom: 2px solid #FEA55F;
   color: white;
 }

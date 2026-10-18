@@ -50,6 +50,12 @@
     cursor: pointer;
   }
 
+  /* Visible focus ring for keyboard users, on the dark background. */
+  :focus-visible {
+    outline: 2px solid #43D9AD;
+    outline-offset: 2px;
+  }
+
   /* In the base layer so that utilities such as `text-sm` can still override it. */
   h3, h2 {
     font-family: 'Fira Code Retina';
@@ -86,13 +92,13 @@ main.page {
   width: 100%;
 }
 
-#section-content-title {
+.section-content-title {
   width: 100%;
   min-height: 35px;
   border-bottom: 1px solid #1E2D3D;
   }
 
-#section-content-title:hover {
+.section-content-title:hover {
   cursor: pointer;
 }
 
@@ -145,7 +151,7 @@ main.page {
     width: 100% !important;
   }
 
-  #section-content-title {
+  .section-content-title {
   width: 100%;
   height: 30px;
   background-color: #1E2D3D;
@@ -283,6 +289,17 @@ main.page {
 
 .border-left {
   border-left: 1px solid #1E2D3D;
+}
+
+/* Decorative scroll bar of the about and contact pages */
+.scroll-bar {
+  width: 20px;
+}
+
+.scroll {
+  width: 14px;
+  height: 7px;
+  background-color: #607B96;
 }
 
 /* Scroll bar */

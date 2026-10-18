@@ -6,8 +6,10 @@ const props = defineProps<{ id: string }>()
 
 const gist = ref<Gist | null>(null)
 const comment = ref<string | null>(null)
+const commentOpen = ref(false)
 
-const content = computed(() => Object.values(gist.value?.files ?? {})[0]?.content ?? '')
+const firstFile = computed(() => Object.values(gist.value?.files ?? {})[0])
+const content = computed(() => firstFile.value?.content ?? '')
 
 const highlighted = computed(() => {
   if (!content.value) return { value: '', language: '' }
@@ -20,9 +22,6 @@ const monthsAgo = computed(() => {
   return Math.floor(diff / (1000 * 3600 * 24) / 30)
 })
 
-function showComment(id: string) {
-  document.getElementById('comment' + id)?.classList.toggle('hidden')
-}
 
 onMounted(async () => {
   try {
@@ -48,7 +47,7 @@ onMounted(async () => {
     
                 <!-- username & gist date info -->
                 <div class="flex flex-col">
-                    <a id="username" :href="'https://github.com/' + gist.owner.login" target="_blank" class="font-fira_bold text-purple-text text-xs pb-1 hover:cursor-pointer">
+                    <a id="username" :href="'https://github.com/' + gist.owner.login" target="_blank" rel="noopener noreferrer" class="font-fira_bold text-purple-text text-xs pb-1 hover:cursor-pointer">
                         @{{ gist.owner.login }}
                     </a>
                     <p class="font-fira_retina text-xs text-menu-text">Created {{ monthsAgo }} months ago</p>
@@ -57,11 +56,11 @@ onMounted(async () => {
 
             <!-- details and stars -->
             <div class="flex text-menu-text font-fira_retina text-xs justify-self-end lg:mx-2">
-                <div class="flex lg:mx-2 hover:cursor-pointer hover:text-white">
+                <button type="button" class="flex lg:mx-2 hover:text-white" :aria-expanded="commentOpen" @click="commentOpen = !commentOpen">
                     <img src="/icons/gist/comments.svg" alt="" class="w-4 h-4 mr-2">
-                    <span @click="showComment(gist.id)">details</span>
-                </div>
-                <div class="hidden lg:flex hover:cursor-pointer hover:text-white">
+                    <span>details</span>
+                </button>
+                <div class="hidden lg:flex">
                     <img src="/icons/gist/star.svg" alt="" class="w-4 h-4 mx-2">
                     <span class="">stars</span>
                 </div>
@@ -69,11 +68,13 @@ onMounted(async () => {
             
         </div>
 
-        <pre class="snippet-container"><code :class="`hljs ${highlighted.language || ''}`" v-html="highlighted.value"></code></pre>
-        <div :id="'comment' + gist.id" class="flex hidden justify-between text-menu-text font-fira_retina mt-4 pt-4 border-top">
-            <p id="comment" v-if="comment" class="w-5/6">{{ comment }}</p>
+        <pre class="snippet-container" tabindex="0" role="region" :aria-label="`Code snippet: ${firstFile?.filename ?? gist.id}`"><code :class="`hljs ${highlighted.language || ''}`" v-html="highlighted.value"></code></pre>
+        <div v-show="commentOpen" class="flex justify-between text-menu-text font-fira_retina mt-4 pt-4 border-top">
+            <p v-if="comment" class="comment w-5/6">{{ comment }}</p>
             <p v-else class="w-5/6">No comments.</p>
-            <img src="/icons/close.svg" alt="" class="hover:cursor-pointer" @click="showComment(gist.id)">
+            <button type="button" class="flex self-start" aria-label="Close comment" @click="commentOpen = false">
+                <img src="/icons/close.svg" alt="">
+            </button>
         </div>
     </div>
 </template>
@@ -119,7 +120,7 @@ code.hljs{
     padding:3px 5px
 }
 
-#comment {
+.comment {
     font-size: 14px;
 }
 

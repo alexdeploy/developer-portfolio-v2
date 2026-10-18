@@ -25,26 +25,27 @@ function filterProjects(tech: string, checked: boolean) {
 <template>
   <main class="flex flex-col flex-auto lg:flex-row overflow-hidden">
 
+    <h1 class="sr-only">Projects</h1>
     <div id="mobile-page-title">
       <h2>_projects</h2>
     </div>
 
     <!-- section title (mobile) -->
-    <div id="section-content-title" class="flex lg:hidden" @click="showFilters = !showFilters">
-      <img :class="showFilters ? 'section-arrow rotate-90' : 'section-arrow'" src="/icons/arrow.svg">
+    <button type="button" class="section-content-title flex lg:hidden w-full text-left" :aria-expanded="showFilters" aria-controls="filter-menu" @click="showFilters = !showFilters">
+      <img :class="showFilters ? 'section-arrow rotate-90' : 'section-arrow'" src="/icons/arrow.svg" alt="">
       <span class="font-fira_regular text-white text-sm">projects</span>
-    </div>
+    </button>
 
     <div v-if="showFilters" id="filter-menu"
       class="w-full flex-col border-right font-fira_regular text-menu-text lg:flex">
       <!-- title -->
-      <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
-        <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3">
+      <div class="section-content-title hidden lg:flex items-center min-w-full">
+        <img src="/icons/arrow.svg" alt="" class="section-arrow mx-3">
         <p class="font-fira_regular text-white text-sm">projects</p>
       </div>
 
       <!-- filter menu -->
-      <nav id="filters" class="w-full flex-col">
+      <nav id="filters" aria-label="Filter projects by technology" class="w-full flex-col">
 
         <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
           <input type="checkbox" :id="tech" :checked="filters.includes(tech)" @change="filterProjects(tech, ($event.target as HTMLInputElement).checked)">

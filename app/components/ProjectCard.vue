@@ -5,26 +5,26 @@ defineProps<{ project: Project, index: number }>()
 </script>
 
 <template>
-    <div id="project" class="lg:mx-5">
+    <div class="project lg:mx-5">
 
         <span class="flex text-sm my-3">
-            <h3 class="text-purplefy font-fira_bold mr-3">Project {{ index + 1 }}</h3>
-            <h4 class="font-fira_retina text-menu-text"> // {{ project.title }}</h4>
+            <h2 class="text-purplefy font-fira_bold mr-3">Project {{ index + 1 }}</h2>
+            <h3 class="font-fira_retina text-menu-text text-sm"> // {{ project.title }}</h3>
         </span>
 
         <div id="project-card" class="flex flex-col">
             <div id="window">
                 <div class="absolute flex right-3 top-3">
-                <img v-for="tech in project.tech" :key="tech" :src="`/icons/techs/filled/${tech.toLowerCase()}.svg`" alt="" class="w-6 h-6 mx-1 hover:opacity-75">
+                <img v-for="tech in project.tech" :key="tech" :src="`/icons/techs/filled/${tech.toLowerCase()}.svg`" :alt="tech" class="w-6 h-6 mx-1 hover:opacity-75">
                 </div>
-                <img id="showcase" :src="project.img" alt="" class="">
+                <img id="showcase" :src="project.img" :alt="project.title">
             </div>
 
             <div class="pb-8 pt-6 px-6 border-top">
                 <p class="text-menu-text font-fira_retina text-sm mb-5">
                 {{ project.description }}
                 </p>
-                <a id="view-button" :href="project.url" target="_blank" class="text-white font-fira_retina py-2 px-4 w-fit text-xs rounded-lg">
+                <a id="view-button" :href="project.url" target="_blank" rel="noopener noreferrer" :aria-label="`View project ${project.title}`" class="text-white font-fira_retina py-2 px-4 w-fit text-xs rounded-lg">
                     view-project
                 </a>
             </div>
@@ -32,7 +32,7 @@ defineProps<{ project: Project, index: number }>()
     </div>
 </template>
 <style scoped>
-#project {
+.project {
   min-width: 400px;
   margin-bottom: 5px;
 }
@@ -56,13 +56,13 @@ defineProps<{ project: Project, index: number }>()
 }
 
 @media (max-width: 768px) {
-  #project {
+  .project {
     min-width: 100%;
   }
 }
 
 @media (min-width: 768px) {
-  #project {
+  .project {
     width: 100%;
     min-width: 100%;
     padding-inline: 5px;
@@ -70,7 +70,7 @@ defineProps<{ project: Project, index: number }>()
 }
 
 @media (min-width: 1350px) {
-  #project {
+  .project {
     width: 100%;
     min-width: 100%;
     padding-inline: 20px;

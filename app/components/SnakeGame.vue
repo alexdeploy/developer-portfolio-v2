@@ -28,6 +28,13 @@ const won = ref(false)
 const food = ref<Cell | null>({ ...INITIAL_FOOD })
 const snake = ref<Cell[]>(INITIAL_SNAKE.map(cell => ({ ...cell })))
 const direction = ref<Direction>('up')
+
+const statusText = computed(() => {
+  if (won.value) return 'Well done! You ate all the food. Press play-again to restart.'
+  if (gameOver.value) return `Game over with ${score.value} of ${FOOD_TO_WIN} food eaten. Press start-again to retry.`
+  if (gameStarted.value) return `Playing. Food eaten: ${score.value} of ${FOOD_TO_WIN}.`
+  return 'Snake game. Press start-game or the space bar to play, then use the arrow keys.'
+})
 let gameInterval: ReturnType<typeof setInterval> | null = null
 
 function stopLoop() {
@@ -188,14 +195,15 @@ onBeforeUnmount(() => {
     <div id="console">
 
       <!-- bolts -->
-      <img id="corner" src="/icons/console/bolt-up-left.svg" alt="" class="absolute top-2 left-2 opacity-70">
-      <img id="corner"  src="/icons/console/bolt-up-right.svg" alt="" class="absolute top-2 right-2 opacity-70">
-      <img id="corner"  src="/icons/console/bolt-down-left.svg" alt="" class="absolute bottom-2 left-2 opacity-70">
-      <img id="corner"  src="/icons/console/bolt-down-right.svg" alt="" class="absolute bottom-2 right-2 opacity-70">
+      <img src="/icons/console/bolt-up-left.svg" alt="" class="corner absolute top-2 left-2 opacity-70">
+      <img src="/icons/console/bolt-up-right.svg" alt="" class="corner absolute top-2 right-2 opacity-70">
+      <img src="/icons/console/bolt-down-left.svg" alt="" class="corner absolute bottom-2 left-2 opacity-70">
+      <img src="/icons/console/bolt-down-right.svg" alt="" class="corner absolute bottom-2 right-2 opacity-70">
 
 
       <!-- Game Screen -->
-      <div id="game-screen" ref="gameScreen"></div>
+      <div id="game-screen" ref="gameScreen" aria-hidden="true"></div>
+      <p class="sr-only" aria-live="polite">{{ statusText }}</p>
 
       <button v-show="!gameStarted && !gameOver" id="start-button" class="font-fira_retina" @click="startGame">start-game</button>
 
@@ -220,20 +228,20 @@ onBeforeUnmount(() => {
 
           <div id="buttons" class="w-full flex flex-col items-center gap-1 pt-5">
 
-              <button id="console-button" class="button-up" @click="move('up')">
+              <button type="button" class="console-button button-up" @click="move('up')">
                 <img src="/icons/console/arrow-button.svg" alt="move up">
               </button>
 
               <div class="grid grid-cols-3 gap-1">
-                <button id="console-button" class="button-left" @click="move('left')">
+                <button type="button" class="console-button button-left" @click="move('left')">
                   <img src="/icons/console/arrow-button.svg" alt="move left" class="-rotate-90">
                 </button>
 
-                <button id="console-button" class="button-down" @click="move('down')">
+                <button type="button" class="console-button button-down" @click="move('down')">
                   <img src="/icons/console/arrow-button.svg" alt="move down" class="rotate-180">
                 </button>
 
-                <button id="console-button" class="button-right" @click="move('right')">
+                <button type="button" class="console-button button-right" @click="move('right')">
                   <img src="/icons/console/arrow-button.svg" alt="move right" class="rotate-90">
                 </button>
             </div>
@@ -308,7 +316,7 @@ onBeforeUnmount(() => {
   height: 400px;
 }
 
-#console-button {
+.console-button {
   background-color: #010C15;
   border-radius: 10px;
   display: flex;
@@ -318,7 +326,7 @@ onBeforeUnmount(() => {
   height: 30px;
 }
 
-#console-button:hover {
+.console-button:hover {
   background-color: #010c15d8;
   box-shadow: #43D9AD 0 0 10px;
 }
@@ -350,7 +358,7 @@ onBeforeUnmount(() => {
   line-height: 2rem; /* 32px */
 }
 
-#corner {
+.corner {
   width: 24px;
   height: 24px;
 }
@@ -396,7 +404,7 @@ onBeforeUnmount(() => {
   font-size: 12px;
 }
 
-#console-button {
+.console-button {
   width: 40px;
   height: 25px;
   border-radius: 6px;
@@ -423,7 +431,7 @@ onBeforeUnmount(() => {
   line-height: 1.75rem; /* 28px */
 }
 
-#corner {
+.corner {
   width: 20px;
   height: 20px;
 }

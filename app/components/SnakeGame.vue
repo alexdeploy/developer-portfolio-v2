@@ -114,7 +114,6 @@ function render() {
   for (let i = 0; i < ROWS; i++) {
     for (let j = 0; j < COLS; j++) {
       const cell = document.createElement('div')
-      cell.classList.add('cell', 'black')
       cell.style.width = cellSize
       cell.style.height = cellSize
       cell.style.display = 'flex'
@@ -124,7 +123,6 @@ function render() {
       if (segmentIndex !== -1) {
         cell.style.backgroundColor = '#43D9AD'
         cell.style.opacity = String(1 - segmentIndex / snake.value.length)
-        cell.classList.add('green')
         if (segmentIndex === 0) {
           switch (direction.value) {
             case 'up':

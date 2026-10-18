@@ -6,14 +6,12 @@ const sections = config.about.sections
 
 const currentSection = ref('personal-info')
 const folder = ref('bio')
-const loading = ref(true)
 
 const activeSection = computed(() => sections[currentSection.value])
 const activeFolder = computed(() => activeSection.value?.info[folder.value])
 
 const isActive = (name: string) => folder.value === name
 const isSectionActive = (name: string) => currentSection.value === name
-const isOpen = (name: string) => folder.value === name
 
 function focusCurrentSection(section: AboutSection) {
   currentSection.value = section.title
@@ -34,14 +32,10 @@ function showContacts() {
   document.getElementById('contacts')?.classList.toggle('hidden')
   document.getElementById('section-arrow')?.classList.toggle('rotate-90')
 }
-
-onMounted(() => {
-  loading.value = false
-})
 </script>
 
 <template>
-  <main v-if="!loading" id="about-me" class="page">
+  <main id="about-me" class="page">
 
     <div id="mobile-page-title">
       <h2>_about-me</h2>
@@ -69,7 +63,7 @@ onMounted(() => {
         <div>
           <div v-for="(folder, key, index) in activeSection?.info ?? {}" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
             <div class="flex col-span-2 hover:text-white hover:cursor-pointer">
-              <img id="diple" src="/icons/diple.svg" alt="" :class="{ open: isOpen(folder.title)}">
+              <img id="diple" src="/icons/diple.svg" alt="" :class="{ open: isActive(folder.title)}">
               <img :src="'/icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
               <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
             </div>
@@ -102,7 +96,7 @@ onMounted(() => {
         <div v-for="section in config.about.sections" :key="section.title">
           
           <!-- section title (mobile) -->
-          <div :key="section.title" :src="section.icon" id="section-content-title" class="flex lg:hidden mb-1" @click="focusCurrentSection(section)">
+          <div :key="section.title" id="section-content-title" class="flex lg:hidden mb-1" @click="focusCurrentSection(section)">
             <img src="/icons/arrow.svg" :id="'section-arrow-' + section.title" alt="" class="section-arrow">
             <p v-html="section.title" class=" text-white text-sm"></p>
           </div>

@@ -5,37 +5,20 @@
  * becomes a utility (`bg-dark-background`, `font-fira_retina`, ...).
  */
 @theme {
-  --color-gray-dark: #121212;
-  --color-glitch-green: #00ff00;
-  --color-glitch-rose: #f0f;
-  --color-glitch-blue: #0ff;
-  --color-neon-blue-xs: #08cff6;
-  --color-neon-blue-s: #194262;
-  --color-neon-blue-m: #0e2535;
-  --color-neon-blue-l: #05131e;
-  --color-neon-blue-xl: #020204;
   --color-dark-background: #010C15;
   --color-menu-text: #85a5c4;
   --color-blue-background: #011627;
-  --color-hello-name: #E5E9F0;
   --color-purple-text: #81a0fd;
-  --color-hello-gray: #84a6c8;
   --color-codeline-link: #E99287;
-  --color-codeline-tag: #4D5BCE;
-  --color-codeline-name: #43D9AD;
   --color-mobile-menu-blue: #011627;
-  --color-placeholder-gray: #465E77;
   --color-greenfy: #43D9AD;
   --color-bluefy-dark: #011627;
   --color-purplefy: #799ffb;
 
-  --font-fira_light: "Fira Code Light";
   --font-fira_regular: "Fira Code Regular";
   --font-fira_retina: "Fira Code Retina";
   --font-fira_medium: "Fira Code Medium";
-  --font-fira_semibold: "Fira Code SemiBold";
   --font-fira_bold: "Fira Code Bold";
-  --font-fira_variable: "Fira Code Variable";
 
   /*
    * Tailwind 4 derives the line-height of `text-*` from the font size, so it changes
@@ -134,7 +117,6 @@ main.page {
   margin-right: 10px;
   transition: 0.1s;
 }
-
 
 /* MOBILE AND TABLET (SM - LG) */
 @media (max-width: 1024px) {
@@ -236,14 +218,8 @@ main.page {
   }
 }
 
-/* 2XL */
-@media (min-width: 1536px) {
-
-}
-
 /* 2K */
 @media (min-width: 1920px) {
-
 
   #page-menu, #nav-logo, #filter-menu {
     min-width: 310px !important;
@@ -291,28 +267,6 @@ main.page {
   }
 }
 
-
-/* 
- * Mobile min view to tablet max view (width: 0 to 1020)
-*/
-@media screen (max-width: 1020px) {
-
-}
-
-/* 
- * Tablet min view to desktop medium view (width: 1020 to 1920) (height: 0 to 1080)
-*/
-@media screen (min-width: 1020px) and (max-width: 1920px) and (max-height: 1080px) {
-
-}
-
-/* 
- * Desktop medium view to desktop max view (width: 1920 to infinte) (height: 1080 to infinite)
-*/
-@media screen (min-width: 1920px) and (min-height: 1080px) {
-
-}
-
 /* Borders */
 
 .border-top {
@@ -358,11 +312,6 @@ main.page {
 /* Fonts */
 
 @font-face {
-    font-family: "Fira Code Light";
-    src: url("./fonts/fira-code/FiraCode-Light.ttf") format('truetype');
-}
-
-@font-face {
   font-family: "Fira Code Regular";
   src: url("./fonts/fira-code/FiraCode-Regular.ttf") format('truetype');
 }
@@ -378,16 +327,7 @@ main.page {
 }
 
 @font-face {
-  font-family: "Fira Code SemiBold";
-  src: url("./fonts/fira-code/FiraCode-SemiBold.ttf") format('truetype');
-}
-
-@font-face {
   font-family: "Fira Code Bold";
   src: url("./fonts/fira-code/FiraCode-Bold.ttf") format('truetype');
 }
 
-@font-face {
-  font-family: "Fira Code Variable";
-  src: url("./fonts/fira-code/FiraCode-Variable.ttf") format('truetype');
-}

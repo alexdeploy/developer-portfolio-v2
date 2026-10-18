@@ -76,7 +76,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import DevConfig from '~/developer.json';
+import DevConfig from '~~/developer.json';
 
 const config = ref(DevConfig)
 

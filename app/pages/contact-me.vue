@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import DevConfig from '~/developer.json';
+import DevConfig from '~~/developer.json';
 export default {
     data() {
         return {

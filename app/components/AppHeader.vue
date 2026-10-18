@@ -32,7 +32,7 @@
 
 <script setup>
 import GithubCorner from './GithubCorner.vue';
-import config from '~/developer.json';
+import config from '~~/developer.json';
 
 const isActive = (route) => {
   return route === route;

@@ -31,7 +31,7 @@
             
         </div>
 
-        <highlightjs class="snippet-container" :code="content"/>
+        <pre class="snippet-container"><code :class="`hljs ${highlighted.language || ''}`" v-html="highlighted.value"></code></pre>
         <div :id="'comment' + gist.id" class="flex hidden justify-between text-menu-text font-fira_retina mt-4 pt-4 border-top">
             <p id="comment" v-if="comment" class="w-5/6">{{ comment }}</p>
             <p v-else class="w-5/6">No comments.</p>
@@ -99,8 +99,7 @@ code.hljs{
 
 <script>
 
-import hljsVuePlugin from "@highlightjs/vue-plugin";
-import 'highlight.js/lib/common';
+import hljs from 'highlight.js/lib/common';
 
 export default {
     name: 'GistSnippet',
@@ -118,6 +117,12 @@ export default {
             language: null,
             dataFetched: false,
             comment: null
+        }
+    },
+    computed: {
+        highlighted() {
+            if (!this.content) return { value: '', language: '' }
+            return hljs.highlightAuto(this.content)
         }
     },
     mounted(){
@@ -161,9 +166,6 @@ export default {
             let comment = document.getElementById('comment' + id)
             comment.classList.toggle('hidden')
         }
-    },
-    components: {
-        highlightjs: hljsVuePlugin.component
     }
 }
 </script>

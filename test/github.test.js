@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { getGistById } from '../utils/github-api.js'
+import { getGistById } from '../app/utils/github-api.js'
 
 describe('Testing Github Gists API', () => {
 

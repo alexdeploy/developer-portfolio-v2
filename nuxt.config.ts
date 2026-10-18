@@ -8,7 +8,12 @@ const siteTitle = `${config.name} | ${config.role}`
  * Usage: https://nuxt.com/docs/api/configuration/nuxt-config
  */
 export default defineNuxtConfig({
-  compatibilityDate: '2026-10-18',
+
+  /**
+   * * Nuxt Modules
+   * Official modules: https://nuxt.com/modules
+   */
+  modules: ['@nuxt/eslint'],
   devtools: { enabled: true },
 
   /**
@@ -44,18 +49,24 @@ export default defineNuxtConfig({
   },
 
   /**
-   * * Nuxt Modules
-   * Official modules: https://nuxt.com/modules
-   */
-  modules: [],
-
-  /**
    * * Tailwind CSS 4
    * Configured in CSS (`@theme` in app/assets/tailwind.css) and compiled by the Vite plugin.
    * Docs: https://tailwindcss.com/docs/installation/framework-guides/nuxt
    */
   css: ['~/assets/tailwind.css'],
+  compatibilityDate: '2026-10-18',
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  /**
+   * * ESLint (official Nuxt module)
+   * Generates .nuxt/eslint.config.mjs, extended by eslint.config.mjs at the root.
+   * `stylistic` enables formatting rules, so ESLint is also the formatter of this project.
+   */
+  eslint: {
+    config: {
+      stylistic: true,
+    },
   },
 })

@@ -2,3 +2,4 @@
 # Dependencies allowed to run their install scripts; pnpm blocks every other one.
 allowBuilds:
   esbuild: true
+  unrs-resolver: true

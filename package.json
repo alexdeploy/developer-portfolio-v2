@@ -14,15 +14,19 @@
     "test": "vitest run",
     "typecheck": "nuxt typecheck",
     "test:watch": "vitest",
-    "schema:types": "node scripts/generate-config-types.mjs"
+    "schema:types": "node scripts/generate-config-types.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
     "@nuxt/test-utils": "^4.3.4",
     "@types/aos": "^3.0.8",
     "@types/node": "^24",
     "@vue/test-utils": "^2.5.1",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
+    "eslint": "^10.13.0",
     "happy-dom": "^21.0.3",
     "json-schema-to-typescript": "^16.0.0",
     "nuxt": "^4.6.2",

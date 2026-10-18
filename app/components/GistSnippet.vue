@@ -1,5 +1,43 @@
+<script setup lang="ts">
+import hljs from 'highlight.js/lib/common'
+import type { Gist } from '~/types/github'
+
+const props = defineProps<{ id: string }>()
+
+const gist = ref<Gist | null>(null)
+const comment = ref<string | null>(null)
+
+const content = computed(() => Object.values(gist.value?.files ?? {})[0]?.content ?? '')
+
+const highlighted = computed(() => {
+  if (!content.value) return { value: '', language: '' }
+  return hljs.highlightAuto(content.value)
+})
+
+const monthsAgo = computed(() => {
+  if (!gist.value) return 0
+  const diff = Date.now() - new Date(gist.value.created_at).getTime()
+  return Math.floor(diff / (1000 * 3600 * 24) / 30)
+})
+
+function showComment(id: string) {
+  document.getElementById('comment' + id)?.classList.toggle('hidden')
+}
+
+onMounted(async () => {
+  try {
+    const data = await getGistById(props.id)
+    gist.value = data
+    const comments = await getGistComments(data.comments_url)
+    comment.value = comments[0]?.body ?? null
+  } catch (error) {
+    console.error(`Could not load gist ${props.id}`, error)
+  }
+})
+</script>
+
 <template>
-    <div class="gist mb-5" v-if="dataFetched">
+    <div class="gist mb-5" v-if="gist">
         
         <!-- head info -->
         <div class="flex justify-between my-2">
@@ -96,76 +134,3 @@ code.hljs{
 .hljs{color:#85a9ce;background:#011221}.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-template-tag,.hljs-template-variable,.hljs-type,.hljs-variable.language_{color:#ff7b72}.hljs-title,.hljs-title.class_,.hljs-title.class_.inherited__,.hljs-title.function_{color:#d2a8ff}.hljs-attr,.hljs-attribute,.hljs-literal,.hljs-meta,.hljs-number,.hljs-operator,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-variable{color:#79c0ff}.hljs-meta .hljs-string,.hljs-regexp,.hljs-string{color:#a5d6ff}.hljs-built_in,.hljs-symbol{color:#ffa657}.hljs-code,.hljs-comment,.hljs-formula{color:#8b949e}.hljs-name,.hljs-quote,.hljs-selector-pseudo,.hljs-selector-tag{color:#7ee787}.hljs-subst{color:#c9d1d9}.hljs-section{color:#1f6feb;font-weight:700}.hljs-bullet{color:#f2cc60}.hljs-emphasis{color:#c9d1d9;font-style:italic}.hljs-strong{color:#c9d1d9;font-weight:700}.hljs-addition{color:#aff5b4;background-color:#033a16}.hljs-deletion{color:#ffdcd7;background-color:#67060c}
 
 </style>
-
-<script>
-
-import hljs from 'highlight.js/lib/common';
-
-export default {
-    name: 'GistSnippet',
-    props: {
-        id: {
-            type: String,
-            required: true
-        }
-    },
-    data(){
-        return {
-            gist: null,
-            monthsAgo: null,
-            content: null,
-            language: null,
-            dataFetched: false,
-            comment: null
-        }
-    },
-    computed: {
-        highlighted() {
-            if (!this.content) return { value: '', language: '' }
-            return hljs.highlightAuto(this.content)
-        }
-    },
-    mounted(){
-        fetch(`https://api.github.com/gists/${this.id}`)
-            .then(response => response.json())
-            .then(data => this.setValues(data))
-            
-    },
-    methods: {
-        async setValues(gist) {
-        this.gist = gist
-        this.monthsAgo = this.setMonths(gist.created_at)
-        this.content = this.setSnippet(gist)
-        this.language = Object.values(gist.files)[0].language
-        this.dataFetched = true
-        this.comment = await this.setComments(gist.comments_url)
-        },
-        setMonths(date) {
-            let now = new Date()
-            let gistDate = new Date(date)
-            let diff = now.getTime() - gistDate.getTime()
-            let days = Math.floor(diff / (1000 * 3600 * 24))
-            let months = Math.floor(days / 30)
-            return months
-        },
-        setSnippet(gist) {
-            let snippet = Object.values(gist.files)[0].content // Object.values(gist.files)[0].filename.content
-            return snippet
-        },
-        async setComments(comments_url){
-            let response = await fetch(comments_url)
-            let data = await response.json()
-            try{
-                let body = data[0].body
-                return body
-            } catch {
-                console.log(`no comments found on ${comments_url}`)
-            }
-        },
-        showComment(id) {
-            let comment = document.getElementById('comment' + id)
-            comment.classList.toggle('hidden')
-        }
-    }
-}
-</script>

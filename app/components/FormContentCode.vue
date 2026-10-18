@@ -1,3 +1,34 @@
+<script setup lang="ts">
+withDefaults(defineProps<{ name?: string, email?: string, message?: string }>(), {
+  name: '',
+  email: '',
+  message: '',
+})
+
+const date = new Date().toDateString()
+const lines = ref(0)
+const textContainer = ref<HTMLElement | null>(null)
+
+function updateLines() {
+  if (!textContainer.value) return
+  const lineHeight = parseInt(window.getComputedStyle(textContainer.value).lineHeight)
+  lines.value = Math.ceil(textContainer.value.offsetHeight / lineHeight)
+}
+
+onMounted(() => {
+  updateLines()
+  window.addEventListener('resize', updateLines)
+  window.addEventListener('input', updateLines)
+  window.addEventListener('click', updateLines)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateLines)
+  window.removeEventListener('input', updateLines)
+  window.removeEventListener('click', updateLines)
+})
+</script>
+
 <template>
     <div class="code-container flex font-fira_retina text-menu-text">
         <div class="line-numbers lg:flex flex-col w-16 hidden">
@@ -7,7 +38,7 @@
                 <span class="col-span-1 mr-3">{{ n }}</span>
             </div>
         </div>
-        <div class="font-fira_retina text-white text-container">
+        <div ref="textContainer" class="font-fira_retina text-white text-container">
             <p>
                 <span class="tag">
                     const
@@ -102,44 +133,6 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            date: new Date().toDateString(),
-            lines: 0
-        }
-    },
-    props: {
-        name: String,
-        email: String,
-        message: String,
-    },
-    mounted() {
-        this.updateLines();
-        window.addEventListener("resize", this.updateLines);
-        window.addEventListener("input", this.updateLines);
-        window.addEventListener("click", this.updateLines);
-    },
-    beforeDestroy() {
-        window.removeEventListener("resize", this.updateLines);
-        window.removeEventListener("click", this.updateLines);
-        window.addEventListener("input", this.updateLines);
-    },
-    methods: {
-        updateLines() {
-            const textContainer = this.$el.querySelector(".text-container");
-            const style = window.getComputedStyle(textContainer);
-            const fontSize = parseInt(style.fontSize);
-            const lineHeight = parseInt(style.lineHeight);
-            const maxHeight = textContainer.offsetHeight;
-            this.lines = Math.ceil(maxHeight / lineHeight);
-        }
-    }
-}
-</script>
-
 <style>
 .tag {
     color: #C98BDF;

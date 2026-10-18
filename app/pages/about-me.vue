@@ -1,3 +1,45 @@
+<script setup lang="ts">
+import type { AboutFolder, AboutSection } from '~/types/developer'
+
+const config = developerConfig
+const sections = config.about.sections
+
+const currentSection = ref('personal-info')
+const folder = ref('bio')
+const loading = ref(true)
+
+const activeSection = computed(() => sections[currentSection.value])
+const activeFolder = computed(() => activeSection.value?.info[folder.value])
+
+const isActive = (name: string) => folder.value === name
+const isSectionActive = (name: string) => currentSection.value === name
+const isOpen = (name: string) => folder.value === name
+
+function focusCurrentSection(section: AboutSection) {
+  currentSection.value = section.title
+  folder.value = Object.keys(section.info)[0] ?? folder.value
+  document.getElementById('folders-' + section.title)?.classList.toggle('hidden') // show folders (mobile)
+  document.getElementById('section-arrow-' + section.title)?.classList.toggle('rotate-90') // rotate arrow (mobile)
+}
+
+function focusCurrentFolder(target: AboutFolder) {
+  folder.value = target.title
+  if (!activeSection.value?.info[target.title]) {
+    const owner = Object.keys(sections).find(name => sections[name]?.info[target.title])
+    if (owner) currentSection.value = owner
+  }
+}
+
+function showContacts() {
+  document.getElementById('contacts')?.classList.toggle('hidden')
+  document.getElementById('section-arrow')?.classList.toggle('rotate-90')
+}
+
+onMounted(() => {
+  loading.value = false
+})
+</script>
+
 <template>
   <main v-if="!loading" id="about-me" class="page">
 
@@ -20,12 +62,12 @@
         <!-- title -->
         <div id="section-content-title" class="hidden lg:flex items-center min-w-full">
           <img id="section-arrow-menu" src="/icons/arrow.svg" alt="" class="section-arrow mx-3 open">
-          <p v-html="config.about.sections[currentSection]?.title" class="font-fira_regular text-white text-sm"></p>
+          <p v-html="activeSection?.title" class="font-fira_regular text-white text-sm"></p>
         </div>
 
         <!-- folders -->
         <div>
-          <div v-for="(folder, key, index) in config.about.sections[currentSection]?.info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
+          <div v-for="(folder, key, index) in activeSection?.info ?? {}" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text" @click="focusCurrentFolder(folder)">
             <div class="flex col-span-2 hover:text-white hover:cursor-pointer">
               <img id="diple" src="/icons/diple.svg" alt="" :class="{ open: isOpen(folder.title)}">
               <img :src="'/icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
@@ -67,7 +109,7 @@
 
           <!-- folders -->
           <div :id="'folders-' + section.title" class="hidden"> <!-- <div :id="'folders-' + section.title" :class="currentSection == section.title ? 'block' : 'hidden'"> -->
-            <div v-for="(folder, key, index) in config.about.sections[section.title]?.info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
+            <div v-for="(folder, key, index) in section.info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
               <div class="flex col-span-2">
                 <img id="diple" src="/icons/diple.svg">
                 <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
@@ -112,7 +154,7 @@
         <!-- windows tab desktop -->
         <div class="tab-height w-full hidden lg:flex border-bot items-center">
           <div class="flex items-center border-right h-full">
-            <p v-html="config.about.sections[currentSection]?.title" class="font-fira_regular text-menu-text text-sm px-3"></p>
+            <p v-html="activeSection?.title" class="font-fira_regular text-menu-text text-sm px-3"></p>
             <img src="/icons/close.svg" alt="" class="mx-3">
           </div>
         </div>
@@ -120,16 +162,16 @@
         <!-- windows tab mobile -->
         <div id="tab-mobile" class="flex lg:hidden font-fira_retina">
             <span class="text-white">// </span>
-            <h3 v-html="config.about.sections[currentSection]?.title" class="text-white px-2"></h3>
+            <h3 v-html="activeSection?.title" class="text-white px-2"></h3>
             <span class="text-menu-text"> / </span>
-            <h3 v-html="config.about.sections[currentSection]?.info[folder].title" class="text-menu-text pl-2"></h3>
+            <h3 v-html="activeFolder?.title" class="text-menu-text pl-2"></h3>
         </div>
         
         <!-- text -->
         <div id="commented-text" class="flex h-full w-full lg:border-right overflow-hidden">
 
           <div class="w-full h-full ml-5 mr-10 lg:my-5 overflow-scroll">
-              <CommentedText :text="config.about.sections[currentSection]?.info[folder].description" />
+              <CommentedText :text="activeFolder?.description ?? ''" />
           </div>
           
           <!-- scroll bar -->
@@ -269,65 +311,3 @@
 }
 
 </style>
-
-<script>
-import DevConfig from '~~/developer.json';
-export default {
-  data() {
-    return {
-      currentSection: 'personal-info',
-      folder: 'bio',
-      loading: true,
-    }
-  },
-  /**
-   * In setup we can define the data we want to use in the component before the component is created.
-   */
-  setup() {
-    return {
-      config: DevConfig
-    }
-  },
-  computed: {
-    // Set active class to current page link
-    isActive() {
-      return folder => this.folder === folder;
-    },
-    isSectionActive() {
-      return section => this.currentSection === section;
-    },
-    isOpen() {
-      return folder => this.folder === folder;
-    },
-  },
-  methods: {
-    focusCurrentSection(section) {
-      this.currentSection = section.title
-      this.folder = Object.keys(section.info)[0]
-
-      document.getElementById('folders-' + section.title).classList.toggle('hidden') // show folders
-      document.getElementById('section-arrow-' + section.title).classList.toggle('rotate-90'); // rotate arrow
-    },
-    focusCurrentFolder(folder) {
-      this.folder = folder.title
-      // handle if folder belongs to the current section. It happens when you click on a folder from a different section in mobile view.
-      this.currentSection = this.config.about.sections[this.currentSection].info[folder.title] ? this.currentSection : Object.keys(this.config.about.sections).find(section => this.config.about.sections[section].info[folder.title])
-    },
-    /**
-     * TODO: Hay que crear un método para que cuando se haga click en un folder, se muestren los archivos que contiene. Y si se hace click en un archivo, se muestre el contenido del archivo.
-     * TODO:  Además de girar el icono del diple.
-     */
-    toggleFiles() {
-      document.getElementById('file-' + this.folder).classList.toggle('hidden')
-    },
-    /* Mobile */
-    showContacts() {
-      document.getElementById('contacts').classList.toggle('hidden')
-      document.getElementById('section-arrow').classList.toggle('rotate-90'); // rotate arrow
-    },
-  },
-  mounted(){
-    this.loading = false
-  }
-}
-</script>

@@ -10,11 +10,16 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest run",
+    "typecheck": "nuxt typecheck",
+    "test:watch": "vitest"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.8",
     "nuxt": "^4.6.2",
-    "vitest": "^5.0.5"
+    "typescript": "^5.9",
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.14.0",

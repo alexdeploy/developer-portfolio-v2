@@ -1,3 +1,7 @@
+<script setup lang="ts">
+withDefaults(defineProps<{ url?: string }>(), { url: '' })
+</script>
+
 <template>
     <a :href="url" class="github-corner" target="_blank" aria-label="View source on Github">
         <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
@@ -9,19 +13,6 @@
         </svg>
     </a>
 </template>
-
-<script>
-export default {
-    name: 'GithubCorner',
-    props: {
-        url: {
-            type: String,
-            default: ''
-        }
-    }
-}
-</script>
-
 <style>
 /* ----------------------------------------------
  * GitHub Corners

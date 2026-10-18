@@ -1,7 +1,14 @@
+<script setup lang="ts">
+const config = developerConfig
+const route = useRoute()
+
+const isActive = (path: string) => route.path === path
+</script>
+
 <template>
     <header id="navbar" class="w-full hidden lg:flex flex-col">
       <nav class="w-full flex justify-between border-bot">
-        <github-corner url="https://github.com/alexdeploy/developer-portfolio-v2" />
+        <GithubCorner url="https://github.com/alexdeploy/developer-portfolio-v2" />
           <div class="flex">
             <NuxtLink id="nav-logo" to="/">
               {{ config.logo_name }}
@@ -29,22 +36,6 @@
     </header>
 
 </template>
-
-<script setup>
-import GithubCorner from './GithubCorner.vue';
-import config from '~~/developer.json';
-
-const isActive = (route) => {
-  return route === route;
-}
-
-</script>
-
-<script>
-export default {
-  name: 'AppHeader',
-};
-</script>
 
 <style>
 

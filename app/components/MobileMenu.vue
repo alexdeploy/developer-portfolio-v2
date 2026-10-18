@@ -1,10 +1,33 @@
+<script setup lang="ts">
+const config = developerConfig
+const route = useRoute()
+const menuOpen = ref(false)
+
+function setPageVisible(visible: boolean) {
+  const page = document.querySelector<HTMLElement>('main')
+  if (page) page.style.display = visible ? 'flex' : 'none'
+}
+
+function toggleMobileMenu() {
+  menuOpen.value = !menuOpen.value
+  document.getElementById('menu')?.classList.toggle('hidden')
+  setPageVisible(!menuOpen.value)
+}
+
+function goHome() {
+  if (menuOpen.value) toggleMobileMenu()
+}
+
+const isActive = (path: string) => route.path === path
+</script>
+
 <template>
   <div id="mobile-menu" class="w-full z-10 lg:hidden">
 
     <!-- header -->
     <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
       <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5" to="/" @click="goHome()">
-        {{ config.logoName }}
+        {{ config.logo_name }}
       </NuxtLink>
       <img src="/icons/burger.svg" alt="Open menu" v-if="!menuOpen" @click="toggleMobileMenu()"
         class="w-5 h-5 mx-5 my-auto" />
@@ -36,46 +59,6 @@
 
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-
-import DevConfig from '~~/developer.json';
-
-const config = ref(DevConfig);
-
-const menuOpen = ref(false);
-
-function toggleMobileMenu(){
-  menuOpen.value = !menuOpen.value;
-
-  const menu = document.getElementById('menu');
-  menu.classList.toggle('hidden');
-
-  const page = document.getElementsByTagName('main')[0];
-  // Hide / show section
-  if (page.style.display === 'none') {
-    page.style.display = 'flex';
-  } else {
-    page.style.display = 'none';
-  }
-};
-
-function goHome(){
-  const menu = document.getElementById('menu');
-  if (!menu.classList.contains('hidden')) {
-    menu.classList.toggle('hidden');
-    document.getElementsByTagName('main')[0].style.display = 'flex';
-    menuOpen.value = !menuOpen.value;
-  }
-};
-
-const isActive = (route) => {
-  return route === route.path;
-};
-
-</script>
-
 <style>
 #mobile-header {
   border-bottom: 1px solid #1E2D3D;

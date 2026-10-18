@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import type { Project } from '~/types/developer'
+
+const techs = ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter']
+const allProjects: Project[] = Object.values(developerConfig.projects)
+
+const filters = ref<string[]>(['all'])
+const showFilters = ref(true)
+
+const projects = computed<Project[]>(() => {
+  if (filters.value[0] === 'all') return allProjects
+  return allProjects.filter(project => filters.value.some(filter => project.tech.includes(filter)))
+})
+
+function filterProjects(tech: string, checked: boolean) {
+  if (checked) {
+    filters.value = [...filters.value.filter(item => item !== 'all'), tech]
+  } else {
+    filters.value = filters.value.filter(item => item !== tech)
+    if (filters.value.length === 0) filters.value = ['all']
+  }
+}
+</script>
+
 <template>
   <main class="flex flex-col flex-auto lg:flex-row overflow-hidden">
 
@@ -23,9 +47,9 @@
       <nav id="filters" class="w-full flex-col">
 
         <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
-          <input type="checkbox" :id="tech" @click="filterProjects(tech)">
-          <img :id="'icon-tech-' + tech" :src="'/icons/techs/' + tech + '.svg'" alt="" class="tech-icon w-5 h-5 mx-4">
-          <label :for="tech" :id="'title-tech-' + tech">{{ tech }}</label>
+          <input type="checkbox" :id="tech" :checked="filters.includes(tech)" @change="filterProjects(tech, ($event.target as HTMLInputElement).checked)">
+          <img :id="'icon-tech-' + tech" :src="`/icons/techs/${tech.toLowerCase()}.svg`" alt="" class="tech-icon w-5 h-5 mx-4" :class="{ active: filters.includes(tech) }">
+          <label :for="tech" :id="'title-tech-' + tech" :class="{ active: filters.includes(tech) }">{{ tech }}</label>
         </div>
       </nav>
     </div>
@@ -53,9 +77,9 @@
       </div>
 
       <!-- projects -->
-      <div id="projects-case" class="grid grid-cols-1 lg:grid-cols-2 max-w-full h-full overflow-scroll lg:self-center">
-        <div id="not-found"
-          class="hidden flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
+      <div id="projects-case" class="grid-cols-1 lg:grid-cols-2 max-w-full h-full overflow-scroll lg:self-center" :class="{ grid: projects.length > 0 }">
+        <div id="not-found" v-show="projects.length === 0"
+          class="flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
           <span class="flex justify-center text-4xl pb-3">
             X__X
           </span>
@@ -67,55 +91,12 @@
           </span>
         </div>
 
-        <project-card v-for="(project, index) in projects" :index="index" :project="project" />
+        <ProjectCard v-for="(project, index) in projects" :key="project.title + index" :index="index" :project="project" />
 
       </div>
     </div>
   </main>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import DevConfig from '~~/developer.json';
-
-const config = ref(DevConfig)
-
-const techs = ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter']
-const filters = ref(['all'])
-const showFilters = ref(true)
-const projects = ref(config.value.projects)
-
-function filterProjects(tech) {
-  document.getElementById('icon-tech-' + tech).classList.toggle('active')
-  document.getElementById('title-tech-' + tech).classList.toggle('active')
-
-  const check = document.getElementById(tech)
-  if (check.checked) {
-    filters.value = filters.value.filter((item) => item !== 'all')
-    filters.value.push(tech)
-  } else {
-    filters.value = filters.value.filter((item) => item !== tech)
-    filters.value.length === 0 ? filters.value.push('all') : null
-  }
-  filters.value[0] == 'all' ? projects.value = config.value.projects : projects.value = filterProjectsBy(filters.value)
-
-  if (projects.value.length === 0) {
-    document.getElementById('projects-case').classList.remove('grid')
-    document.getElementById('not-found').classList.remove('hidden')
-  } else {
-    document.getElementById('projects-case').classList.add('grid')
-    document.getElementById('not-found').classList.add('hidden')
-  }
-}
-
-function filterProjectsBy(filters) {
-  const projectArray = Object.values(config.value.projects)
-  return projectArray.filter(project => {
-    return filters.some(filter => project.tech.includes(filter))
-  })
-}
-</script>
-
 <style>
 #filters {
   padding: 10px 25px;

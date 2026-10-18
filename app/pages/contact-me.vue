@@ -1,3 +1,31 @@
+<script setup lang="ts">
+const contact = developerConfig.contacts
+
+const name = ref('')
+const email = ref('')
+const message = ref('')
+
+function open(elementId: string) {
+  const element = document.getElementById(elementId)
+  const arrow = element?.querySelector<HTMLElement>('.arrow')
+  const links = element?.querySelector<HTMLElement>('#links')
+  if (!arrow || !links) return
+  const isOpen = links.style.display === 'block'
+  links.style.display = isOpen ? 'none' : 'block'
+  arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(90deg)'
+}
+
+onMounted(() => {
+  const isDesktop = window.innerWidth > 1024
+  for (const submenu of document.querySelectorAll<HTMLElement>('.submenu')) {
+    const links = submenu.querySelector<HTMLElement>('#links')
+    const arrow = submenu.querySelector<HTMLElement>('.arrow')
+    if (links) links.style.display = isDesktop ? 'block' : 'none'
+    if (arrow && isDesktop) arrow.style.transform = 'rotate(90deg)'
+  }
+})
+</script>
+
 <template>
     <main id="contact-me" class="page">
 
@@ -58,7 +86,7 @@
         
                 <div id="left" class="h-full w-full flex flex-col border-right items-center">
                     
-                    <ContactForm :name="name" :email="email" :message="message" />
+                    <ContactForm v-model:name="name" v-model:email="email" v-model:message="message" />
 
                 </div>
 
@@ -78,76 +106,6 @@
         </div>
     </main>
 </template>
-
-<script>
-import DevConfig from '~~/developer.json';
-export default {
-    data() {
-        return {
-            name: '',
-            email: '',
-            message: '',
-        }
-    },
-    setup() {
-        return {
-            contact: DevConfig.contacts,
-        }
-    },
-    methods: {
-        open(elementId) {
-            const element = document.getElementById(elementId);
-            const arrow = element.querySelector('.arrow');
-            const links = element.querySelector('#links');
-
-            if (links.style.display === 'block') {
-                links.style.display = 'none';
-                arrow.style.transform = 'rotate(0deg)';
-            } else {
-                links.style.display = 'block';
-                arrow.style.transform = 'rotate(90deg)';
-            }
-        }
-    },
-    mounted(){
-
-        const nameInput = document.getElementById('name-input');
-        const emailInput = document.getElementById('email-input');
-        const messageInput = document.getElementById('message-input');
-
-        nameInput.addEventListener('input', (event) => {
-            const nameValue = document.getElementById('name-value')
-            nameValue.innerHTML = event.target.value;
-        })
-
-        emailInput.addEventListener('input', (event) => {
-            const emailValue = document.getElementById('email-value')
-            emailValue.innerHTML = event.target.value;
-        })
-
-        messageInput.addEventListener('input', (event) => {
-            const messageValue = document.getElementById('message-value')
-            messageValue.innerHTML = event.target.value;
-        })
-
-        /**
-         * * Close all submenus
-         * ! This is a temporary solution.
-         * ! This is needed because when the page is loaded, height style on #links are not applied.
-         */
-        const links = document.getElementsByClassName('submenu');
-        for (let i = 0; i < links.length; i++) {
-            if(window.innerWidth > 1024){ 
-                links[i].querySelector("#links").style.display = "block";
-                links[i].querySelector(".arrow").style.transform = "rotate(90deg)";
-            } else {
-                links[i].querySelector("#links").style.display = "none";
-            }
-        }
-    },
-}
-</script>
-
 <style>
 
 .arrow {

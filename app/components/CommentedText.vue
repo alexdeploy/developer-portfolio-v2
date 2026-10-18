@@ -1,3 +1,29 @@
+<script setup lang="ts">
+const props = defineProps<{ text: string }>()
+
+const lines = ref(0)
+const textContainer = ref<HTMLElement | null>(null)
+
+function updateLines() {
+  if (!textContainer.value) return
+  const lineHeight = parseInt(window.getComputedStyle(textContainer.value).lineHeight)
+  lines.value = Math.ceil(textContainer.value.offsetHeight / lineHeight) + 1
+}
+
+watch(() => props.text, () => nextTick(updateLines))
+
+onMounted(() => {
+  updateLines()
+  window.addEventListener('resize', updateLines)
+  window.addEventListener('click', updateLines)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateLines)
+  window.removeEventListener('click', updateLines)
+})
+</script>
+
 <template>
   <div class="code-container flex font-fira_retina text-menu-text">
     <div class="line-numbers lg:flex flex-col w-32 hidden">
@@ -12,48 +38,11 @@
     </div>
 
     <!-- text -->
-    <div class="text-container">
+    <div ref="textContainer" class="text-container">
       <p v-html="text"></p>
     </div>
   </div>
 </template>
-
-<script>
-
-export default {
-  props: {
-    text: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      lines: 0
-    };
-  },
-  mounted() {
-    this.updateLines();
-    window.addEventListener("resize", this.updateLines);
-    window.addEventListener("click", this.updateLines);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.updateLines);
-    window.removeEventListener("click", this.updateLines);
-  },
-  methods: {
-    updateLines() {
-      const textContainer = this.$el.querySelector(".text-container");
-      const style = window.getComputedStyle(textContainer);
-      const fontSize = parseInt(style.fontSize);
-      const lineHeight = parseInt(style.lineHeight);
-      const maxHeight = textContainer.offsetHeight;
-      this.lines = Math.ceil(maxHeight / lineHeight) + 1;
-    }
-  }
-};
-</script>
-
 <style>
 .code-container {
   display: flex;

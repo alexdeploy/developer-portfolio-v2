@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const social = developerConfig.contacts.social
+</script>
+
 <template>
     <footer class='flex md:justify-between border-top text-menu-text font-fira_retina'>
 
@@ -27,18 +31,6 @@
 
     </footer>
 </template>
-
-<script setup>
-import config from '~~/developer.json';
-
-const social = ref(config.contacts.social);
-</script>
-
-<script>
-export default {
-    name: 'AppFooter',
-}
-</script>
 
 <style>
 

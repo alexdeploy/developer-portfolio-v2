@@ -1,3 +1,191 @@
+<script setup lang="ts">
+type Direction = 'up' | 'down' | 'left' | 'right'
+interface Cell { x: number, y: number }
+
+const COLS = 24
+const ROWS = 40
+const FOOD_TO_WIN = 10
+const TICK_MS = 50
+const INITIAL_FOOD: Cell = { x: 10, y: 5 }
+const INITIAL_SNAKE: Cell[] = [
+  { x: 10, y: 12 }, { x: 10, y: 13 }, { x: 10, y: 14 }, { x: 10, y: 15 }, { x: 10, y: 16 }, { x: 10, y: 17 },
+  { x: 10, y: 18 }, { x: 11, y: 18 }, { x: 12, y: 18 }, { x: 13, y: 18 }, { x: 14, y: 18 }, { x: 15, y: 18 },
+  { x: 15, y: 19 }, { x: 15, y: 20 }, { x: 15, y: 21 }, { x: 15, y: 22 }, { x: 15, y: 23 }, { x: 15, y: 24 },
+]
+const OPPOSITE: Record<Direction, Direction> = { up: 'down', down: 'up', left: 'right', right: 'left' }
+const KEY_TO_DIRECTION: Record<string, Direction> = {
+  ArrowUp: 'up',
+  ArrowDown: 'down',
+  ArrowLeft: 'left',
+  ArrowRight: 'right',
+}
+
+const gameScreen = ref<HTMLElement | null>(null)
+const score = ref(0)
+const gameStarted = ref(false)
+const gameOver = ref(false)
+const won = ref(false)
+const food = ref<Cell | null>({ ...INITIAL_FOOD })
+const snake = ref<Cell[]>(INITIAL_SNAKE.map(cell => ({ ...cell })))
+const direction = ref<Direction>('up')
+let gameInterval: ReturnType<typeof setInterval> | null = null
+
+function stopLoop() {
+  if (gameInterval) {
+    clearInterval(gameInterval)
+    gameInterval = null
+  }
+}
+
+function startGame() {
+  gameStarted.value = true
+  gameInterval = setInterval(moveSnake, TICK_MS)
+}
+
+function startAgain() {
+  stopLoop()
+  gameStarted.value = false
+  gameOver.value = false
+  won.value = false
+  score.value = 0
+  food.value = { ...INITIAL_FOOD }
+  snake.value = INITIAL_SNAKE.map(cell => ({ ...cell }))
+  direction.value = 'up'
+  render()
+}
+
+function endGame(victory: boolean) {
+  stopLoop()
+  gameStarted.value = false
+  gameOver.value = true
+  won.value = victory
+}
+
+function generateNewFood(): Cell {
+  let newFood: Cell
+  do {
+    newFood = { x: Math.floor(Math.random() * COLS), y: Math.floor(Math.random() * ROWS) }
+  } while (snake.value.some(segment => segment.x === newFood.x && segment.y === newFood.y))
+  return newFood
+}
+
+function moveSnake() {
+  const head = snake.value[0]
+  if (!head) return
+  let { x, y } = head
+  switch (direction.value) {
+    case 'up': y--; break
+    case 'down': y++; break
+    case 'left': x--; break
+    case 'right': x++; break
+  }
+
+  const inside = x >= 0 && x < COLS && y >= 0 && y < ROWS
+  const collides = snake.value.some(segment => segment.x === x && segment.y === y)
+  if (!inside || collides) {
+    endGame(false)
+    render()
+    return
+  }
+
+  snake.value.unshift({ x, y })
+  if (food.value && x === food.value.x && y === food.value.y) {
+    score.value++
+    if (score.value === FOOD_TO_WIN) {
+      snake.value.unshift({ x, y })
+      food.value = null
+      endGame(true)
+    } else {
+      food.value = generateNewFood()
+    }
+  } else {
+    snake.value.pop()
+  }
+  render()
+}
+
+function render() {
+  const screen = gameScreen.value
+  if (!screen) return
+  screen.innerHTML = ''
+  const cellSize = window.innerWidth > 1536 ? '10px' : '8px'
+  const headRadius = '5px'
+
+  for (let i = 0; i < ROWS; i++) {
+    for (let j = 0; j < COLS; j++) {
+      const cell = document.createElement('div')
+      cell.classList.add('cell', 'black')
+      cell.style.width = cellSize
+      cell.style.height = cellSize
+      cell.style.display = 'flex'
+      cell.style.flexShrink = '0'
+
+      const segmentIndex = snake.value.findIndex(segment => segment.x === j && segment.y === i)
+      if (segmentIndex !== -1) {
+        cell.style.backgroundColor = '#43D9AD'
+        cell.style.opacity = String(1 - segmentIndex / snake.value.length)
+        cell.classList.add('green')
+        if (segmentIndex === 0) {
+          switch (direction.value) {
+            case 'up':
+              cell.style.borderTopLeftRadius = headRadius
+              cell.style.borderTopRightRadius = headRadius
+              break
+            case 'down':
+              cell.style.borderBottomLeftRadius = headRadius
+              cell.style.borderBottomRightRadius = headRadius
+              break
+            case 'left':
+              cell.style.borderTopLeftRadius = headRadius
+              cell.style.borderBottomLeftRadius = headRadius
+              break
+            case 'right':
+              cell.style.borderTopRightRadius = headRadius
+              cell.style.borderBottomRightRadius = headRadius
+              break
+          }
+        }
+      } else if (food.value && j === food.value.x && i === food.value.y) {
+        cell.style.backgroundColor = '#43D9AD'
+        cell.style.borderRadius = '50%'
+        cell.style.boxShadow = '0 0 10px #43D9AD'
+      }
+      screen.appendChild(cell)
+    }
+  }
+}
+
+function move(next: Direction) {
+  if (direction.value !== OPPOSITE[next]) direction.value = next
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (gameStarted.value) {
+    const next = KEY_TO_DIRECTION[event.key]
+    if (next) {
+      event.preventDefault()
+      move(next)
+    }
+  } else if (event.key === ' ') {
+    event.preventDefault()
+    if (gameOver.value) startAgain()
+    else startGame()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', onKeydown)
+  window.addEventListener('resize', render)
+  render()
+})
+
+onBeforeUnmount(() => {
+  stopLoop()
+  document.removeEventListener('keydown', onKeydown)
+  window.removeEventListener('resize', render)
+})
+</script>
+
 <template>
     <div id="console">
 
@@ -11,15 +199,15 @@
       <!-- Game Screen -->
       <div id="game-screen" ref="gameScreen"></div>
 
-      <button id="start-button" class="font-fira_retina" @click="startGame">start-game</button>
+      <button v-show="!gameStarted && !gameOver" id="start-button" class="font-fira_retina" @click="startGame">start-game</button>
 
       <!-- Game Over -->
-      <div id="game-over" class="hidden">
+      <div v-show="gameOver && !won" id="game-over">
         <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">GAME OVER!</span>
         <button class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white" @click="startAgain">start-again</button>
       </div>
 
-      <div id="congrats" class="hidden">
+      <div v-show="won" id="congrats">
         <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">WELL DONE!</span>
         <button class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white" @click="startAgain">play-again</button>
       </div>
@@ -60,16 +248,7 @@
           <p class="font-fira_retina text-white pt-5">// food left</p>
 
           <div id="score" class="grid grid-cols-5 gap-5 justify-items-center pt-5 w-fit">
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
-            <div class="food"></div>
+            <div v-for="n in FOOD_TO_WIN" :key="n" class="food" :style="{ opacity: n <= score ? 1 : 0.3 }"></div>
 
           </div>
         </div>
@@ -83,308 +262,6 @@
     </div>
     
   </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        score: 0,
-        gameInterval: null,
-        gameStarted: false,
-        gameOver: false,
-        food: { x: 10, y: 5 },
-        snake: [
-        { x: 10, y: 12 },
-        { x: 10, y: 13 },
-        { x: 10, y: 14 },
-        { x: 10, y: 15 },
-        { x: 10, y: 16 },
-        { x: 10, y: 17 },
-        { x: 10, y: 18 },
-        { x: 11, y: 18 },
-        { x: 12, y: 18 },
-        { x: 13, y: 18 },
-        { x: 14, y: 18 },
-        { x: 15, y: 18 },
-        { x: 15, y: 19 },
-        { x: 15, y: 20 },
-        { x: 15, y: 21 },
-        { x: 15, y: 22 },
-        { x: 15, y: 23 },
-        { x: 15, y: 24 },
-      ],
-        direction: "up",
-      };
-    },
-    methods: {
-      startGame() {
-
-        // hide start button
-        document.getElementById("start-button").style.display = "none";
-
-        // start game
-        this.gameStarted = true;
-        this.gameInterval = setInterval(this.moveSnake, 50);
-      },
-      generateNewFood() {
-        let newFood;
-        do {
-          newFood = {
-            x: Math.floor(Math.random() * 24),
-            y: Math.floor(Math.random() * 40)
-          };
-          // check if the new food is not on the snake
-        } while (this.snake.some(segment => segment.x === newFood.x && segment.y === newFood.y));
-        return newFood;
-      },
-      startAgain() {
-        // Mostrar botón de start-game
-        document.getElementById("start-button").style.display = "block";
-        
-        // Ocultar game over
-        document.getElementById("game-over").style.display = "none";
-        document.getElementById("congrats").style.display = "none";
-
-
-        // reiniciar datos del juego
-        this.gameStarted = false;
-        this.gameOver = false;
-        this.restartScore();
-        this.food = {
-          x: 10,
-          y: 5
-        };
-        this.snake = [
-            { x: 10, y: 12 },
-            { x: 10, y: 13 },
-            { x: 10, y: 14 },
-            { x: 10, y: 15 },
-            { x: 10, y: 16 },
-            { x: 10, y: 17 },
-            { x: 10, y: 18 },
-            { x: 11, y: 18 },
-            { x: 12, y: 18 },
-            { x: 13, y: 18 },
-            { x: 14, y: 18 },
-            { x: 15, y: 18 },
-            { x: 15, y: 19 },
-            { x: 15, y: 20 },
-            { x: 15, y: 21 },
-            { x: 15, y: 22 },
-            { x: 15, y: 23 },
-            { x: 15, y: 24 },
-          ],
-        this.direction = "up";
-
-        // limpiar intervalo de juego
-        clearInterval(this.gameInterval);
-        this.render();
-      },
-      // ... resto del código
-      moveSnake() {
-        let newX = this.snake[0].x;
-        let newY = this.snake[0].y;
-
-        switch (this.direction) {
-          case "up":
-            newY--;
-            break;
-          case "down":
-            newY++;
-            break;
-          case "left":
-            newX--;
-            break;
-          case "right":
-            newX++;
-            break;
-        }
-
-        if (
-            newX >= 0 &&
-            newX < 24 &&
-            newY >= 0 &&
-            newY < 40 &&
-            !this.snake.find(
-                snakeCell => snakeCell.x === newX && snakeCell.y === newY
-            )
-        ) {
-          this.snake.unshift({ x: newX, y: newY });
-
-          if (newX === this.food.x && newY === this.food.y) {
-            this.score++;
-            const scoreFoods = document.getElementsByClassName("food");
-            scoreFoods[this.score - 1].style.opacity = 1;
-
-            if(this.score === 10) {
-              this.snake.unshift({ x: newX, y: newY });
-              this.food = { x: null, y: null }
-              clearInterval(this.gameInterval);
-              document.getElementById('congrats').style.display = 'block'
-              this.gameOver = true;
-              this.gameStarted = false;
-            } else {
-              // generate new food
-              this.food = this.generateNewFood();
-            }
-          } else {
-            this.snake.pop();
-          }
-        } else {
-          clearInterval(this.gameInterval);
-          document.getElementById('game-over').style.display = 'block'
-          this.gameStarted = false;
-          this.gameOver = true;
-        }
-        this.render();
-      },
-      render() {
-        let gameScreen = this.$refs.gameScreen;
-        gameScreen.innerHTML = "";
-
-        const cellSize = window.innerWidth > 1536 ? "10px" : "8px";
-
-        for (let i = 0; i < 40; i++) {
-
-          for (let j = 0; j < 24; j++) {
-
-            let cell = document.createElement("div");
-            cell.classList.add("cell");
-            cell.style.width = cellSize
-            cell.style.height = cellSize
-            cell.style.display = "flex";
-            cell.style.flexShrink = 0;
-            cell.classList.add("black");
-
-            /* 先渲染蛇身 */
-            let snakeCell = this.snake.find(
-                snakeCell => snakeCell.x === j && snakeCell.y === i
-            );
-
-            if (snakeCell) {
-              cell.style.backgroundColor = "#43D9AD";
-              cell.style.opacity = 1 - (this.snake.indexOf(snakeCell) / this.snake.length);
-              cell.classList.add("green");
-
-              /* 蛇頭的特殊樣式 */
-              if (this.snake.indexOf(snakeCell) === 0) {
-                let headRadius = "5px";
-                if (this.direction === "up") {
-                  cell.style.borderTopLeftRadius = headRadius;
-                  cell.style.borderTopRightRadius = headRadius;
-                }
-                if (this.direction === "down") {
-                  cell.style.borderBottomLeftRadius = headRadius;
-                  cell.style.borderBottomRightRadius = headRadius;
-                }
-                if (this.direction === "left") {
-                  cell.style.borderTopLeftRadius = headRadius;
-                  cell.style.borderBottomLeftRadius = headRadius;
-                }
-                if (this.direction === "right") {
-                  cell.style.borderTopRightRadius = headRadius;
-                  cell.style.borderBottomRightRadius = headRadius;
-                }
-              }
-            }
-
-            /* 最後渲染食物，確保食物始終可見 */
-            if (j === this.food.x && i === this.food.y && !snakeCell) {
-              cell.style.backgroundColor = "#43D9AD";
-              cell.style.borderRadius = "50%";
-              cell.style.boxShadow = "0 0 10px #43D9AD";
-            }
-
-            gameScreen.appendChild(cell);
-          }
-        }
-      },
-    restartScore(){
-      this.score = 0;
-      const scoreFoods = document.getElementsByClassName("food");
-      for (let i = 0; i < scoreFoods.length; i++) {
-        scoreFoods[i].style.opacity = 0.3;
-      }
-    },
-    move(direction){
-      switch (direction) {
-        case "up":
-        if (this.direction !== "down") {
-              this.direction = "up";
-            }
-          break;
-        case "down":
-        if (this.direction !== "up") {
-              this.direction = "down";
-            }
-          break;
-        case "left":
-        if (this.direction !== "right") {
-              this.direction = "left";
-            }
-          break;
-        case "right":
-        if (this.direction !== "left") {
-              this.direction = "right";
-            }
-          break;
-      }
-    }
-  },
-  mounted() {
-    document.addEventListener("keydown", event => {
-      if (this.gameStarted) {
-        switch (event.keyCode) {
-          case 37:
-            if (this.direction !== "right") {
-              this.direction = "left";
-            }
-            break;
-          case 38:
-            if (this.direction !== "down") {
-              this.direction = "up";
-            }
-            break;
-          case 39:
-            if (this.direction !== "left") {
-              this.direction = "right";
-            }
-            break;
-          case 40:
-            if (this.direction !== "up") {
-              this.direction = "down";
-            }
-            break;
-        }
-      } else {
-        switch (event.keyCode) {
-          case 32:
-            if(this.gameOver){
-              this.startAgain();
-            }else {
-              this.startGame();
-            }
-            break;
-        }
-      }
-    });
-
-    /* window.innerWidth < 1536 ? cellSize = 8 : cellSize = 10; */
-    /* this.food = {
-      x: Math.floor(Math.random() * 24),
-      y: Math.floor(Math.random() * 40)
-    }; */
-    window.onresize = () => {
-      this.render();
-    };
-
-    this.render();
-
-
-  }
-};
-</script>
-
 <style>
 #console {
     width: 530px;

@@ -1,5 +1,23 @@
+<script setup lang="ts">
+const config = developerConfig
+const isMobile = ref(false)
+
+function handleResize() {
+  isMobile.value = window.innerWidth <= 1024
+}
+
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
+</script>
+
 <template>
-  	<main v-if="!loading" id="hello">
+  	<main id="hello">
 
     	<!-- gradients -->
     	<div class="css-blurry-gradient-blue"></div>
@@ -51,34 +69,6 @@
 
 	</main>
 </template>
-
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import DevConfig from '~~/developer.json';
-
-const config = ref(DevConfig)
-
-const isMobile = ref(false)
-const loading = ref(false)
-
-onMounted(() => {
-  if (window.innerWidth <= 1024) isMobile.value = true
-  window.addEventListener('resize', handleResize)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize)
-})
-
-function handleResize() {
-  if (window.innerWidth <= 1024) {
-    isMobile.value = true
-  } else {
-    isMobile.value = false
-  }
-}
-</script>
-
 <style scoped>
 #hello {
   display: flex;

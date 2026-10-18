@@ -6,10 +6,13 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
-This is the upcoming **2.0.0**: the same design on today's stack. It is developed on the
-`next` branch and tracked in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39).
-v1 keeps living on the [`v1`](https://github.com/alexdeploy/developer-portfolio-v2/tree/v1)
-branch and is not affected. See [Upgrading from v1](#upgrading-from-v1) below.
+## [2.0.0-beta.1] - 2026-10-18
+
+First pre-release of **2.0.0**: the same design on today's stack. It is developed on the
+`next` branch and tracked in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39);
+the final 2.0.0 will be merged into `main`. v1 keeps living on the
+[`v1`](https://github.com/alexdeploy/developer-portfolio-v2/tree/v1) branch and is not affected.
+See [Upgrading from v1](#upgrading-from-v1) below.
 
 ### Added
 
@@ -132,5 +135,6 @@ To stay on v1 instead, check out the `v1` branch or the `v1.9.6` tag; nothing ch
 Earlier versions are documented in the
 [GitHub releases](https://github.com/alexdeploy/developer-portfolio-v2/releases).
 
-[Unreleased]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v1.9.6...next
+[Unreleased]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v2.0.0-beta.1...next
+[2.0.0-beta.1]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v1.9.6...v2.0.0-beta.1
 [1.9.6]: https://github.com/alexdeploy/developer-portfolio-v2/releases/tag/v1.9.6

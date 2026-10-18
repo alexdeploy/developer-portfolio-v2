@@ -22,13 +22,16 @@
 
 | Version | Branch | Stack | Status |
 |---|---|---|---|
-| **v2** (upcoming 2.0.0) | [`next`](https://github.com/alexdeploy/developer-portfolio-v2/tree/next) | Nuxt 4, TypeScript, Tailwind CSS 4, pnpm | In progress, roadmap in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39) |
+| **v2** (2.0.0-beta.1) | [`next`](https://github.com/alexdeploy/developer-portfolio-v2/tree/next) | Nuxt 4, TypeScript, Tailwind CSS 4, pnpm | Beta available, roadmap in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39) |
 | **v1** (1.9.6) | [`v1`](https://github.com/alexdeploy/developer-portfolio-v2/tree/v1) | Nuxt 3, Tailwind CSS 3, yarn | Frozen; stays available |
 
 The design and `developer.json`, the file with your content, are the same in both. v2 brings the
 template to the current stack and fixes the known bugs: see the [CHANGELOG](./CHANGELOG.md), which
 includes a short [upgrade guide](./CHANGELOG.md#upgrading-from-v1). If you forked v1, nothing
 changes in your copy unless you decide to upgrade.
+
+To try the beta: `git clone --branch v2.0.0-beta.1 https://github.com/alexdeploy/developer-portfolio-v2.git`,
+then follow the installation steps below. Feedback is welcome in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39).
 
 ## ✨ What you get
 

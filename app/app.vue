@@ -1,6 +1,28 @@
 <script setup lang="ts">
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { absoluteUrl, siteMeta } from '#shared/utils/site-meta'
+
+const route = useRoute()
+const site = siteMeta(developerConfig)
+const pageUrl = computed(() => (site.url ? absoluteUrl(route.path, site.url) : undefined))
+
+useHead({
+  // Pages set a short title ("Projects"); the home page keeps the full site title.
+  titleTemplate: title => (title ? `${title} | ${developerConfig.name}` : site.title),
+  link: computed(() => (pageUrl.value ? [{ rel: 'canonical', href: pageUrl.value }] : [])),
+})
+
+useSeoMeta({
+  description: site.description,
+  ogType: 'website',
+  ogSiteName: developerConfig.name,
+  ogTitle: site.title,
+  ogDescription: site.description,
+  ogImage: site.image,
+  ogUrl: pageUrl,
+  twitterCard: 'summary_large_image',
+})
 
 function skipToContent() {
   const main = document.querySelector<HTMLElement>('main')

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import type { Project } from '~/types/developer'
+import type { Project } from '#shared/types/developer'
 
 const techs = ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter']
 const allProjects: Project[] = Object.values(developerConfig.projects)
+
+useHead({ title: 'Projects' })
 
 const filters = ref<string[]>(['all'])
 const showFilters = ref(true)

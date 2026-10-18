@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import type { AboutFolder, AboutSection } from '~/types/developer'
+import type { AboutFolder, AboutSection } from '#shared/types/developer'
 
 const config = developerConfig
+
+useHead({ title: 'About me' })
 const sections = config.about.sections
 
 const currentSection = ref('personal-info')

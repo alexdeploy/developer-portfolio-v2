@@ -39,6 +39,15 @@ describe('developer.schema.json', () => {
     expect(errors).toEqual(['/gists/1 must match pattern "^[0-9a-f]{20,40}$"'])
   })
 
+  it('accepts a config without the optional site block', () => {
+    const { site: _site, ...withoutSite } = config
+    expect(errorsOf(withoutSite)).toEqual([])
+  })
+
+  it('rejects a site URL without a protocol', () => {
+    expect(errorsOf({ ...config, site: { url: 'jane.dev' } })).toEqual(['/site/url must match format "uri"'])
+  })
+
   it('rejects a project without a valid URL', () => {
     const project = { ...Object.values(config.projects)[0]!, url: 'github.com' }
     const errors = errorsOf({ ...config, projects: { 1: project } })

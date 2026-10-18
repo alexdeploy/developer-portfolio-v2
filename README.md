@@ -59,9 +59,9 @@ The portfolio template includes some default content, but you can easily customi
 
   Its format is described in [`developer.schema.json`](./developer.schema.json). Editors such as VS Code use it to autocomplete and validate the file as you type, and `pnpm dev` / `pnpm build` stop with a clear error if the file does not match the schema.
 
-* Update the `nuxt.config.ts` file for meta tags of website and some additional config.
+* Fill in the optional `site` block of `developer.json` (public URL, description, sharing image, language). It drives the `<head>` meta tags, the social sharing cards and the web app manifest, which is generated at `/pwa/manifest.json`; nothing else needs editing for SEO.
 
-* Update the `public/pwa/manifest.json` file for PWA config.
+* Update the `nuxt.config.ts` file for additional configuration.
 
 * Change the styling and design of the website to match your personal style.
 

@@ -3,6 +3,12 @@
     "name": "Micheal Weaver",
     "logo_name": "micheal-weaver",
     "role": "Front-end developer",
+    "site": {
+        "url": "https://developer-portfolio-v1.netlify.app",
+        "description": "An awesome portfolio template for developers.",
+        "image": "/demo-share.jpg",
+        "lang": "en"
+    },
     "about": {
         "sections": {
             "professional-info": {

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const contact = developerConfig.contacts
 
+useHead({ title: 'Contact me' })
+
 const name = ref('')
 const email = ref('')
 const message = ref('')

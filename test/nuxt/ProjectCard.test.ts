@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import ProjectCard from '~/components/ProjectCard.vue'
-import type { Project } from '~/types/developer'
+import type { Project } from '#shared/types/developer'
 
 const project: Project = {
   title: '_demo-app',

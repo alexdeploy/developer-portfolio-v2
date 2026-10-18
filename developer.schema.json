@@ -26,6 +26,38 @@
       "minLength": 1,
       "description": "Your role, typed out on the home page, e.g. \"Front-end developer\"."
     },
+    "site": {
+      "type": "object",
+      "description": "Metadata for the <head>, the social sharing cards and the web app manifest. Every field is optional and has a sensible default.",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Public URL where the site is deployed, including any base path and without a trailing slash, e.g. \"https://jane.dev\". Used for the canonical link, og:url and to turn the sharing image into an absolute URL. Leave it out until the site is deployed."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Browser tab and sharing title of the home page. Defaults to \"<name> | <role>\"."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Meta description shown by search engines and sharing cards. Defaults to \"Portfolio of <name>, <role>.\""
+        },
+        "image": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Image shown when a link to the site is shared (1200x630 px recommended): a path under public/ or an absolute URL. Defaults to \"/demo-share.jpg\"."
+        },
+        "lang": {
+          "type": "string",
+          "pattern": "^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$",
+          "description": "Language of the content as a BCP 47 tag, e.g. \"en\" or \"es-ES\". Defaults to \"en\"."
+        }
+      }
+    },
     "about": {
       "type": "object",
       "additionalProperties": false,

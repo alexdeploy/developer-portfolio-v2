@@ -1,7 +1,8 @@
 import tailwindcss from '@tailwindcss/vite'
 import config from './developer.json'
+import { siteMeta, THEME_COLOR } from './shared/utils/site-meta'
 
-const siteTitle = `${config.name} | ${config.role}`
+const site = siteMeta(config)
 
 /*
  * Nuxt Config File
@@ -17,29 +18,21 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   /**
-   * * App Config
-   * app config: https://nuxt.com/docs/api/configuration/nuxt-config#app
+   * * App head
+   * Language and theme colour come from developer.json (optional `site` block, see developer.schema.json).
+   * SEO and social sharing tags are set per route in app/app.vue, and the web app manifest is generated
+   * from the same data by server/routes/pwa/manifest.json.ts.
    * head config: https://nuxt.com/docs/api/configuration/nuxt-config#head
-   * meta config: https://nuxt.com/docs/getting-started/seo-meta
-   * TODO: Add more meta tags for SEO
-   * TODO: Add tags for social media sharing
-   * TODO: Migrate apple-touch-icon config to manifest.json
    */
   app: {
     head: {
       htmlAttrs: {
-        lang: 'en', // App language
+        lang: site.lang,
       },
-      title: siteTitle, // App window nav title
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'A awesome developer portfolio design.' },
-        { property: 'og:title', content: siteTitle },
-        { property: 'og:description', content: 'A awesome developer portfolio design.' },
-        { property: 'og:image', content: '/demo-share.jpg' },
-        { property: 'og:url', content: 'https://developer-portfolio-v1.netlify.app/' },
-        { name: 'theme-color', content: '#010C15' },
+        { name: 'theme-color', content: THEME_COLOR },
       ],
       link: [
         { rel: 'manifest', href: '/pwa/manifest.json' },
@@ -55,6 +48,13 @@ export default defineNuxtConfig({
    */
   css: ['~/assets/tailwind.css'],
   compatibilityDate: '2026-10-18',
+
+  /** The manifest is a server route; `nuxt generate` must prerender it like the pages. */
+  nitro: {
+    prerender: {
+      routes: ['/pwa/manifest.json'],
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

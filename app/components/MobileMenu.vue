@@ -60,6 +60,8 @@ const isActive = (path: string) => route.path === path
   </div>
 </template>
 <style>
+@reference "../assets/tailwind.css";
+
 #mobile-header {
   border-bottom: 1px solid #1E2D3D;
 }

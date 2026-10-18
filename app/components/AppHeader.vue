@@ -38,6 +38,8 @@ const isActive = (path: string) => route.path === path
 </template>
 
 <style>
+@reference "../assets/tailwind.css";
+
 
 #nav-link {
   border-right: 1px solid #1E2D3D;

@@ -220,6 +220,8 @@ onMounted(() => {
 </template>
 
 <style>
+@reference "../assets/tailwind.css";
+
 
 #sections {
   width: 5rem; /* 80px */

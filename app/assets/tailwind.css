@@ -1,11 +1,77 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-h3, h2 {
- /*  @apply font-fira_retina; */
-  font-family: 'Fira Code Retina';
-  font-size: 15px;
+/*
+ * Design tokens. Tailwind 4 reads the theme from CSS: every variable below
+ * becomes a utility (`bg-dark-background`, `font-fira_retina`, ...).
+ */
+@theme {
+  --color-gray-dark: #121212;
+  --color-glitch-green: #00ff00;
+  --color-glitch-rose: #f0f;
+  --color-glitch-blue: #0ff;
+  --color-neon-blue-xs: #08cff6;
+  --color-neon-blue-s: #194262;
+  --color-neon-blue-m: #0e2535;
+  --color-neon-blue-l: #05131e;
+  --color-neon-blue-xl: #020204;
+  --color-dark-background: #010C15;
+  --color-menu-text: #85a5c4;
+  --color-blue-background: #011627;
+  --color-hello-name: #E5E9F0;
+  --color-purple-text: #81a0fd;
+  --color-hello-gray: #84a6c8;
+  --color-codeline-link: #E99287;
+  --color-codeline-tag: #4D5BCE;
+  --color-codeline-name: #43D9AD;
+  --color-mobile-menu-blue: #011627;
+  --color-placeholder-gray: #465E77;
+  --color-greenfy: #43D9AD;
+  --color-bluefy-dark: #011627;
+  --color-purplefy: #799ffb;
+
+  --font-fira_light: "Fira Code Light";
+  --font-fira_regular: "Fira Code Regular";
+  --font-fira_retina: "Fira Code Retina";
+  --font-fira_medium: "Fira Code Medium";
+  --font-fira_semibold: "Fira Code SemiBold";
+  --font-fira_bold: "Fira Code Bold";
+  --font-fira_variable: "Fira Code Variable";
+
+  /*
+   * Tailwind 4 derives the line-height of `text-*` from the font size, so it changes
+   * wherever this stylesheet overrides `font-size`. Keep the fixed values of v3.
+   */
+  --text-xs--line-height: 1rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+}
+
+@layer base {
+  /* Tailwind 4 defaults the border color to `currentColor`; v3 used gray-200. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  /* Tailwind 4 preflight no longer sets `cursor: pointer` on buttons. Keep the v3 behaviour. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* In the base layer so that utilities such as `text-sm` can still override it. */
+  h3, h2 {
+    font-family: 'Fira Code Retina';
+    font-size: 15px;
+  }
 }
 
 html {

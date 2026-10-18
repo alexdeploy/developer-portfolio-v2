@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import config from './developer.json'
 
 const siteTitle = `${config.name} | ${config.role}`
@@ -46,18 +47,15 @@ export default defineNuxtConfig({
    * * Nuxt Modules
    * Official modules: https://nuxt.com/modules
    */
-  modules: [
-    '@nuxtjs/tailwindcss',
-  ],
+  modules: [],
 
   /**
-   * * Tailwind CSS Config
-   * Options: https://tailwindcss.nuxt.dev/getting-started/options/
-   * Docs: https://tailwindcss.nuxt.dev
+   * * Tailwind CSS 4
+   * Configured in CSS (`@theme` in app/assets/tailwind.css) and compiled by the Vite plugin.
+   * Docs: https://tailwindcss.com/docs/installation/framework-guides/nuxt
    */
-  tailwindcss: {
-    cssPath: '~/assets/tailwind.css', // tailwind.config.ts at the project root is picked up automatically
-    exposeConfig: true, // true to resolve the tailwind config in runtime. https://tailwindcss.nuxt.dev/getting-started/options/#exposeconfig
-    viewer: false,
+  css: ['~/assets/tailwind.css'],
+  vite: {
+    plugins: [tailwindcss()],
   },
 })

@@ -107,6 +107,8 @@ onMounted(() => {
     </main>
 </template>
 <style>
+@reference "../assets/tailwind.css";
+
 
 .arrow {
     transition: 0.1s;

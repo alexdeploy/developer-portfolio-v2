@@ -26,6 +26,8 @@ function onSubmit() {
     </form>
 </template>
 <style>
+@reference "../assets/tailwind.css";
+
 
 form {
     @apply font-fira_retina text-menu-text

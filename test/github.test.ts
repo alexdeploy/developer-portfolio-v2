@@ -1,25 +1,44 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { getGistById, getGistComments } from '../app/utils/github-api'
 
-describe('GitHub gists API', () => {
-  const gistId = '799fe15f4b75706242b10d978e935067'
+function mockFetch(status: number, body: unknown) {
+  const fetchMock = vi.fn(async () =>
+    new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } }),
+  )
+  vi.stubGlobal('fetch', fetchMock)
+  return fetchMock
+}
 
-  it('returns the requested gist', async () => {
-    const gist = await getGistById(gistId)
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
 
-    expect(gist.id).toBe(gistId)
-    expect(Object.keys(gist.files).length).toBeGreaterThan(0)
-    expect(gist.owner.login).toBeTypeOf('string')
+describe('getGistById', () => {
+  it('requests the gist by id and returns the parsed JSON', async () => {
+    const fetchMock = mockFetch(200, { id: 'abc123', files: { 'main.ts': { content: 'const a = 1' } } })
+
+    const gist = await getGistById('abc123')
+
+    expect(fetchMock).toHaveBeenCalledWith('https://api.github.com/gists/abc123')
+    expect(gist.id).toBe('abc123')
+    expect(gist.files['main.ts']?.content).toBe('const a = 1')
   })
 
-  it('returns the gist comments as an array', async () => {
-    const gist = await getGistById(gistId)
-    const comments = await getGistComments(gist.comments_url)
+  it('throws with the HTTP status when the API fails', async () => {
+    mockFetch(404, { message: 'Not Found' })
 
-    expect(Array.isArray(comments)).toBe(true)
+    await expect(getGistById('missing')).rejects.toThrow('404')
   })
+})
 
-  it('throws on a non-existent gist', async () => {
-    await expect(getGistById('does-not-exist')).rejects.toThrow(/404/)
+describe('getGistComments', () => {
+  it('fetches the given comments URL and returns the list', async () => {
+    const fetchMock = mockFetch(200, [{ id: 1, body: 'Nice snippet' }])
+
+    const comments = await getGistComments('https://api.github.com/gists/abc123/comments')
+
+    expect(fetchMock).toHaveBeenCalledWith('https://api.github.com/gists/abc123/comments')
+    expect(comments).toHaveLength(1)
+    expect(comments[0]?.body).toBe('Nice snippet')
   })
 })

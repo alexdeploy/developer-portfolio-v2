@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/alexdeploy/developer-portfolio-v2/blob/main/developer.schema.json",
+  "title": "DeveloperConfig",
+  "description": "Content of the portfolio. Everything the site shows about you lives in developer.json and must follow this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "logo_name", "role", "about", "contacts", "gists", "projects"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path or URL of this schema, so that your editor can validate and autocomplete developer.json."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Your full name. Shown on the home page and in the browser title."
+    },
+    "logo_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short name shown as the logo in the header, e.g. \"john-doe\"."
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Your role, typed out on the home page, e.g. \"Front-end developer\"."
+    },
+    "about": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sections"],
+      "properties": {
+        "sections": {
+          "type": "object",
+          "description": "Sections of the about page, keyed by their slug. The key must match the section title.",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/definitions/AboutSection" }
+        }
+      }
+    },
+    "contacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["direct", "social", "find_me_also_in"],
+      "properties": {
+        "direct": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title", "sources"],
+          "properties": {
+            "title": { "type": "string", "description": "Title of the direct contacts block, e.g. \"contacts\"." },
+            "sources": {
+              "type": "object",
+              "description": "Direct contact channels keyed by icon name: the key \"email\" renders /icons/email.svg, \"phone\" renders /icons/phone.svg.",
+              "additionalProperties": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "social": {
+          "type": "object",
+          "description": "Social profiles shown in the footer.",
+          "additionalProperties": false,
+          "required": ["github", "facebook", "twitter"],
+          "properties": {
+            "github": { "$ref": "#/definitions/SocialLink" },
+            "facebook": { "$ref": "#/definitions/SocialLink" },
+            "twitter": { "$ref": "#/definitions/SocialLink" }
+          }
+        },
+        "find_me_also_in": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["title", "sources"],
+          "properties": {
+            "title": { "type": "string", "description": "Title of the block, e.g. \"find-me-also-in\"." },
+            "sources": {
+              "type": "object",
+              "description": "Other profiles, keyed by a slug of your choice.",
+              "additionalProperties": { "$ref": "#/definitions/SocialLink" }
+            }
+          }
+        }
+      }
+    },
+    "gists": {
+      "type": "object",
+      "description": "Public GitHub gist IDs shown as code snippets on the about page, keyed by display order.",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{20,40}$",
+        "description": "The ID of a public gist: the hexadecimal part of its URL, https://gist.github.com/<user>/<id>."
+      }
+    },
+    "projects": {
+      "type": "object",
+      "description": "Projects shown on the projects page, keyed by display order.",
+      "additionalProperties": { "$ref": "#/definitions/Project" }
+    }
+  },
+  "definitions": {
+    "AboutFolder": {
+      "title": "AboutFolder",
+      "type": "object",
+      "description": "A folder inside an about section. Its key is the label shown in the menu.",
+      "additionalProperties": false,
+      "required": ["title", "description"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "description": "Folder slug. Must match the key." },
+        "description": { "type": "string", "description": "Text shown as a code comment when the folder is selected. Basic HTML such as <br> is allowed." },
+        "files": {
+          "type": "object",
+          "description": "Optional files listed under the folder, keyed by file name.",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "AboutSection": {
+      "title": "AboutSection",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "icon", "info"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "description": "Section slug. Must match the key." },
+        "icon": { "type": "string", "minLength": 1, "description": "Icon path under public/, starting with a slash, e.g. \"/icons/info-personal.svg\"." },
+        "info": {
+          "type": "object",
+          "minProperties": 1,
+          "description": "Folders of the section, keyed by their slug.",
+          "additionalProperties": { "$ref": "#/definitions/AboutFolder" }
+        }
+      }
+    },
+    "Project": {
+      "title": "Project",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "description", "img", "tech", "url"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "description": "Project name, e.g. \"_ui-animations\"." },
+        "description": { "type": "string", "description": "Short description shown on the card." },
+        "img": { "type": "string", "minLength": 1, "description": "Image path under public/, starting with a slash, or an absolute URL." },
+        "tech": {
+          "type": "array",
+          "description": "Technologies used. Each one needs an icon in public/icons/techs/ and public/icons/techs/filled/ named in lowercase, e.g. \"React\" uses react.svg.",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "url": { "type": "string", "format": "uri", "description": "Link opened by the view-project button." }
+      }
+    },
+    "SocialLink": {
+      "title": "SocialLink",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "url", "user"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "description": "Label of the link, e.g. \"Github profile\"." },
+        "url": { "type": "string", "format": "uri", "description": "Base URL of the service, ending with a slash, e.g. \"https://github.com/\"." },
+        "user": { "type": "string", "minLength": 1, "description": "Your user name on that service. The link is url + user." }
+      }
+    }
+  }
+}

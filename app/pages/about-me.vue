@@ -112,7 +112,7 @@ onMounted(() => {
             <div v-for="(folder, key, index) in section.info" :key="key" class="grid grid-cols-2 items-center my-2 font-fira_regular text-menu-text hover:text-white hover:cursor-pointer" @click="focusCurrentFolder(folder)">
               <div class="flex col-span-2">
                 <img id="diple" src="/icons/diple.svg">
-                <img :src="'icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
+                <img :src="'/icons/folder' + (index+1) + '.svg'" alt="" class="mr-3">
                 <p :id="folder.title" v-html="key" :class="{ active: isActive(folder.title)}"></p>
               </div>
               <div v-if="folder.files !== undefined" class="col-span-2">

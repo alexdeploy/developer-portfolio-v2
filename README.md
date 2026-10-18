@@ -57,6 +57,8 @@ The portfolio template includes some default content, but you can easily customi
 
 * Update the `developer.json` file on root directory, which contains all the text for the project and the portfolio "user" information, including *projects*, *about-me*, *gists* (Ids) and *contact* info.
 
+  Its format is described in [`developer.schema.json`](./developer.schema.json). Editors such as VS Code use it to autocomplete and validate the file as you type, and `yarn dev` / `yarn build` stop with a clear error if the file does not match the schema.
+
 * Update the `nuxt.config.ts` file for meta tags of website and some additional config.
 
 * Update the `public/pwa/manifest.json` file for PWA config.

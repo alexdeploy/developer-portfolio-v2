@@ -1,4 +1,5 @@
 {
+    "$schema": "./developer.schema.json",
     "name": "Micheal Weaver",
     "logo_name": "micheal-weaver",
     "role": "Front-end developer",
@@ -6,7 +7,7 @@
         "sections": {
             "professional-info": {
                 "title": "professional-info",
-                "icon": "icons/info-professional.svg",
+                "icon": "/icons/info-professional.svg",
                 "info": {
                     "experience": {
                         "title": "experience",
@@ -24,7 +25,7 @@
             },
             "personal-info": {
                 "title": "personal-info",
-                "icon": "icons/info-personal.svg",
+                "icon": "/icons/info-personal.svg",
                 "info": { 
                     "bio": {
                         "title": "bio",
@@ -46,7 +47,7 @@
             },
             "hobbies-info": {
                 "title": "hobbies-info",
-                "icon": "icons/info-hobbies.svg",
+                "icon": "/icons/info-hobbies.svg",
                 "info": {
                     "sports": {
                         "title": "sports",

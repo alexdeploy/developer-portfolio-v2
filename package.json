@@ -12,10 +12,15 @@
     "postinstall": "nuxt prepare",
     "test": "vitest run",
     "typecheck": "nuxt typecheck",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "schema:types": "node scripts/generate-config-types.mjs"
   },
   "devDependencies": {
     "@types/aos": "^3.0.8",
+    "@types/node": "^24",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "json-schema-to-typescript": "^16.0.0",
     "nuxt": "^4.6.2",
     "typescript": "^5.9",
     "vitest": "^5.0.5",

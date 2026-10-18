@@ -36,16 +36,16 @@ git clone https://github.com/alexdeploy/developer-portfolio-v2.git
 cd developer-portfolio-v2
 ```
 
-3. Install the required dependencies
+3. Install the required dependencies (Node 22.22.3 or newer; pnpm comes with Node through `corepack enable`)
 
 ```sh
-yarn
+pnpm install
 ```
 
 4. Start the development server
 
 ```sh
-yarn dev
+pnpm dev
 ```
 
 5. The development server should now be running on <a href="http://localhost:3000/">http://localhost:3000/</a>
@@ -57,7 +57,7 @@ The portfolio template includes some default content, but you can easily customi
 
 * Update the `developer.json` file on root directory, which contains all the text for the project and the portfolio "user" information, including *projects*, *about-me*, *gists* (Ids) and *contact* info.
 
-  Its format is described in [`developer.schema.json`](./developer.schema.json). Editors such as VS Code use it to autocomplete and validate the file as you type, and `yarn dev` / `yarn build` stop with a clear error if the file does not match the schema.
+  Its format is described in [`developer.schema.json`](./developer.schema.json). Editors such as VS Code use it to autocomplete and validate the file as you type, and `pnpm dev` / `pnpm build` stop with a clear error if the file does not match the schema.
 
 * Update the `nuxt.config.ts` file for meta tags of website and some additional config.
 
@@ -70,13 +70,13 @@ The portfolio template includes some default content, but you can easily customi
 1. Generate a full static production build
 
 ```sh
-yarn build
+pnpm build
 ```
 
 2. Preview the site as it will appear once deployed.
 
 ```sh
-yarn preview
+pnpm preview
 ```
 
 ## Contributions

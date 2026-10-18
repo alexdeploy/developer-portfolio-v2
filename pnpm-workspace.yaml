@@ -1,0 +1,4 @@
+# pnpm settings (pnpm 10+ keeps them here instead of package.json).
+# Dependencies allowed to run their install scripts; pnpm blocks every other one.
+allowBuilds:
+  esbuild: true

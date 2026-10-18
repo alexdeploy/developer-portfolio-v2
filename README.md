@@ -79,6 +79,10 @@ pnpm build
 pnpm preview
 ```
 
+## 🔄 Dependency updates
+
+Dependencies are kept current by [Renovate](https://docs.renovatebot.com/), configured in [`renovate.json`](./renovate.json): it pins development dependencies, waits a few days before proposing a new npm release, and merges minor and patch updates of the tooling once CI passes. Forks are not affected unless you install the [Renovate GitHub App](https://github.com/apps/renovate) on your own repository; delete the file if you prefer another tool.
+
 ## Contributions
 
 If you find any bugs or have any suggestions, you can open an <a href="https://github.com/alexdeploy/developer-portfolio-v2/issues">issue</a>.

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Dependency updates for this repository. Renovate reads this file from the default branch.",
+    "config:best-practices pins devDependencies, pins GitHub Actions by digest, waits 3 days before",
+    "proposing a new npm release, and refreshes the lockfile weekly."
+  ],
+  "extends": [
+    "config:best-practices",
+    "schedule:weekly"
+  ],
+  "timezone": "Europe/Madrid",
+  "labels": ["dependencies"],
+  "osvVulnerabilityAlerts": true,
+  "postUpdateOptions": ["pnpmDedupe"],
+  "automergeStrategy": "squash",
+  "packageRules": [
+    {
+      "description": "Development tooling: merge minor and patch updates automatically once CI is green.",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "Nuxt and Vue drive the rendered site: always review their updates by hand.",
+      "matchPackageNames": ["nuxt", "@nuxt/**", "vue", "@vue/**", "vue-tsc"],
+      "automerge": false
+    }
+  ]
+}

@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { Ajv } from 'ajv'
 import addFormats from 'ajv-formats'
@@ -28,7 +27,7 @@ describe('developer.schema.json', () => {
 
   it('rejects a missing required field', () => {
     const { role: _role, ...withoutRole } = config
-    expect(errorsOf(withoutRole)).toEqual(["(root) must have required property 'role'"])
+    expect(errorsOf(withoutRole)).toEqual(['(root) must have required property \'role\''])
   })
 
   it('rejects unknown properties, which usually are typos', () => {

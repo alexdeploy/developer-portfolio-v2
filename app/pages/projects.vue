@@ -15,7 +15,8 @@ const projects = computed<Project[]>(() => {
 function filterProjects(tech: string, checked: boolean) {
   if (checked) {
     filters.value = [...filters.value.filter(item => item !== 'all'), tech]
-  } else {
+  }
+  else {
     filters.value = filters.value.filter(item => item !== tech)
     if (filters.value.length === 0) filters.value = ['all']
   }
@@ -24,33 +25,75 @@ function filterProjects(tech: string, checked: boolean) {
 
 <template>
   <main class="flex flex-col flex-auto lg:flex-row overflow-hidden">
-
-    <h1 class="sr-only">Projects</h1>
+    <h1 class="sr-only">
+      Projects
+    </h1>
     <div id="mobile-page-title">
       <h2>_projects</h2>
     </div>
 
     <!-- section title (mobile) -->
-    <button type="button" class="section-content-title flex lg:hidden w-full text-left" :aria-expanded="showFilters" aria-controls="filter-menu" @click="showFilters = !showFilters">
-      <img :class="showFilters ? 'section-arrow rotate-90' : 'section-arrow'" src="/icons/arrow.svg" alt="">
+    <button
+      type="button"
+      class="section-content-title flex lg:hidden w-full text-left"
+      :aria-expanded="showFilters"
+      aria-controls="filter-menu"
+      @click="showFilters = !showFilters"
+    >
+      <img
+        :class="showFilters ? 'section-arrow rotate-90' : 'section-arrow'"
+        src="/icons/arrow.svg"
+        alt=""
+      >
       <span class="font-fira_regular text-white text-sm">projects</span>
     </button>
 
-    <div v-if="showFilters" id="filter-menu"
-      class="w-full flex-col border-right font-fira_regular text-menu-text lg:flex">
+    <div
+      v-if="showFilters"
+      id="filter-menu"
+      class="w-full flex-col border-right font-fira_regular text-menu-text lg:flex"
+    >
       <!-- title -->
       <div class="section-content-title hidden lg:flex items-center min-w-full">
-        <img src="/icons/arrow.svg" alt="" class="section-arrow mx-3">
-        <p class="font-fira_regular text-white text-sm">projects</p>
+        <img
+          src="/icons/arrow.svg"
+          alt=""
+          class="section-arrow mx-3"
+        >
+        <p class="font-fira_regular text-white text-sm">
+          projects
+        </p>
       </div>
 
       <!-- filter menu -->
-      <nav id="filters" aria-label="Filter projects by technology" class="w-full flex-col">
-
-        <div v-for="tech in techs" :key="tech" class="flex items-center py-2">
-          <input type="checkbox" :id="tech" :checked="filters.includes(tech)" @change="filterProjects(tech, ($event.target as HTMLInputElement).checked)">
-          <img :id="'icon-tech-' + tech" :src="`/icons/techs/${tech.toLowerCase()}.svg`" alt="" class="tech-icon w-5 h-5 mx-4" :class="{ active: filters.includes(tech) }">
-          <label :for="tech" :id="'title-tech-' + tech" :class="{ active: filters.includes(tech) }">{{ tech }}</label>
+      <nav
+        id="filters"
+        aria-label="Filter projects by technology"
+        class="w-full flex-col"
+      >
+        <div
+          v-for="tech in techs"
+          :key="tech"
+          class="flex items-center py-2"
+        >
+          <input
+            :id="tech"
+            type="checkbox"
+            :checked="filters.includes(tech)"
+            @change="filterProjects(tech, ($event.target as HTMLInputElement).checked)"
+          >
+          <img
+            :id="'icon-tech-' + tech"
+            :src="`/icons/techs/${tech.toLowerCase()}.svg`"
+            alt=""
+            class="tech-icon w-5 h-5 mx-4"
+            :class="{ active: filters.includes(tech) }"
+          >
+          <label
+            :id="'title-tech-' + tech"
+            :for="tech"
+            :class="{ active: filters.includes(tech) }"
+          >{{ tech }}</label>
         </div>
       </nav>
     </div>
@@ -58,29 +101,54 @@ function filterProjects(tech: string, checked: boolean) {
     <!-- content -->
 
     <div class="flex flex-col w-full overflow-hidden">
-
       <!-- windows tab -->
       <div class="tab-height w-full hidden lg:flex border-bot items-center">
         <div class="flex items-center border-right h-full">
-          <p v-for="filter in filters" :key="filter" class="font-fira_regular text-menu-text text-sm px-3">{{ filter }};
+          <p
+            v-for="filter in filters"
+            :key="filter"
+            class="font-fira_regular text-menu-text text-sm px-3"
+          >
+            {{ filter }};
           </p>
-          <img src="/icons/close.svg" alt="" class="m-3">
+          <img
+            src="/icons/close.svg"
+            alt=""
+            class="m-3"
+          >
         </div>
       </div>
 
       <!-- windows tab mobile -->
-      <div id="tab" class="flex lg:hidden items-center">
+      <div
+        id="tab"
+        class="flex lg:hidden items-center"
+      >
         <span class="text-white"> // </span>
-        <p class="font-fira_regular text-white text-sm px-3">projects</p>
+        <p class="font-fira_regular text-white text-sm px-3">
+          projects
+        </p>
         <span class="text-menu-text"> / </span>
-        <p v-for="filter in filters" :key="filter" class="font-fira_regular text-menu-text text-sm px-3">{{ filter }};
+        <p
+          v-for="filter in filters"
+          :key="filter"
+          class="font-fira_regular text-menu-text text-sm px-3"
+        >
+          {{ filter }};
         </p>
       </div>
 
       <!-- projects -->
-      <div id="projects-case" class="grid-cols-1 lg:grid-cols-2 max-w-full h-full overflow-scroll lg:self-center" :class="{ grid: projects.length > 0 }">
-        <div id="not-found" v-show="projects.length === 0"
-          class="flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center">
+      <div
+        id="projects-case"
+        class="grid-cols-1 lg:grid-cols-2 max-w-full h-full overflow-scroll lg:self-center"
+        :class="{ grid: projects.length > 0 }"
+      >
+        <div
+          v-show="projects.length === 0"
+          id="not-found"
+          class="flex flex-col font-fira_retina text-menu-text my-5 h-full justify-center items-center"
+        >
           <span class="flex justify-center text-4xl pb-3">
             X__X
           </span>
@@ -92,12 +160,17 @@ function filterProjects(tech: string, checked: boolean) {
           </span>
         </div>
 
-        <ProjectCard v-for="(project, index) in projects" :key="project.title + index" :index="index" :project="project" />
-
+        <ProjectCard
+          v-for="(project, index) in projects"
+          :key="project.title + index"
+          :index="index"
+          :project="project"
+        />
       </div>
     </div>
   </main>
 </template>
+
 <style>
 #filters {
   padding: 10px 25px;

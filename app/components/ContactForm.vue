@@ -9,25 +9,64 @@ function onSubmit() {
 </script>
 
 <template>
-    <form id="contact-form" class="text-sm" @submit.prevent="onSubmit">
-        <div class="flex flex-col">
-            <label for="name-input" class="mb-3">_name:</label>
-            <input type="text" id="name-input" name="name" v-model="name" class="p-2 mb-5 placeholder-slate-600" required>
-        </div>
-        <div class="flex flex-col">
-            <label for="email-input" class="mb-3">_email:</label>
-            <input type="email" id="email-input" name="email" v-model="email" class="p-2 mb-5 placeholder-slate-600" required>
-        </div>
-        <div class="flex flex-col">
-            <label for="message-input" class="mb-3">_message:</label>
-            <textarea id="message-input" name="message" v-model="message" class="placeholder-slate-600" required></textarea>
-        </div>
-        <button id="submit-button" type="submit" class="py-2 px-4">submit-message</button>
-    </form>
+  <form
+    id="contact-form"
+    class="text-sm"
+    @submit.prevent="onSubmit"
+  >
+    <div class="flex flex-col">
+      <label
+        for="name-input"
+        class="mb-3"
+      >_name:</label>
+      <input
+        id="name-input"
+        v-model="name"
+        type="text"
+        name="name"
+        class="p-2 mb-5 placeholder-slate-600"
+        required
+      >
+    </div>
+    <div class="flex flex-col">
+      <label
+        for="email-input"
+        class="mb-3"
+      >_email:</label>
+      <input
+        id="email-input"
+        v-model="email"
+        type="email"
+        name="email"
+        class="p-2 mb-5 placeholder-slate-600"
+        required
+      >
+    </div>
+    <div class="flex flex-col">
+      <label
+        for="message-input"
+        class="mb-3"
+      >_message:</label>
+      <textarea
+        id="message-input"
+        v-model="message"
+        name="message"
+        class="placeholder-slate-600"
+        required
+      />
+    </div>
+    <button
+      id="submit-button"
+      type="submit"
+      class="py-2 px-4"
+    >
+      submit-message
+    </button>
+  </form>
 </template>
+
 <style>
 @reference "../assets/tailwind.css";
-
 
 form {
     @apply font-fira_retina text-menu-text
@@ -36,11 +75,11 @@ input {
     background-color: #011221;
     border: 2px solid #1E2D3D;
     border-radius: 7px;
-    
+
 }
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,

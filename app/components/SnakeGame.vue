@@ -81,10 +81,18 @@ function moveSnake() {
   if (!head) return
   let { x, y } = head
   switch (direction.value) {
-    case 'up': y--; break
-    case 'down': y++; break
-    case 'left': x--; break
-    case 'right': x++; break
+    case 'up':
+      y--
+      break
+    case 'down':
+      y++
+      break
+    case 'left':
+      x--
+      break
+    case 'right':
+      x++
+      break
   }
 
   const inside = x >= 0 && x < COLS && y >= 0 && y < ROWS
@@ -102,10 +110,12 @@ function moveSnake() {
       snake.value.unshift({ x, y })
       food.value = null
       endGame(true)
-    } else {
+    }
+    else {
       food.value = generateNewFood()
     }
-  } else {
+  }
+  else {
     snake.value.pop()
   }
   render()
@@ -150,7 +160,8 @@ function render() {
               break
           }
         }
-      } else if (food.value && j === food.value.x && i === food.value.y) {
+      }
+      else if (food.value && j === food.value.x && i === food.value.y) {
         cell.style.backgroundColor = '#43D9AD'
         cell.style.borderRadius = '50%'
         cell.style.boxShadow = '0 0 10px #43D9AD'
@@ -171,7 +182,8 @@ function onKeydown(event: KeyboardEvent) {
       event.preventDefault()
       move(next)
     }
-  } else if (event.key === ' ') {
+  }
+  else if (event.key === ' ') {
     event.preventDefault()
     if (gameOver.value) startAgain()
     else startGame()
@@ -192,82 +204,179 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div id="console">
+  <div id="console">
+    <!-- bolts -->
+    <img
+      src="/icons/console/bolt-up-left.svg"
+      alt=""
+      class="corner absolute top-2 left-2 opacity-70"
+    >
+    <img
+      src="/icons/console/bolt-up-right.svg"
+      alt=""
+      class="corner absolute top-2 right-2 opacity-70"
+    >
+    <img
+      src="/icons/console/bolt-down-left.svg"
+      alt=""
+      class="corner absolute bottom-2 left-2 opacity-70"
+    >
+    <img
+      src="/icons/console/bolt-down-right.svg"
+      alt=""
+      class="corner absolute bottom-2 right-2 opacity-70"
+    >
 
-      <!-- bolts -->
-      <img src="/icons/console/bolt-up-left.svg" alt="" class="corner absolute top-2 left-2 opacity-70">
-      <img src="/icons/console/bolt-up-right.svg" alt="" class="corner absolute top-2 right-2 opacity-70">
-      <img src="/icons/console/bolt-down-left.svg" alt="" class="corner absolute bottom-2 left-2 opacity-70">
-      <img src="/icons/console/bolt-down-right.svg" alt="" class="corner absolute bottom-2 right-2 opacity-70">
+    <!-- Game Screen -->
+    <div
+      id="game-screen"
+      ref="gameScreen"
+      aria-hidden="true"
+    />
+    <p
+      class="sr-only"
+      aria-live="polite"
+    >
+      {{ statusText }}
+    </p>
 
+    <button
+      v-show="!gameStarted && !gameOver"
+      id="start-button"
+      class="font-fira_retina"
+      @click="startGame"
+    >
+      start-game
+    </button>
 
-      <!-- Game Screen -->
-      <div id="game-screen" ref="gameScreen" aria-hidden="true"></div>
-      <p class="sr-only" aria-live="polite">{{ statusText }}</p>
+    <!-- Game Over -->
+    <div
+      v-show="gameOver && !won"
+      id="game-over"
+    >
+      <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">GAME OVER!</span>
+      <button
+        class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white"
+        @click="startAgain"
+      >
+        start-again
+      </button>
+    </div>
 
-      <button v-show="!gameStarted && !gameOver" id="start-button" class="font-fira_retina" @click="startGame">start-game</button>
+    <div
+      v-show="won"
+      id="congrats"
+    >
+      <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">WELL DONE!</span>
+      <button
+        class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white"
+        @click="startAgain"
+      >
+        play-again
+      </button>
+    </div>
 
-      <!-- Game Over -->
-      <div v-show="gameOver && !won" id="game-over">
-        <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">GAME OVER!</span>
-        <button class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white" @click="startAgain">start-again</button>
-      </div>
-
-      <div v-show="won" id="congrats">
-        <span class="font-fira_retina text-greenfy bg-bluefy-dark h-12 flex items-center justify-center">WELL DONE!</span>
-        <button class="font-fira_retina text-menu-text text-sm flex items-center justify-center w-full py-6 hover:text-white" @click="startAgain">play-again</button>
-      </div>
-
-      <div id="console-menu" class="h-full flex flex-col items-end justify-between">
-
-        <div>
-
-        <div id="instructions" class="font-fira_retina text-sm text-white">
+    <div
+      id="console-menu"
+      class="h-full flex flex-col items-end justify-between"
+    >
+      <div>
+        <div
+          id="instructions"
+          class="font-fira_retina text-sm text-white"
+        >
           <p>// use your keyboard</p>
           <p>// arrows to play</p>
 
-          <div id="buttons" class="w-full flex flex-col items-center gap-1 pt-5">
+          <div
+            id="buttons"
+            class="w-full flex flex-col items-center gap-1 pt-5"
+          >
+            <button
+              type="button"
+              class="console-button button-up"
+              @click="move('up')"
+            >
+              <img
+                src="/icons/console/arrow-button.svg"
+                alt="move up"
+              >
+            </button>
 
-              <button type="button" class="console-button button-up" @click="move('up')">
-                <img src="/icons/console/arrow-button.svg" alt="move up">
+            <div class="grid grid-cols-3 gap-1">
+              <button
+                type="button"
+                class="console-button button-left"
+                @click="move('left')"
+              >
+                <img
+                  src="/icons/console/arrow-button.svg"
+                  alt="move left"
+                  class="-rotate-90"
+                >
               </button>
 
-              <div class="grid grid-cols-3 gap-1">
-                <button type="button" class="console-button button-left" @click="move('left')">
-                  <img src="/icons/console/arrow-button.svg" alt="move left" class="-rotate-90">
-                </button>
+              <button
+                type="button"
+                class="console-button button-down"
+                @click="move('down')"
+              >
+                <img
+                  src="/icons/console/arrow-button.svg"
+                  alt="move down"
+                  class="rotate-180"
+                >
+              </button>
 
-                <button type="button" class="console-button button-down" @click="move('down')">
-                  <img src="/icons/console/arrow-button.svg" alt="move down" class="rotate-180">
-                </button>
-
-                <button type="button" class="console-button button-right" @click="move('right')">
-                  <img src="/icons/console/arrow-button.svg" alt="move right" class="rotate-90">
-                </button>
+              <button
+                type="button"
+                class="console-button button-right"
+                @click="move('right')"
+              >
+                <img
+                  src="/icons/console/arrow-button.svg"
+                  alt="move right"
+                  class="rotate-90"
+                >
+              </button>
             </div>
-
           </div>
         </div>
 
         <!-- score board -->
-        <div id="score-board" class="w-full flex flex-col pl-5">
-          <p class="font-fira_retina text-white pt-5">// food left</p>
+        <div
+          id="score-board"
+          class="w-full flex flex-col pl-5"
+        >
+          <p class="font-fira_retina text-white pt-5">
+            // food left
+          </p>
 
-          <div id="score" class="grid grid-cols-5 gap-5 justify-items-center pt-5 w-fit">
-            <div v-for="n in FOOD_TO_WIN" :key="n" class="food" :style="{ opacity: n <= score ? 1 : 0.3 }"></div>
-
+          <div
+            id="score"
+            class="grid grid-cols-5 gap-5 justify-items-center pt-5 w-fit"
+          >
+            <div
+              v-for="n in FOOD_TO_WIN"
+              :key="n"
+              class="food"
+              :style="{ opacity: n <= score ? 1 : 0.3 }"
+            />
           </div>
         </div>
       </div>
-        <!-- skip -->
-        <NuxtLink id="skip-btn" to="/about-me" class="font-fira_retina flex hover:bg-white/20">
-          skip
-        </NuxtLink>
-        
-      </div>
+      <!-- skip -->
+      <NuxtLink
+        id="skip-btn"
+        to="/about-me"
+        class="font-fira_retina flex hover:bg-white/20"
+      >
+        skip
+      </NuxtLink>
     </div>
-    
-  </template>
+  </div>
+</template>
+
 <style>
 #console {
     width: 530px;
@@ -371,7 +480,6 @@ onBeforeUnmount(() => {
   border: 2px solid white;
   border-radius: 0.5rem; /* 8px */
 }
-
 
 @media (min-width: 1024px) and (max-width: 1536px) {
   #game-screen {

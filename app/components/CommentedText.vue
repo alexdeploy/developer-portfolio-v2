@@ -26,23 +26,49 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="code-container flex font-fira_retina text-menu-text">
-    <div class="line-numbers lg:flex flex-col w-32 hidden" aria-hidden="true">
-
+    <div
+      class="line-numbers lg:flex flex-col w-32 hidden"
+      aria-hidden="true"
+    >
       <!-- line numbers and asteriscs -->
-      <div v-for="n in lines" class="grid grid-cols-2 justify-end" :key="n">
+      <div
+        v-for="n in lines"
+        :key="n"
+        class="grid grid-cols-2 justify-end"
+      >
         <span class="col-span-1 mr-3">{{ n }}</span>
-        <div v-if="n == 1" class="col-span-1 flex justify-center">/**</div>
-        <div class="col-span-1 flex justify-center" v-if="n > 1 && n < lines">*</div>
-        <div class="col-span-1 flex justify-center pl-2" v-if="n == lines">*/</div>
+        <div
+          v-if="n == 1"
+          class="col-span-1 flex justify-center"
+        >
+          /**
+        </div>
+        <div
+          v-if="n > 1 && n < lines"
+          class="col-span-1 flex justify-center"
+        >
+          *
+        </div>
+        <div
+          v-if="n == lines"
+          class="col-span-1 flex justify-center pl-2"
+        >
+          */
+        </div>
       </div>
     </div>
 
     <!-- text -->
-    <div ref="textContainer" class="text-container">
-      <p v-html="text"></p>
+    <div
+      ref="textContainer"
+      class="text-container"
+    >
+      <!-- eslint-disable-next-line vue/no-v-html -- developer.json descriptions may contain basic HTML such as <br> by design -->
+      <p v-html="text" />
     </div>
   </div>
 </template>
+
 <style>
 .code-container {
   display: flex;

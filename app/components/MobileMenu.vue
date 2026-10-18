@@ -21,43 +21,84 @@ const isActive = (path: string) => route.path === path
 </script>
 
 <template>
-  <nav id="mobile-menu" aria-label="Mobile" class="w-full z-10 lg:hidden">
-
+  <nav
+    id="mobile-menu"
+    aria-label="Mobile"
+    class="w-full z-10 lg:hidden"
+  >
     <!-- header -->
-    <div id="mobile-header" class="w-full h-16 flex justify-between items-center">
-      <NuxtLink class="text-menu-text font-fira_retina flex h-full items-center mx-5" to="/" @click="goHome()">
+    <div
+      id="mobile-header"
+      class="w-full h-16 flex justify-between items-center"
+    >
+      <NuxtLink
+        class="text-menu-text font-fira_retina flex h-full items-center mx-5"
+        to="/"
+        @click="goHome()"
+      >
         {{ config.logo_name }}
       </NuxtLink>
-      <button type="button" class="mx-5 my-auto flex" :aria-expanded="menuOpen" aria-controls="menu"
-        :aria-label="menuOpen ? 'Close menu' : 'Open menu'" @click="toggleMobileMenu()">
-        <img :src="menuOpen ? '/icons/burger-close.svg' : '/icons/burger.svg'" alt="" class="w-5 h-5" />
+      <button
+        type="button"
+        class="mx-5 my-auto flex"
+        :aria-expanded="menuOpen"
+        aria-controls="menu"
+        :aria-label="menuOpen ? 'Close menu' : 'Open menu'"
+        @click="toggleMobileMenu()"
+      >
+        <img
+          :src="menuOpen ? '/icons/burger-close.svg' : '/icons/burger.svg'"
+          alt=""
+          class="w-5 h-5"
+        >
       </button>
     </div>
 
     <!-- mobile menu -->
-    <div id="menu" class="bg-mobile-menu-blue z-10" :class="{ hidden: !menuOpen }">
-      <NuxtLink class="nav-link-mobile" to="/" :class="{ active: isActive('/') }" @click="toggleMobileMenu()">
+    <div
+      id="menu"
+      class="bg-mobile-menu-blue z-10"
+      :class="{ hidden: !menuOpen }"
+    >
+      <NuxtLink
+        class="nav-link-mobile"
+        to="/"
+        :class="{ active: isActive('/') }"
+        @click="toggleMobileMenu()"
+      >
         _hello
       </NuxtLink>
 
-      <NuxtLink class="nav-link-mobile" to="/about-me" :class="{ active: isActive('/about-me') }"
-        @click="toggleMobileMenu()">
+      <NuxtLink
+        class="nav-link-mobile"
+        to="/about-me"
+        :class="{ active: isActive('/about-me') }"
+        @click="toggleMobileMenu()"
+      >
         _about-me
       </NuxtLink>
 
-      <NuxtLink class="nav-link-mobile" to="/projects" :class="{ active: isActive('/projects') }"
-        @click="toggleMobileMenu()">
+      <NuxtLink
+        class="nav-link-mobile"
+        to="/projects"
+        :class="{ active: isActive('/projects') }"
+        @click="toggleMobileMenu()"
+      >
         _projects
       </NuxtLink>
 
-      <NuxtLink class="nav-link-mobile" to="/contact-me" :class="{ active: isActive('/contact-me') }"
-        @click="toggleMobileMenu()">
+      <NuxtLink
+        class="nav-link-mobile"
+        to="/contact-me"
+        :class="{ active: isActive('/contact-me') }"
+        @click="toggleMobileMenu()"
+      >
         _contact-me
       </NuxtLink>
     </div>
-
   </nav>
 </template>
+
 <style>
 @reference "../assets/tailwind.css";
 

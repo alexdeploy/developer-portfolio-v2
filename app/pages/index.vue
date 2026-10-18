@@ -17,58 +17,63 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  	<main id="hello">
+  <main id="hello">
+    <!-- gradients -->
+    <div class="css-blurry-gradient-blue" />
+    <div class="css-blurry-gradient-green" />
 
-    	<!-- gradients -->
-    	<div class="css-blurry-gradient-blue"></div>
-    	<div class="css-blurry-gradient-green"></div>
-
-		<section class="hero">
-		
-			<div class="head">
-				<span>
-					Hi all, I am
-				</span>
-				<h1>{{ config.name }}</h1>
+    <section class="hero">
+      <div class="head">
+        <span>
+          Hi all, I am
+        </span>
+        <h1>{{ config.name }}</h1>
         <span class="diple flex">
           >&nbsp;
-				<h2 class="line-1 anim-typewriter max-w-fit"> {{ config.role }} </h2>
+          <h2 class="line-1 anim-typewriter max-w-fit"> {{ config.role }} </h2>
         </span>
-			</div>
+      </div>
 
-			<div id="info">
-				<span class="action">
-					// complete the game to continue
-				</span>
-				<span :class="{hide: isMobile}">
-					// you can also see it on my Github page
-				</span>
-				<span :class="{hide: !isMobile}">
-					// find my profile on Github:
-				</span>
-				<p class="code">
-					<span class="identifier">
-						const
-					</span>
-					<span class="variable-name">
-						githubLink
-					</span>
-					<span class="operator">
-						=
-					</span>
-					<a class="string" :href="'https://github.com/' + config.contacts.social.github.user">
-						"https://github.com/{{ config.contacts.social.github.user }}"
-					</a>
-				</p>
-			</div>
-		</section>
+      <div id="info">
+        <span class="action">
+          // complete the game to continue
+        </span>
+        <span :class="{ hide: isMobile }">
+          // you can also see it on my Github page
+        </span>
+        <span :class="{ hide: !isMobile }">
+          // find my profile on Github:
+        </span>
+        <p class="code">
+          <span class="identifier">
+            const
+          </span>
+          <span class="variable-name">
+            githubLink
+          </span>
+          <span class="operator">
+            =
+          </span>
+          <a
+            class="string"
+            :href="'https://github.com/' + config.contacts.social.github.user"
+          >
+            "https://github.com/{{ config.contacts.social.github.user }}"
+          </a>
+        </p>
+      </div>
+    </section>
 
-		<section data-aos="fade-up" class="game" v-if="!isMobile">
-			<SnakeGame />
-		</section>
-
-	</main>
+    <section
+      v-if="!isMobile"
+      data-aos="fade-up"
+      class="game"
+    >
+      <SnakeGame />
+    </section>
+  </main>
 </template>
+
 <style scoped>
 #hello {
   display: flex;
@@ -79,28 +84,27 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 .hero {
-	width: 100%;
-	justify-content: center;
-	
+  width: 100%;
+  justify-content: center;
+
 }
 .game {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-/* 	align-items: center; */
-	z-index: 20;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+/*   align-items: center; */
+  z-index: 20;
 }
 
 #hello .hero {
-	display: flex;
-	flex-direction: column;
-	/* display: grid;
-	grid-template-columns: repeat(12, minmax(0, 1fr)); */
-	margin: 0rem;
+  display: flex;
+  flex-direction: column;
+  /* display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr)); */
+  margin: 0rem;
 }
-
 
 #hello .head span {
   font-size: 18px;
@@ -130,8 +134,8 @@ onBeforeUnmount(() => {
 }
 
 #info {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #info > span {
@@ -166,11 +170,11 @@ onBeforeUnmount(() => {
 }
 
 #info {
-	padding-block: 2.5rem;
+  padding-block: 2.5rem;
 }
 
 #info .action {
-	display: flex
+  display: flex
 }
 
 .hide {
@@ -183,9 +187,9 @@ onBeforeUnmount(() => {
   right: 5%;
   width: 300px;
   height: 300px;
-	border-radius: 0% 0% 50% 50%;
+  border-radius: 0% 0% 50% 50%;
   rotate: 10deg;
-	filter: blur(70px);
+  filter: blur(70px);
   background: radial-gradient(circle at 50% 50%,rgba(77, 91, 206, 1), rgba(76, 0, 255, 0));
   opacity: 0.5;
   z-index: 10;
@@ -197,8 +201,8 @@ onBeforeUnmount(() => {
   right: 30%;
   width: 300px;
   height: 300px;
-	border-radius: 0% 50% 0% 50%;
-	filter: blur(70px);
+  border-radius: 0% 50% 0% 50%;
+  filter: blur(70px);
   background: radial-gradient(circle at 50% 50%,rgba(67, 217, 173, 1), rgba(76, 0, 255, 0));
   opacity: 0.5;
   z-index: 10;
@@ -233,58 +237,56 @@ onBeforeUnmount(() => {
   to{border-right-color: transparent;}
 }
 
-
 /* mobile */
 @media (max-width: 768px) {
 
-	#hello {
-		padding-left: 0;
-	}
+  #hello {
+    padding-left: 0;
+  }
 
-	#hello .hero {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		margin: 1.75rem; /* 28px */
-	}
-	.head {
-		padding-top: 4rem; /* 40px */
-	}
+  #hello .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1.75rem; /* 28px */
+  }
+  .head {
+    padding-top: 4rem; /* 40px */
+  }
 
-	#hello .head h2, #hello .head .diple {
-		font-size: 20px;
-		color: #43D9AD;
-	}
-	
-	#info .action {
-		display: none;
-	}
+  #hello .head h2, #hello .head .diple {
+    font-size: 20px;
+    color: #43D9AD;
+  }
+
+  #info .action {
+    display: none;
+  }
 
 }
 
 /* tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
-	#hello {
-		padding-left: 0;
-	}
-	#hello .hero {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		margin: 1.75rem; /* 28px */
-	}
-	.head {
-		padding-top: 4rem; /* 40px */
-	}
+  #hello {
+    padding-left: 0;
+  }
+  #hello .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1.75rem; /* 28px */
+  }
+  .head {
+    padding-top: 4rem; /* 40px */
+  }
 
 }
 
 @media (min-width: 1024px) and (max-width: 1320px) {
-	#hello {
-		padding-left: 135px;
-	}
+  #hello {
+    padding-left: 135px;
+  }
 }
-
 
 /* LG */
 
@@ -315,12 +317,11 @@ onBeforeUnmount(() => {
 }
 
 @media (min-width: 1920px){
-	#hello {
-		padding-left: 310px;
-	}
-	#hello .head h1 {
-		font-size: 62px;
-	}
+  #hello {
+    padding-left: 310px;
+  }
+  #hello .head h1 {
+    font-size: 62px;
+  }
 }
-
 </style>

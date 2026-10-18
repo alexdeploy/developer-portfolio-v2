@@ -32,7 +32,7 @@ describe('siteMeta', () => {
   })
 
   it('resolves the developer.json shipped with the template', () => {
-    expect(siteMeta(config).image).toBe('https://developer-portfolio-v1.netlify.app/demo-share.jpg')
+    expect(siteMeta(config).image).toBe('https://developer-portfolio-v2.netlify.app/demo-share.jpg')
   })
 })
 

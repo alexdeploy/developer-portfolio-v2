@@ -13,7 +13,7 @@
 </div>
 
 <p align="center">
-  <a href="https://developer-portfolio-v1.netlify.app/" target="_blank">
+  <a href="https://developer-portfolio-v2.netlify.app/" target="_blank">
     <img src="./public/images/demo-share.png" alt="Screenshot of the portfolio home page" />
   </a>
 </p>

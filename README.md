@@ -7,7 +7,7 @@
 <div align="center">
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6fa55804-6799-419f-9222-359ba49c5e4c/deploy-status)](https://app.netlify.com/sites/developer-portfolio-v2/deploys)
-[![CI](https://github.com/alexdeploy/developer-portfolio-v2/actions/workflows/ci.yml/badge.svg?branch=next)](https://github.com/alexdeploy/developer-portfolio-v2/actions/workflows/ci.yml)
+[![CI](https://github.com/alexdeploy/developer-portfolio-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/alexdeploy/developer-portfolio-v2/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 </div>
@@ -22,16 +22,13 @@
 
 | Version | Branch | Stack | Status |
 |---|---|---|---|
-| **v2** (2.0.0-beta.1) | [`next`](https://github.com/alexdeploy/developer-portfolio-v2/tree/next) | Nuxt 4, TypeScript, Tailwind CSS 4, pnpm | Beta available, roadmap in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39) |
+| **v2** (2.0.0) | [`main`](https://github.com/alexdeploy/developer-portfolio-v2) | Nuxt 4, TypeScript, Tailwind CSS 4, pnpm | Current |
 | **v1** (1.9.6) | [`v1`](https://github.com/alexdeploy/developer-portfolio-v2/tree/v1) | Nuxt 3, Tailwind CSS 3, yarn | Frozen; stays available |
 
 The design and `developer.json`, the file with your content, are the same in both. v2 brings the
 template to the current stack and fixes the known bugs: see the [CHANGELOG](./CHANGELOG.md), which
 includes a short [upgrade guide](./CHANGELOG.md#upgrading-from-v1). If you forked v1, nothing
 changes in your copy unless you decide to upgrade.
-
-To try the beta: `git clone --branch v2.0.0-beta.1 https://github.com/alexdeploy/developer-portfolio-v2.git`,
-then follow the installation steps below. Feedback is welcome in [#39](https://github.com/alexdeploy/developer-portfolio-v2/issues/39).
 
 ## ✨ What you get
 
@@ -143,7 +140,7 @@ Dependencies are kept current by [Renovate](https://docs.renovatebot.com/), conf
 
 ## Contributions
 
-If you find any bugs or have any suggestions, you can open an <a href="https://github.com/alexdeploy/developer-portfolio-v2/issues">issue</a>. Pull requests for v2 go to the `next` branch until 2.0.0 is released.
+If you find any bugs or have any suggestions, you can open an <a href="https://github.com/alexdeploy/developer-portfolio-v2/issues">issue</a>.
 
 ## License
 

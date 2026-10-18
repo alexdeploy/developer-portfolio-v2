@@ -1,0 +1,5 @@
+# Netlify build settings for the demo site. This file takes precedence over the settings in the
+# Netlify UI, which were written for v1 (yarn). Node comes from .nvmrc and pnpm from "packageManager".
+[build]
+  command = "pnpm generate"
+  publish = ".output/public"

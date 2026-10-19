@@ -57,6 +57,15 @@ export interface DeveloperConfig {
     }
   }
   contacts: {
+    /**
+     * Where the contact form sends its messages. Without this block, submitting opens the visitor's mail app with the message addressed to the "email" of the direct sources.
+     */
+    form?: {
+      /**
+       * Endpoint that receives the message as a form-encoded POST with the fields name, email and message (sent with Accept: application/json) and answers 2xx on success: a Formspree form such as "https://formspree.io/f/<id>", a similar service, or an endpoint of your own.
+       */
+      action: string
+    }
     direct: {
       /**
        * Title of the direct contacts block, e.g. "contacts".

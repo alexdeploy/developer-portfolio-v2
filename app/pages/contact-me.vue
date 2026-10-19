@@ -150,6 +150,8 @@ onMounted(() => {
             v-model:name="name"
             v-model:email="email"
             v-model:message="message"
+            :action="contact.form?.action"
+            :fallback-email="contact.direct.sources.email"
           />
         </div>
 

@@ -76,6 +76,20 @@
       "additionalProperties": false,
       "required": ["direct", "social", "find_me_also_in"],
       "properties": {
+        "form": {
+          "type": "object",
+          "description": "Where the contact form sends its messages. Without this block, submitting opens the visitor's mail app with the message addressed to the \"email\" of the direct sources.",
+          "additionalProperties": false,
+          "required": ["action"],
+          "properties": {
+            "action": {
+              "type": "string",
+              "format": "uri-reference",
+              "minLength": 1,
+              "description": "Endpoint that receives the message as a form-encoded POST with the fields name, email and message (sent with Accept: application/json) and answers 2xx on success: a Formspree form such as \"https://formspree.io/f/<id>\", a similar service, or an endpoint of your own."
+            }
+          }
+        },
         "direct": {
           "type": "object",
           "additionalProperties": false,

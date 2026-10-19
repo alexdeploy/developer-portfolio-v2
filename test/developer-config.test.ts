@@ -48,6 +48,13 @@ describe('developer.schema.json', () => {
     expect(errorsOf({ ...config, site: { url: 'jane.dev' } })).toEqual(['/site/url must match format "uri"'])
   })
 
+  it('accepts a contact form endpoint and rejects one that is not a URL', () => {
+    const withForm = (action: string) => ({ ...config, contacts: { ...config.contacts, form: { action } } })
+    expect(errorsOf(withForm('https://formspree.io/f/abc'))).toEqual([])
+    expect(errorsOf(withForm('/api/contact'))).toEqual([])
+    expect(errorsOf(withForm('not a url'))).toEqual(['/contacts/form/action must match format "uri-reference"'])
+  })
+
   it('rejects a project without a valid URL', () => {
     const project = { ...Object.values(config.projects)[0]!, url: 'github.com' }
     const errors = errorsOf({ ...config, projects: { 1: project } })

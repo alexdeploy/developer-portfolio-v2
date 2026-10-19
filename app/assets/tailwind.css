@@ -223,7 +223,7 @@ main.page {
     padding: 50px 25px 0px 25px;
   }
 
-  #contact-form {
+  #contact-form, #form-sent {
       max-width: 220px;
       width: 100%;
   }

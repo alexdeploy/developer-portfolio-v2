@@ -60,6 +60,17 @@ describe('GistSnippet', () => {
     expect(panel().style.display).toBe('none')
   })
 
+  it('links the stars entry to the gist on GitHub', async () => {
+    const wrapper = await mountSuspended(GistSnippet, { props: { id: 'abc123' } })
+    await flushPromises()
+
+    const stars = wrapper.find('a.gist-stars')
+    expect(stars.attributes('href')).toBe('https://gist.github.com/alex/abc123')
+    expect(stars.attributes('target')).toBe('_blank')
+    expect(stars.attributes('rel')).toContain('noopener')
+    expect(stars.text()).toContain('stars')
+  })
+
   it('renders nothing and logs when the gist cannot be loaded', async () => {
     getGistById.mockRejectedValue(new Error('GitHub API responded 403'))
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})

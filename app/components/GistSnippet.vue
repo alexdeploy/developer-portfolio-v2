@@ -78,14 +78,21 @@ onMounted(async () => {
           >
           <span>details</span>
         </button>
-        <div class="hidden lg:flex">
+        <!-- The gist API exposes no star count and starring needs a user token: send people to GitHub. -->
+        <a
+          :href="gist.html_url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gist-stars hidden lg:flex hover:text-white"
+        >
           <img
             src="/icons/gist/star.svg"
             alt=""
             class="w-4 h-4 mx-2"
           >
-          <span class="">stars</span>
-        </div>
+          <span>stars</span>
+          <span class="sr-only"> (open the gist on GitHub)</span>
+        </a>
       </div>
     </div>
 

@@ -87,6 +87,8 @@ The portfolio template includes some default content, but you can easily customi
 
 * Fill in the optional `site` block of `developer.json` (public URL, description, sharing image, language). It drives the `<head>` meta tags, the social sharing cards and the web app manifest, which is generated at `/pwa/manifest.json`; nothing else needs editing for SEO.
 
+* Give the contact form a destination with the optional `contacts.form.action`: an endpoint that accepts a form-encoded POST with the fields `name`, `email` and `message` and answers 2xx, such as a [Formspree](https://formspree.io/) form (`"https://formspree.io/f/<id>"`) or a route of your own. Without it, submitting opens the visitor's mail app with the message addressed to your `email` direct source.
+
 * Replace the images under `public/` (project screenshots, sharing image, PWA icons) with yours.
 
 * Update the `nuxt.config.ts` file for additional configuration.

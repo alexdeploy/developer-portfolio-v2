@@ -6,6 +6,31 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+The four feature requests left open since 2023, all on the about and contact pages.
+
+### Added
+
+- [#13](https://github.com/alexdeploy/developer-portfolio-v2/issues/13) The contact form sends
+  the message and shows a success panel. Set `contacts.form.action` in `developer.json` to an
+  endpoint that accepts a form-encoded POST and answers 2xx (a Formspree form, a similar service,
+  or a route of your own). Without it, submitting opens the visitor's mail app with the message
+  prefilled and addressed to your `email` direct source. If sending fails, the form stays and the
+  error offers that email instead.
+- [#20](https://github.com/alexdeploy/developer-portfolio-v2/issues/20) Clicking a file listed
+  under a folder of the about page shows its text in the comment area; the folder description
+  comes back when the folder is clicked again. `files` keeps the same shape it always had (file
+  name to text), so existing content works as is.
+- [#21](https://github.com/alexdeploy/developer-portfolio-v2/issues/21) On desktop, the section
+  title and the contacts title of the about menu collapse and expand their lists, with the arrow
+  rotating, as the contact page already did.
+
+### Changed
+
+- [#19](https://github.com/alexdeploy/developer-portfolio-v2/issues/19) The star entry of a code
+  snippet links to the gist on GitHub, where it can be starred. The gist API exposes no star count
+  and starring needs a visitor token, so a static site cannot do either.
+- The mobile breadcrumb of the about page wraps between items instead of inside a name.
+
 ## [2.0.0] - 2026-10-18
 
 The same design on today's stack. The work was tracked in

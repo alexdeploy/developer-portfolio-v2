@@ -10,7 +10,7 @@ describe('about-me page', () => {
   it('starts on personal-info / bio and switches section and folder from the menu', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
     const wrapper = await mountSuspended(AboutMePage)
-    const title = () => wrapper.find('.section-content-title p').text()
+    const title = () => wrapper.find('button[aria-controls="about-folders"] span').text()
 
     expect(title()).toBe('personal-info')
     expect(wrapper.find('button.section-icon[aria-label="personal-info"]').attributes('aria-pressed')).toBe('true')
@@ -39,6 +39,32 @@ describe('about-me page', () => {
     const contacts = wrapper.find('button[aria-controls="contacts"]')
     await contacts.trigger('click')
     expect(contacts.attributes('aria-expanded')).toBe('true')
+  })
+
+  it('collapses the desktop folders and contacts from their titles and reopens the folders on a new section', async () => {
+    const wrapper = await mountSuspended(AboutMePage)
+    const foldersTitle = wrapper.find('button[aria-controls="about-folders"]')
+    const folders = () => wrapper.find('#about-folders').element as HTMLElement
+    const contactsTitle = wrapper.find('#section-content-title-contact')
+    const sources = () => wrapper.find('#contact-sources').element as HTMLElement
+
+    expect(foldersTitle.attributes('aria-expanded')).toBe('true')
+    expect(folders().style.display).not.toBe('none')
+    expect(foldersTitle.find('.section-arrow').classes()).toContain('open')
+
+    await foldersTitle.trigger('click')
+    expect(foldersTitle.attributes('aria-expanded')).toBe('false')
+    expect(folders().style.display).toBe('none')
+    expect(foldersTitle.find('.section-arrow').classes()).not.toContain('open')
+
+    await wrapper.find('button.section-icon[aria-label="hobbies-info"]').trigger('click')
+    expect(foldersTitle.attributes('aria-expanded')).toBe('true')
+    expect(folders().style.display).not.toBe('none')
+
+    expect(contactsTitle.attributes('aria-expanded')).toBe('true')
+    await contactsTitle.trigger('click')
+    expect(contactsTitle.attributes('aria-expanded')).toBe('false')
+    expect(sources().style.display).toBe('none')
   })
 
   it('links direct contacts with mailto: and tel:', async () => {

@@ -9,8 +9,12 @@ const sections = config.about.sections
 const currentSection = ref('personal-info')
 const folder = ref('bio')
 
+// Mobile menu: every section is its own disclosure, closed by default.
 const openSections = ref<Record<string, boolean>>({})
 const contactsOpen = ref(false)
+// Desktop menu: one disclosure for the folders of the active section and one for the contacts (#21).
+const foldersOpen = ref(true)
+const desktopContactsOpen = ref(true)
 
 const activeSection = computed(() => sections[currentSection.value])
 const activeFolder = computed(() => activeSection.value?.info[folder.value])
@@ -23,6 +27,7 @@ function focusCurrentSection(section: AboutSection) {
   currentSection.value = section.title
   folder.value = Object.keys(section.info)[0] ?? folder.value
   openSections.value[section.title] = !isSectionOpen(section.title) // expand/collapse folders (mobile)
+  foldersOpen.value = true // a newly picked section shows its folders (desktop)
 }
 
 function focusCurrentFolder(target: AboutFolder) {
@@ -73,20 +78,28 @@ function focusCurrentFolder(target: AboutFolder) {
 
       <!-- focused section content -->
       <div class="section-content hidden lg:block w-full h-full border-right">
-        <!-- title -->
-        <div class="section-content-title hidden lg:flex items-center min-w-full">
+        <!-- title: toggles the folders below -->
+        <button
+          type="button"
+          class="section-content-title hidden lg:flex items-center min-w-full w-full text-left"
+          :aria-expanded="foldersOpen"
+          aria-controls="about-folders"
+          @click="foldersOpen = !foldersOpen"
+        >
           <img
             src="/icons/arrow.svg"
             alt=""
-            class="section-arrow mx-3 open"
+            class="section-arrow mx-3"
+            :class="{ open: foldersOpen }"
           >
-          <p class="font-fira_regular text-white text-sm">
-            {{ activeSection?.title }}
-          </p>
-        </div>
+          <span class="font-fira_regular text-white text-sm">{{ activeSection?.title }}</span>
+        </button>
 
         <!-- folders -->
-        <div>
+        <div
+          v-show="foldersOpen"
+          id="about-folders"
+        >
           <div
             v-for="(entry, name, index) in activeSection?.info ?? {}"
             :key="name"
@@ -134,21 +147,25 @@ function focusCurrentFolder(target: AboutFolder) {
           </div>
         </div>
 
-        <!-- contact -->
-        <div
+        <!-- contact: toggles the sources below -->
+        <button
           id="section-content-title-contact"
-          class="flex items-center min-w-full border-top"
+          type="button"
+          class="flex items-center min-w-full w-full text-left border-top"
+          :aria-expanded="desktopContactsOpen"
+          aria-controls="contact-sources"
+          @click="desktopContactsOpen = !desktopContactsOpen"
         >
           <img
             src="/icons/arrow.svg"
             alt=""
-            class="section-arrow mx-3 open"
+            class="section-arrow mx-3"
+            :class="{ open: desktopContactsOpen }"
           >
-          <p class="font-fira_regular text-white text-sm">
-            {{ config.contacts.direct.title }}
-          </p>
-        </div>
+          <span class="font-fira_regular text-white text-sm">{{ config.contacts.direct.title }}</span>
+        </button>
         <div
+          v-show="desktopContactsOpen"
           id="contact-sources"
           class="hidden lg:flex lg:flex-col my-2"
         >

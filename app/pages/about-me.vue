@@ -8,6 +8,7 @@ const sections = config.about.sections
 
 const currentSection = ref('personal-info')
 const folder = ref('bio')
+const file = ref<string | null>(null) // a file of the active folder, when one is selected (#20)
 
 // Mobile menu: every section is its own disclosure, closed by default.
 const openSections = ref<Record<string, boolean>>({})
@@ -18,24 +19,35 @@ const desktopContactsOpen = ref(true)
 
 const activeSection = computed(() => sections[currentSection.value])
 const activeFolder = computed(() => activeSection.value?.info[folder.value])
+const activeFileContent = computed(() => (file.value === null ? undefined : activeFolder.value?.files?.[file.value]))
+// The text area shows the selected file, or the folder description when no file is selected.
+const text = computed(() => activeFileContent.value ?? activeFolder.value?.description ?? '')
 
 const isActive = (name: string) => folder.value === name
+const isFileActive = (folderName: string, fileName: string) => folder.value === folderName && file.value === fileName
 const isSectionActive = (name: string) => currentSection.value === name
 const isSectionOpen = (name: string) => openSections.value[name] === true
 
 function focusCurrentSection(section: AboutSection) {
   currentSection.value = section.title
   folder.value = Object.keys(section.info)[0] ?? folder.value
+  file.value = null
   openSections.value[section.title] = !isSectionOpen(section.title) // expand/collapse folders (mobile)
   foldersOpen.value = true // a newly picked section shows its folders (desktop)
 }
 
 function focusCurrentFolder(target: AboutFolder) {
   folder.value = target.title
+  file.value = null
   if (!activeSection.value?.info[target.title]) {
     const owner = Object.keys(sections).find(name => sections[name]?.info[target.title])
     if (owner) currentSection.value = owner
   }
+}
+
+function focusFile(owner: AboutFolder, fileName: string) {
+  focusCurrentFolder(owner)
+  file.value = fileName
 }
 </script>
 
@@ -131,18 +143,21 @@ function focusCurrentFolder(target: AboutFolder) {
               v-if="entry.files !== undefined"
               class="col-span-2"
             >
-              <div
-                v-for="(file, fileName) in entry.files"
+              <button
+                v-for="(_content, fileName) in entry.files"
                 :key="fileName"
-                class="flex my-2"
+                type="button"
+                class="flex my-2 w-full text-left hover:text-white"
+                :aria-pressed="isFileActive(entry.title, fileName)"
+                @click="focusFile(entry, fileName)"
               >
                 <img
                   src="/icons/markdown.svg"
                   alt=""
                   class="ml-8 mr-3"
                 >
-                <p>{{ fileName }}</p>
-              </div>
+                <span :class="{ active: isFileActive(entry.title, fileName) }">{{ fileName }}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -242,18 +257,21 @@ function focusCurrentFolder(target: AboutFolder) {
                 v-if="entry.files !== undefined"
                 class="col-span-2"
               >
-                <div
-                  v-for="(file, fileName) in entry.files"
+                <button
+                  v-for="(_content, fileName) in entry.files"
                   :key="fileName"
-                  class="flex my-2"
+                  type="button"
+                  class="flex my-2 w-full text-left hover:text-white"
+                  :aria-pressed="isFileActive(entry.title, fileName)"
+                  @click="focusFile(entry, fileName)"
                 >
                   <img
                     src="/icons/markdown.svg"
                     alt=""
                     class="ml-8 mr-3"
                   >
-                  <p>{{ fileName }}</p>
-                </div>
+                  <span :class="{ active: isFileActive(entry.title, fileName) }">{{ fileName }}</span>
+                </button>
               </div>
             </div>
           </div>
@@ -323,7 +341,7 @@ function focusCurrentFolder(target: AboutFolder) {
         <!-- windows tab mobile -->
         <div
           id="tab-mobile"
-          class="flex lg:hidden font-fira_retina"
+          class="flex flex-wrap lg:hidden font-fira_retina whitespace-nowrap"
         >
           <span class="text-white">// </span>
           <h3 class="text-white px-2">
@@ -333,6 +351,12 @@ function focusCurrentFolder(target: AboutFolder) {
           <h3 class="text-menu-text pl-2">
             {{ activeFolder?.title }}
           </h3>
+          <template v-if="file !== null">
+            <span class="text-menu-text pl-2"> / </span>
+            <h3 class="text-menu-text pl-2">
+              {{ file }}
+            </h3>
+          </template>
         </div>
 
         <!-- text -->
@@ -341,7 +365,7 @@ function focusCurrentFolder(target: AboutFolder) {
           class="flex h-full w-full lg:border-right overflow-hidden"
         >
           <div class="w-full h-full ml-5 mr-10 lg:my-5 overflow-scroll">
-            <CommentedText :text="activeFolder?.description ?? ''" />
+            <CommentedText :text="text" />
           </div>
 
           <!-- scroll bar -->

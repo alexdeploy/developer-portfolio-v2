@@ -135,7 +135,7 @@ export interface AboutFolder {
    */
   description: string
   /**
-   * Optional files listed under the folder, keyed by file name.
+   * Optional files listed under the folder, keyed by file name. The value is the text shown instead of the folder description when the file is clicked. Basic HTML such as <br> is allowed.
    */
   files?: {
     [k: string]: string

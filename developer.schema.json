@@ -142,7 +142,7 @@
         "description": { "type": "string", "description": "Text shown as a code comment when the folder is selected. Basic HTML such as <br> is allowed." },
         "files": {
           "type": "object",
-          "description": "Optional files listed under the folder, keyed by file name.",
+          "description": "Optional files listed under the folder, keyed by file name. The value is the text shown instead of the folder description when the file is clicked. Basic HTML such as <br> is allowed.",
           "additionalProperties": { "type": "string" }
         }
       }

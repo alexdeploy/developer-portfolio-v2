@@ -67,6 +67,40 @@ describe('about-me page', () => {
     expect(sources().style.display).toBe('none')
   })
 
+  it('shows the text of a file when it is clicked and goes back to the folder on a folder click', async () => {
+    const wrapper = await mountSuspended(AboutMePage)
+    const shown = () => wrapper.find('#commented-text .text-container p').text()
+    const crumbs = () => wrapper.findAll('#tab-mobile h3').map(h => h.text())
+    const desktopButtons = () => wrapper.findAll('#about-folders button')
+
+    const education = desktopButtons().find(b => b.text() === 'education')!
+    await education.trigger('click')
+    const description = shown()
+    expect(description).toContain('passionate about')
+    expect(crumbs()).toEqual(['personal-info', 'education'])
+
+    const highSchool = desktopButtons().find(b => b.text() === 'high-school')!
+    await highSchool.trigger('click')
+    expect(highSchool.attributes('aria-pressed')).toBe('true')
+    expect(highSchool.find('span').classes()).toContain('active')
+    expect(shown()).toContain('Las Viñas')
+    expect(shown()).not.toBe(description)
+    expect(crumbs()).toEqual(['personal-info', 'education', 'high-school'])
+
+    await desktopButtons().find(b => b.text() === 'university')!.trigger('click')
+    expect(highSchool.attributes('aria-pressed')).toBe('false')
+    expect(shown()).toContain('At university')
+
+    await education.trigger('click')
+    expect(shown()).toBe(description)
+    expect(crumbs()).toEqual(['personal-info', 'education'])
+
+    // Switching section drops the file selection too.
+    await desktopButtons().find(b => b.text() === 'high-school')!.trigger('click')
+    await wrapper.find('button.section-icon[aria-label="hobbies-info"]').trigger('click')
+    expect(crumbs()).toEqual(['hobbies-info', 'sports'])
+  })
+
   it('links direct contacts with mailto: and tel:', async () => {
     const wrapper = await mountSuspended(AboutMePage)
 

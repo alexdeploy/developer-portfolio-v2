@@ -6,6 +6,8 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-10-19
+
 The four feature requests left open since 2023, all on the about and contact pages.
 
 ### Added
@@ -160,6 +162,7 @@ To stay on v1 instead, check out the `v1` branch or the `v1.9.6` tag; nothing ch
 Earlier versions are documented in the
 [GitHub releases](https://github.com/alexdeploy/developer-portfolio-v2/releases).
 
-[Unreleased]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v2.0.0...main
+[Unreleased]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v2.1.0...main
+[2.1.0]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/alexdeploy/developer-portfolio-v2/compare/v1.9.6...v2.0.0
 [1.9.6]: https://github.com/alexdeploy/developer-portfolio-v2/releases/tag/v1.9.6

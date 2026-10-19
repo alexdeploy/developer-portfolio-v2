@@ -22,7 +22,7 @@
 
 | Version | Branch | Stack | Status |
 |---|---|---|---|
-| **v2** (2.0.0) | [`main`](https://github.com/alexdeploy/developer-portfolio-v2) | Nuxt 4, TypeScript, Tailwind CSS 4, pnpm | Current |
+| **v2** (2.1.0) | [`main`](https://github.com/alexdeploy/developer-portfolio-v2) | Nuxt 4, TypeScript, Tailwind CSS 4, pnpm | Current |
 | **v1** (1.9.6) | [`v1`](https://github.com/alexdeploy/developer-portfolio-v2/tree/v1) | Nuxt 3, Tailwind CSS 3, yarn | Frozen; stays available |
 
 The design and `developer.json`, the file with your content, are the same in both. v2 brings the
